@@ -10,12 +10,16 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.raflab.booking_services.dto.BookingRequestDTO;
 import org.raflab.booking_services.dto.BookingResponseDTO;
+import org.raflab.booking_services.dto.BookingStatusLogDTO;
+import org.raflab.booking_services.dto.BookingStatusLogRequestDTO;
 import org.raflab.booking_services.service.BookingService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/bookings")
@@ -72,5 +76,27 @@ public class BookingController {
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         bookingService.deleteBooking(id);
         return ResponseEntity.noContent().build();
+    }
+
+    /* Booking logs */
+    @PatchMapping("/{id}/status")
+    @Operation(summary = "Update booking status", description = "Specifically updates the booking status and creates a history log.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Status updated successfully", content = @Content(schema = @Schema(implementation = BookingResponseDTO.class))),
+            @ApiResponse(responseCode = "400", description = "Invalid input data", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Booking not found")
+    })
+    public ResponseEntity<BookingResponseDTO> updateStatus(@PathVariable Long id, @RequestBody @Valid BookingStatusLogRequestDTO request) {
+        return ResponseEntity.ok(bookingService.updateStatus(id, request));
+    }
+
+    @GetMapping("/{id}/logs")
+    @Operation(summary = "Get booking status history", description = "Retrieves a chronological list of all status changes for this booking.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Logs retrieved successfully"),
+            @ApiResponse(responseCode = "404", description = "Booking not found")
+    })
+    public ResponseEntity<List<BookingStatusLogDTO>> getLogs(@PathVariable Long id) {
+        return ResponseEntity.ok(bookingService.getLogsForBooking(id));
     }
 }
