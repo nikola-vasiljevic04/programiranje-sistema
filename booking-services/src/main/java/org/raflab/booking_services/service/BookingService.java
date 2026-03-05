@@ -2,20 +2,12 @@ package org.raflab.booking_services.service;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.raflab.booking_services.dto.BookingRequestDTO;
-import org.raflab.booking_services.dto.BookingResponseDTO;
-import org.raflab.booking_services.dto.BookingStatusLogDTO;
-import org.raflab.booking_services.dto.BookingStatusLogRequestDTO;
+import org.raflab.booking_services.dto.*;
+import org.raflab.booking_services.mapper.AddOnMapper;
 import org.raflab.booking_services.mapper.BookingMapper;
 import org.raflab.booking_services.mapper.BookingStatusLogMapper;
-import org.raflab.booking_services.model.Booking;
-import org.raflab.booking_services.model.BookingStatusLog;
-import org.raflab.booking_services.model.CancellationPolicy;
-import org.raflab.booking_services.model.Guest;
-import org.raflab.booking_services.repository.BookingRepository;
-import org.raflab.booking_services.repository.BookingStatusLogRepository;
-import org.raflab.booking_services.repository.CancellationPolicyRepository;
-import org.raflab.booking_services.repository.GuestRepository;
+import org.raflab.booking_services.model.*;
+import org.raflab.booking_services.repository.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -32,8 +24,10 @@ public class BookingService {
     private final GuestRepository guestRepository;
     private final CancellationPolicyRepository policyRepository;
     private final BookingStatusLogRepository bookingStatusLogRepository;
+    private final AddOnItemRepository addOnItemRepository;
     private final BookingMapper bookingMapper;
     private final BookingStatusLogMapper bookingStatusLogMapper;
+    private final AddOnMapper addOnMapper;
 
     public Page<BookingResponseDTO> getBookings(Pageable pageable) {
         return bookingRepository.findAll(pageable)
@@ -49,6 +43,7 @@ public class BookingService {
         return bookingMapper.toResponseDTO(findBookingById(id));
     }
 
+    // Create new booking
     @Transactional
     public BookingResponseDTO createBooking(BookingRequestDTO dto) {
         Booking booking = bookingMapper.toEntity(dto);
@@ -63,12 +58,12 @@ public class BookingService {
             booking.setCancellationPolicy(policy);
         }
 
-        // initial log
-        this.updateStatus(booking, booking.getStatus(), false);
+        this.updateStatus(booking, booking.getStatus(), false); // initial status log
 
         return bookingMapper.toResponseDTO(bookingRepository.save(booking));
     }
 
+    // Get all booking logs
     public List<BookingStatusLogDTO> getLogsForBooking(Long bookingId) {
         if (!bookingRepository.existsById(bookingId)) {
             throw new EntityNotFoundException("Booking not found");
@@ -79,6 +74,7 @@ public class BookingService {
                 .collect(Collectors.toList());
     }
 
+    // Update status for booking
     @Transactional
     public BookingResponseDTO updateStatus(Long bookingId, BookingStatusLogRequestDTO request) {
         Booking booking = findBookingById(bookingId);
@@ -92,6 +88,7 @@ public class BookingService {
         return bookingMapper.toResponseDTO(updated);
     }
 
+    // Save log and update status
     private Booking updateStatus(Booking booking, String newStatus, boolean updateBooking) {
         String oldStatus = booking.getStatus();
 
@@ -110,6 +107,7 @@ public class BookingService {
         return booking;
     }
 
+    // Update booking
     @Transactional
     public BookingResponseDTO updateBooking(Long id, BookingRequestDTO dto) {
         Booking booking = findBookingById(id);
@@ -134,10 +132,36 @@ public class BookingService {
         return bookingMapper.toResponseDTO(bookingRepository.save(booking));
     }
 
+    // Delete booking
     public void deleteBooking(Long id) {
         if (!bookingRepository.existsById(id)) {
             throw new EntityNotFoundException("Booking not found");
         }
         bookingRepository.deleteById(id);
+    }
+
+    @Transactional
+    public AddOnItemDTO addAddOnToBooking(Long bookingId, AddOnItemDTO dto) {
+        Booking booking = findBookingById(bookingId);
+
+        AddOnItem item = addOnMapper.toEntity(dto);
+        item.setBooking(booking);
+
+        // update total price
+        booking.setTotalPrice(booking.getTotalPrice() + item.getPrice());
+
+        AddOnItem savedItem = addOnItemRepository.save(item);
+        bookingRepository.save(booking);
+
+        return addOnMapper.toDTO(savedItem);
+    }
+
+    public List<AddOnItemDTO> getAddOnsForBooking(Long bookingId) {
+        if (!bookingRepository.existsById(bookingId)) {
+            throw new EntityNotFoundException("Booking not found");
+        }
+        return addOnItemRepository.findByBookingId((bookingId)).stream()
+                .map(addOnMapper::toDTO)
+                .collect(Collectors.toList());
     }
 }

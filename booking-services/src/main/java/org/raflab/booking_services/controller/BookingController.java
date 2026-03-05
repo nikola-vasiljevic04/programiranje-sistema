@@ -8,10 +8,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.raflab.booking_services.dto.BookingRequestDTO;
-import org.raflab.booking_services.dto.BookingResponseDTO;
-import org.raflab.booking_services.dto.BookingStatusLogDTO;
-import org.raflab.booking_services.dto.BookingStatusLogRequestDTO;
+import org.raflab.booking_services.dto.*;
 import org.raflab.booking_services.service.BookingService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -98,5 +95,28 @@ public class BookingController {
     })
     public ResponseEntity<List<BookingStatusLogDTO>> getLogs(@PathVariable Long id) {
         return ResponseEntity.ok(bookingService.getLogsForBooking(id));
+    }
+
+    /* Booking Add-ons */
+
+    @GetMapping("/{id}/addons")
+    @Operation(summary = "Get all add-ons for a booking", description = "Retrieves all additional services associated with this booking.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Add-ons retrieved successfully"),
+            @ApiResponse(responseCode = "404", description = "Booking not found")
+    })
+    public ResponseEntity<List<AddOnItemDTO>> getAddOns(@PathVariable Long id) {
+        return ResponseEntity.ok(bookingService.getAddOnsForBooking(id));
+    }
+
+    @PostMapping("/{id}/addons")
+    @Operation(summary = "Add a new add-on to booking", description = "Adds a service (like parking) to the booking and updates the total price.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Add-on created and price updated"),
+            @ApiResponse(responseCode = "400", description = "Invalid input data"),
+            @ApiResponse(responseCode = "404", description = "Booking not found")
+    })
+    public ResponseEntity<AddOnItemDTO> addAddOn(@PathVariable Long id, @RequestBody @Valid AddOnItemDTO dto) {
+        return ResponseEntity.status(201).body(bookingService.addAddOnToBooking(id, dto));
     }
 }
