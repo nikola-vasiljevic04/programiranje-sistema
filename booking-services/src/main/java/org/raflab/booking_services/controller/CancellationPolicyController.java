@@ -2,7 +2,6 @@ package org.raflab.booking_services.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -29,16 +28,6 @@ public class CancellationPolicyController {
         return ResponseEntity.ok(cancellationPolicyService.getAllPolicies());
     }
 
-    @GetMapping("/{id}")
-    @Operation(summary = "Get policy by ID")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Policy found", content = @Content(schema = @Schema(implementation = CancellationPolicyDTO.class))),
-            @ApiResponse(responseCode = "404", description = "Policy not found")
-    })
-    public ResponseEntity<CancellationPolicyDTO> getById(@PathVariable Long id) {
-        return ResponseEntity.ok(cancellationPolicyService.getPolicyById(id));
-    }
-
     @PostMapping
     @Operation(summary = "Create new cancellation policy")
     @ApiResponses(value = {
@@ -48,16 +37,6 @@ public class CancellationPolicyController {
     })
     public ResponseEntity<CancellationPolicyDTO> create(@RequestBody @Valid CancellationPolicyDTO dto) {
         return ResponseEntity.status(201).body(cancellationPolicyService.createPolicy(dto));
-    }
-
-    @PutMapping("/{id}")
-    @Operation(summary = "Update policy")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Policy updated"),
-            @ApiResponse(responseCode = "404", description = "Policy not found")
-    })
-    public ResponseEntity<CancellationPolicyDTO> update(@PathVariable Long id, @RequestBody @Valid CancellationPolicyDTO dto) {
-        return ResponseEntity.ok(cancellationPolicyService.updatePolicy(id, dto));
     }
 
     @DeleteMapping("/{id}")

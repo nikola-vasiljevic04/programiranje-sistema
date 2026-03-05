@@ -29,16 +29,6 @@ public class GuestController {
         return ResponseEntity.ok(guestService.getGuests(pageable));
     }
 
-    @GetMapping("/{id}")
-    @Operation(summary = "Get Guest by ID")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Guest found", content = @Content(schema = @Schema(implementation = GuestDTO.class))),
-            @ApiResponse(responseCode = "404", description = "Guest not found", content = @Content)
-    })
-    public ResponseEntity<GuestDTO> getById(@PathVariable Long id) {
-        return ResponseEntity.ok(guestService.getGuestById(id));
-    }
-
     @PostMapping
     @Operation(summary = "Create Guest")
     @ApiResponses(value = {
@@ -48,17 +38,6 @@ public class GuestController {
     })
     public ResponseEntity<GuestDTO> create(@RequestBody @Valid final GuestDTO guestRequest) {
         return ResponseEntity.status(201).body(guestService.createGuest(guestRequest));
-    }
-
-    @PutMapping("/{id}")
-    @Operation(summary = "Update Guest", description = "Updates an existing guest's details")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Guest updated successfully"),
-            @ApiResponse(responseCode = "404", description = "Guest not found"),
-            @ApiResponse(responseCode = "400", description = "Invalid input")
-    })
-    public ResponseEntity<GuestDTO> update(@PathVariable Long id, @RequestBody @Valid GuestDTO guestRequest) {
-        return ResponseEntity.ok(guestService.updateGuest(id, guestRequest));
     }
 
     @DeleteMapping("/{id}")

@@ -53,17 +53,6 @@ public class BookingController {
         return ResponseEntity.status(201).body(bookingService.createBooking(request));
     }
 
-    @PutMapping("/{id}")
-    @Operation(summary = "Update booking details")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Booking updated successfully", content = @Content(schema = @Schema(implementation = BookingResponseDTO.class))),
-            @ApiResponse(responseCode = "400", description = "Invalid input data", content = @Content),
-            @ApiResponse(responseCode = "404", description = "Booking, Guest or Policy not found", content = @Content)
-    })
-    public ResponseEntity<BookingResponseDTO> update(@PathVariable Long id, @RequestBody @Valid BookingRequestDTO request) {
-        return ResponseEntity.ok(bookingService.updateBooking(id, request));
-    }
-
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete booking")
     @ApiResponses(value = {

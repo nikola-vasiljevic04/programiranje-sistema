@@ -107,31 +107,6 @@ public class BookingService {
         return booking;
     }
 
-    // Update booking
-    @Transactional
-    public BookingResponseDTO updateBooking(Long id, BookingRequestDTO dto) {
-        Booking booking = findBookingById(id);
-
-        if (!booking.getStatus().equals(dto.getStatus())) {
-            this.updateStatus(booking, dto.getStatus(), false);
-        }
-        bookingMapper.updateEntityFromDto(dto, booking);
-
-        if (!booking.getGuest().getId().equals(dto.getGuestId())) {
-            Guest guest = guestRepository.findById(dto.getGuestId())
-                    .orElseThrow(() -> new EntityNotFoundException("Guest not found"));
-            booking.setGuest(guest);
-        }
-
-        if (booking.getCancellationPolicy() != null && !booking.getCancellationPolicy().getId().equals(dto.getPolicyId())) {
-            CancellationPolicy policy = policyRepository.findById(dto.getPolicyId())
-                    .orElseThrow(() -> new EntityNotFoundException("Policy not found"));
-            booking.setCancellationPolicy(policy);
-        }
-
-        return bookingMapper.toResponseDTO(bookingRepository.save(booking));
-    }
-
     // Delete booking
     public void deleteBooking(Long id) {
         if (!bookingRepository.existsById(id)) {
