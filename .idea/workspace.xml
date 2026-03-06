@@ -5,17 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d1cfae97-644b-4945-b017-5b6a83759895" name="Changes" comment="Model &amp; DTO">
-      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/dto/InvoiceRequestDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/dto/InvoiceResponseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/dto/PaymentMethodDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/dto/TaxRateDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/dto/TransactionRequestDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/dto/TransactionResponseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/model/Invoice.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/model/PaymentMethod.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/model/TaxRate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/model/Transaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/repository/PaymentMethodRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,7 +173,7 @@
       <workItem from="1772786033507" duration="937000" />
       <workItem from="1772787179498" duration="200000" />
       <workItem from="1772787383174" duration="49000" />
-      <workItem from="1772787475887" duration="3586000" />
+      <workItem from="1772787475887" duration="4015000" />
     </task>
     <task id="LOCAL-00001" summary="Initial setup &amp; models">
       <option name="closed" value="true" />
@@ -265,7 +255,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772788367985</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Model &amp; DTO">
+      <option name="closed" value="true" />
+      <created>1772794424361</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1772794424361</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
