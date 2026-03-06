@@ -4,17 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1cfae97-644b-4945-b017-5b6a83759895" name="Changes" comment="README and small changes">
-      <change afterPath="$PROJECT_DIR$/finance-services/.gitattributes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/finance-services/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/finance-services/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/finance-services/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/finance-services/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/finance-services/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/FinanceServicesApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/finance-services/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/finance-services/src/test/java/org/raflab/finance_services/FinanceServicesApplicationTests.java" afterDir="false" />
+    <list default="true" id="d1cfae97-644b-4945-b017-5b6a83759895" name="Changes" comment="Model &amp; DTO">
+      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/dto/InvoiceRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/dto/InvoiceResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/dto/PaymentMethodDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/dto/TaxRateDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/dto/TransactionRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/dto/TransactionResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/model/Invoice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/model/PaymentMethod.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/model/TaxRate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/model/Transaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,6 +124,7 @@
       <recent name="org.raflab.booking_services.mapper" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.raflab.finance_services.dto" />
       <recent name="org.raflab.booking_services.dto" />
       <recent name="org.raflab.booking_services.service" />
       <recent name="org.raflab.booking_services.model" />
@@ -181,7 +183,7 @@
       <workItem from="1772786033507" duration="937000" />
       <workItem from="1772787179498" duration="200000" />
       <workItem from="1772787383174" duration="49000" />
-      <workItem from="1772787475887" duration="652000" />
+      <workItem from="1772787475887" duration="3586000" />
     </task>
     <task id="LOCAL-00001" summary="Initial setup &amp; models">
       <option name="closed" value="true" />
@@ -255,7 +257,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772732897606</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="project structure">
+      <option name="closed" value="true" />
+      <created>1772788367985</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1772788367985</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -271,7 +281,9 @@
     <MESSAGE value="Updating and Creating Booking Addons" />
     <MESSAGE value="Removed unnecessary endpoints..." />
     <MESSAGE value="README and small changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="README and small changes" />
+    <MESSAGE value="project structure" />
+    <MESSAGE value="Model &amp; DTO" />
+    <option name="LAST_COMMIT_MESSAGE" value="Model &amp; DTO" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
