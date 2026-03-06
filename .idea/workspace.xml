@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1cfae97-644b-4945-b017-5b6a83759895" name="Changes" comment="TaxRate &amp; PaymentMethod Controllers and Services">
-      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/controller/InvoiceController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/controller/TransactionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/service/InvoiceService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/service/TransactionService.java" afterDir="false" />
+    <list default="true" id="d1cfae97-644b-4945-b017-5b6a83759895" name="Changes" comment="Invoice and Transcations">
+      <change afterPath="$PROJECT_DIR$/finance-services/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/dto/InvoiceRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/dto/InvoiceRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/dto/TransactionRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/dto/TransactionRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/repository/TransactionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/repository/TransactionRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,7 +175,7 @@
       <workItem from="1772786033507" duration="937000" />
       <workItem from="1772787179498" duration="200000" />
       <workItem from="1772787383174" duration="49000" />
-      <workItem from="1772787475887" duration="8759000" />
+      <workItem from="1772787475887" duration="9675000" />
     </task>
     <task id="LOCAL-00001" summary="Initial setup &amp; models">
       <option name="closed" value="true" />
@@ -288,7 +281,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772796749971</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Invoice and Transcations">
+      <option name="closed" value="true" />
+      <created>1772803104941</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1772803104941</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -308,7 +309,8 @@
     <MESSAGE value="Model &amp; DTO" />
     <MESSAGE value="Repositories &amp; Mappers" />
     <MESSAGE value="TaxRate &amp; PaymentMethod Controllers and Services" />
-    <option name="LAST_COMMIT_MESSAGE" value="TaxRate &amp; PaymentMethod Controllers and Services" />
+    <MESSAGE value="Invoice and Transcations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Invoice and Transcations" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
