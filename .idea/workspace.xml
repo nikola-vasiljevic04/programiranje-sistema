@@ -4,8 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1cfae97-644b-4945-b017-5b6a83759895" name="Changes" comment="Model &amp; DTO">
-      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/repository/PaymentMethodRepository.java" afterDir="false" />
+    <list default="true" id="d1cfae97-644b-4945-b017-5b6a83759895" name="Changes" comment="Repositories &amp; Mappers">
+      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/controller/PaymentMethodController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/controller/TaxRateController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/service/PaymentMethodService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/service/TaxRateService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/repository/PaymentMethodRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/repository/PaymentMethodRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finance-services/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/finance-services/src/main/resources/data.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +92,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "Spring Boot.BookingServicesApplication.executor": "Run",
+    "Spring Boot.FinanceServicesApplication.executor": "Run",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "git-widget-placeholder": "feature/nikola-nedeljkovic-finance",
     "junie.onboarding.icon.badge.shown": "true",
@@ -120,7 +129,7 @@
       <recent name="org.raflab.booking_services.model" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.BookingServicesApplication">
+  <component name="RunManager" selected="Spring Boot.FinanceServicesApplication">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="programiranje_sistema" />
       <method v="2">
@@ -173,7 +182,7 @@
       <workItem from="1772786033507" duration="937000" />
       <workItem from="1772787179498" duration="200000" />
       <workItem from="1772787383174" duration="49000" />
-      <workItem from="1772787475887" duration="4015000" />
+      <workItem from="1772787475887" duration="5555000" />
     </task>
     <task id="LOCAL-00001" summary="Initial setup &amp; models">
       <option name="closed" value="true" />
@@ -263,7 +272,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772794424361</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Repositories &amp; Mappers">
+      <option name="closed" value="true" />
+      <created>1772795205269</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1772795205269</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -281,7 +298,8 @@
     <MESSAGE value="README and small changes" />
     <MESSAGE value="project structure" />
     <MESSAGE value="Model &amp; DTO" />
-    <option name="LAST_COMMIT_MESSAGE" value="Model &amp; DTO" />
+    <MESSAGE value="Repositories &amp; Mappers" />
+    <option name="LAST_COMMIT_MESSAGE" value="Repositories &amp; Mappers" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
