@@ -16,11 +16,6 @@ public class InvoiceRequestDTO {
     @Schema(example = "30")
     private Double subtotal;
 
-    @NotNull
-    @Min(0)
-    @Schema(example = "42")
-    private Double totalAmount;
-
     @NotBlank
     @Schema(example = "UNPAID")
     private String status;

@@ -10,9 +10,6 @@ import java.util.Date;
 @Data
 public class TransactionRequestDTO {
     @NotNull
-    private Long invoiceId;
-
-    @NotNull
     private Long paymentMethodId;
 
     @NotNull
