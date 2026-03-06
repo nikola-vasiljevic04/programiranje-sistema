@@ -3,8 +3,8 @@
 This microservice handles the financial layer of the Eco-Travel & Adventure management system, including tax calculations, invoicing, and payment processing.
 
 ## Technical Specifications
-- **Framework:** Spring Boot 3.x
-- **Language:** Java 17+
+- **Framework:** Spring Boot 4.0.3
+- **Language:** Java 21+
 - **Database:** H2 (In-Memory for development/testing)
 - **Mappers:** MapStruct (Entity-DTO conversion)
 - **Documentation:** SpringDoc OpenAPI (Swagger UI)
@@ -43,7 +43,7 @@ This microservice handles the financial layer of the Eco-Travel & Adventure mana
 ## Local Setup & Testing
 
 ### Prerequisites
-- JDK 17 or higher
+- JDK 21 or higher
 - Maven 3.6+
 
 ### Steps to Run
