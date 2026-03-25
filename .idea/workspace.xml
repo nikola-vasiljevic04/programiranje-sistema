@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d1cfae97-644b-4945-b017-5b6a83759895" name="Changes" comment="Invoice and Transcations">
+      <change afterPath="$PROJECT_DIR$/finance-services/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feature/nikola-nedeljkovic-booking" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;nikola04&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/RAF-PS-2025-26/ps-project-2025-26-nnedeljkovic_nvasiljevic_mstojicevic.git&quot;,
+    &quot;accountId&quot;: &quot;4e727a11-8cd3-49d2-861f-f7d655e2eb02&quot;
+  }
+}</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="0Lo9eCtu" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="3ATqXGdObk47KkabUAqy983L4CR" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Maven.booking-services [clean].executor": "Run",
+    "Maven.booking-services [install].executor": "Run",
+    "Maven.booking-services [org.apache.maven.plugins:maven-install-plugin:3.1.4:install].executor": "Run",
+    "Maven.booking-services [org.springframework.boot:spring-boot-maven-plugin:3.3.1:start].executor": "Run",
+    "Maven.finance-services [clean].executor": "Run",
+    "Maven.finance-services [install].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Spring Boot.BookingServicesApplication.executor": "Run",
+    "Spring Boot.FinanceServicesApplication.executor": "Run",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "feature/nikola-nedeljkovic-finance",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/nikolanedeljkovic/Projects/programiranje_sistema",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "/Users/nikolanedeljkovic/Projects/programiranje_sistema/booking-services/src/main/java/org/raflab/Main.java",
+    "org.rust.first.attach.projects": "true",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "Errors",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "h2"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.raflab.booking_services.mapper" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.raflab.finance_services.dto" />
+      <recent name="org.raflab.booking_services.dto" />
+      <recent name="org.raflab.booking_services.service" />
+      <recent name="org.raflab.booking_services.model" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.FinanceServicesApplication">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="programiranje_sistema" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="programiranje_sistema" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration name="BookingServicesApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="booking-services" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.raflab.booking_services.BookingServicesApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FinanceServicesApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="finance-services" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.raflab.finance_services.FinanceServicesApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="RustProjectSettings">
+    <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-26cb7f24e5b0-intellij.indexing.shared.core-IU-253.29346.240" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.29346.240" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="StructureViewState">
+    <option name="selectedTab" value="Logical" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d1cfae97-644b-4945-b017-5b6a83759895" name="Changes" comment="" />
+      <created>1772626946142</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1772626946142</updated>
+      <workItem from="1772626948717" duration="10064000" />
+      <workItem from="1772668217214" duration="24376000" />
+      <workItem from="1772786033507" duration="937000" />
+      <workItem from="1772787179498" duration="200000" />
+      <workItem from="1772787383174" duration="49000" />
+      <workItem from="1772787475887" duration="9675000" />
+    </task>
+    <task id="LOCAL-00001" summary="Initial setup &amp; models">
+      <option name="closed" value="true" />
+      <created>1772668531185</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1772668531185</updated>
+    </task>
+    <task id="LOCAL-00002" summary="JPA Repositories">
+      <option name="closed" value="true" />
+      <created>1772702783220</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1772702783220</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Guest endpoints">
+      <option name="closed" value="true" />
+      <created>1772720256910</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1772720256910</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Addons, Booking and policies endpoints. Better openAPI documentation">
+      <option name="closed" value="true" />
+      <created>1772726273031</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1772726273031</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Booking status logs and Added exception handler for 500">
+      <option name="closed" value="true" />
+      <created>1772728587797</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1772728587797</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Updating and Creating Booking Addons">
+      <option name="closed" value="true" />
+      <created>1772729236780</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1772729236780</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Updating and Creating Booking Addons">
+      <option name="closed" value="true" />
+      <created>1772729923497</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1772729923497</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Removed unnecessary endpoints...">
+      <option name="closed" value="true" />
+      <created>1772730399859</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1772730399859</updated>
+    </task>
+    <task id="LOCAL-00009" summary="README and small changes">
+      <option name="closed" value="true" />
+      <created>1772732897606</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1772732897606</updated>
+    </task>
+    <task id="LOCAL-00010" summary="project structure">
+      <option name="closed" value="true" />
+      <created>1772788367985</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1772788367985</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Model &amp; DTO">
+      <option name="closed" value="true" />
+      <created>1772794424361</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1772794424361</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Repositories &amp; Mappers">
+      <option name="closed" value="true" />
+      <created>1772795205269</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1772795205269</updated>
+    </task>
+    <task id="LOCAL-00013" summary="TaxRate &amp; PaymentMethod Controllers and Services">
+      <option name="closed" value="true" />
+      <created>1772796749971</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1772796749971</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Invoice and Transcations">
+      <option name="closed" value="true" />
+      <created>1772803104941</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1772803104941</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial setup &amp; models" />
+    <MESSAGE value="JPA Repositories" />
+    <MESSAGE value="Guest endpoints" />
+    <MESSAGE value="Addons, Booking and policies endpoints. Better openAPI documentation" />
+    <MESSAGE value="Booking logs and Added exception handler for 500" />
+    <MESSAGE value="Booking status logs and Added exception handler for 500" />
+    <MESSAGE value="Updating and Creating Booking Addons" />
+    <MESSAGE value="Removed unnecessary endpoints..." />
+    <MESSAGE value="README and small changes" />
+    <MESSAGE value="project structure" />
+    <MESSAGE value="Model &amp; DTO" />
+    <MESSAGE value="Repositories &amp; Mappers" />
+    <MESSAGE value="TaxRate &amp; PaymentMethod Controllers and Services" />
+    <MESSAGE value="Invoice and Transcations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Invoice and Transcations" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
