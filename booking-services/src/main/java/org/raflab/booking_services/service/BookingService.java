@@ -2,7 +2,7 @@ package org.raflab.booking_services.service;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.raflab.booking_services.client.FinanceClient;
+import org.raflab.booking_services.client.FinanceClientService;
 import org.raflab.booking_services.dto.*;
 import org.raflab.booking_services.factory.RefundCalculator;
 import org.raflab.booking_services.factory.RefundCalculatorFactory;
@@ -33,7 +33,7 @@ public class BookingService {
     private final AddOnMapper addOnMapper;
     private final BookingStatusPublisher statusPublisher;
     private final RefundCalculatorFactory refundCalculatorFactory;
-    private final FinanceClient financeClient;
+    private final FinanceClientService financeClientService;
 
     public Page<BookingResponseDTO> getBookings(Pageable pageable) {
         return bookingRepository.findAll(pageable)
@@ -119,7 +119,7 @@ public class BookingService {
         statusPublisher.notifyStatusChange(booking, oldStatus, "CANCELLED");
 
         try {
-            financeClient.revokeInvoiceForBooking(bookingId);
+            financeClientService.revokeInvoiceForBooking(bookingId);
         } catch (Exception e) {
             if (e.getMessage().contains("already revoked") || e.getMessage().contains("not found")) return refund;
             throw e;

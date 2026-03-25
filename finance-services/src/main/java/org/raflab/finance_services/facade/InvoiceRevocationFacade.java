@@ -3,7 +3,7 @@ package org.raflab.finance_services.facade;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.raflab.finance_services.client.BookingClient;
+import org.raflab.finance_services.client.BookingClientService;
 import org.raflab.finance_services.client.dto.BookingDTO;
 import org.raflab.finance_services.dto.InvoiceResponseDTO;
 import org.raflab.finance_services.mapper.InvoiceMapper;
@@ -17,8 +17,8 @@ import org.springframework.stereotype.Component;
 public class InvoiceRevocationFacade {
     private final InvoiceRepository invoiceRepository;
     private final TransactionRepository transactionRepository;
-    private final BookingClient bookingClient;
     private final InvoiceMapper invoiceMapper;
+    private final BookingClientService bookingClientService;
 
     @Transactional
     public InvoiceResponseDTO revokeInvoice(Long invoiceId) {
@@ -30,7 +30,7 @@ public class InvoiceRevocationFacade {
 
         validateRevocable(invoice);
 
-        BookingDTO booking = bookingClient.getBookingById(invoice.getBookingId());
+        BookingDTO booking = bookingClientService.getBookingById(invoice.getBookingId());
         validateBookingRevocable(booking);
 
         processRefunds(invoiceId);

@@ -2,7 +2,7 @@ package org.raflab.finance_services.service;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.raflab.finance_services.client.BookingClient;
+import org.raflab.finance_services.client.BookingClientService;
 import org.raflab.finance_services.client.dto.BookingDTO;
 import org.raflab.finance_services.dto.InvoiceRequestDTO;
 import org.raflab.finance_services.dto.InvoiceResponseDTO;
@@ -24,8 +24,8 @@ public class InvoiceService {
     private final InvoiceRepository invoiceRepository;
     private final TaxRateRepository taxRateRepository;
     private final InvoiceMapper invoiceMapper;
-    private final BookingClient bookingClient;
     private final InvoiceRevocationFacade revocationFacade;
+    private final BookingClientService bookingClientService;
 
     @Transactional(readOnly = true)
     public List<InvoiceResponseDTO> getAllInvoices() {
@@ -38,7 +38,7 @@ public class InvoiceService {
     public InvoiceResponseDTO getInvoiceById(Long id) {
         Invoice invoice = invoiceRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Invoice not found with id: " + id));
-        BookingDTO bookingDTO = bookingClient.getBookingById(invoice.getBookingId());
+        BookingDTO bookingDTO = bookingClientService.getBookingById(invoice.getBookingId());
 
         InvoiceResponseDTO dto = invoiceMapper.toResponseDTO(invoice);
         dto.setBooking(bookingDTO);
@@ -49,7 +49,7 @@ public class InvoiceService {
     @Transactional
     public InvoiceResponseDTO createInvoice(InvoiceRequestDTO dto) {
         TaxRate taxRate = taxRateRepository.findById(dto.getTaxRateId()).orElseThrow(() -> new EntityNotFoundException("Tax Rate not found"));
-        BookingDTO booking = bookingClient.getBookingById(dto.getBookingId());
+        BookingDTO booking = bookingClientService.getBookingById(dto.getBookingId());
 
         Invoice validInvoice = invoiceRepository.findValidInvoiceByBookingId(booking.getId()).orElse(null);
         if (validInvoice != null) {
@@ -74,7 +74,7 @@ public class InvoiceService {
         Invoice invoice = invoiceRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Invoice not found"));
 
-        BookingDTO booking = bookingClient.getBookingById(invoice.getBookingId());
+        BookingDTO booking = bookingClientService.getBookingById(invoice.getBookingId());
         if (!newSubtotal.equals(booking.getTotalPrice())) {
             throw new IllegalArgumentException("Subtotal should be: " + booking.getTotalPrice());
         }
