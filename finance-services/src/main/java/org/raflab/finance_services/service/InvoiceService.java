@@ -6,6 +6,7 @@ import org.raflab.finance_services.client.BookingClient;
 import org.raflab.finance_services.client.dto.BookingDTO;
 import org.raflab.finance_services.dto.InvoiceRequestDTO;
 import org.raflab.finance_services.dto.InvoiceResponseDTO;
+import org.raflab.finance_services.facade.InvoiceRevocationFacade;
 import org.raflab.finance_services.mapper.InvoiceMapper;
 import org.raflab.finance_services.model.Invoice;
 import org.raflab.finance_services.model.TaxRate;
@@ -24,7 +25,7 @@ public class InvoiceService {
     private final TaxRateRepository taxRateRepository;
     private final InvoiceMapper invoiceMapper;
     private final BookingClient bookingClient;
-    private final TransactionService transactionService;
+    private final InvoiceRevocationFacade revocationFacade;
 
     @Transactional(readOnly = true)
     public List<InvoiceResponseDTO> getAllInvoices() {
@@ -86,10 +87,16 @@ public class InvoiceService {
     }
 
     @Transactional
-    public void revokeInvoice(Long id) {
-        Invoice inv = invoiceRepository.getInvoiceById(id).orElseThrow(() -> new EntityNotFoundException("Invoice not found"));
-        inv.setStatus("REVOKED");
-        transactionService.refundTransactions(id);
-        invoiceRepository.save(inv);
+    public InvoiceResponseDTO revokeInvoice(Long id) {
+        return revocationFacade.revokeInvoice(id);
+    }
+
+    @Transactional
+    public InvoiceResponseDTO revokeInvoiceForBookingId(Long bookingId) {
+        Invoice invoice = invoiceRepository.findValidInvoiceByBookingId(bookingId).orElse(null);
+        if (invoice == null) {
+            throw new IllegalArgumentException("Invoice not found.");
+        }
+        return revocationFacade.revokeInvoice(invoice.getId());
     }
 }
