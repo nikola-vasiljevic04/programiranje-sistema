@@ -2,6 +2,8 @@ package org.raflab.finance_services.service;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.raflab.finance_services.client.BookingClient;
+import org.raflab.finance_services.client.dto.BookingDTO;
 import org.raflab.finance_services.dto.InvoiceRequestDTO;
 import org.raflab.finance_services.dto.InvoiceResponseDTO;
 import org.raflab.finance_services.mapper.InvoiceMapper;
@@ -21,6 +23,7 @@ public class InvoiceService {
     private final InvoiceRepository invoiceRepository;
     private final TaxRateRepository taxRateRepository;
     private final InvoiceMapper invoiceMapper;
+    private final BookingClient bookingClient;
 
     @Transactional(readOnly = true)
     public List<InvoiceResponseDTO> getAllInvoices() {
@@ -33,13 +36,27 @@ public class InvoiceService {
     public InvoiceResponseDTO getInvoiceById(Long id) {
         Invoice invoice = invoiceRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Invoice not found with id: " + id));
-        return invoiceMapper.toResponseDTO(invoice);
+        BookingDTO bookingDTO = bookingClient.getBookingById(invoice.getBookingId());
+
+        InvoiceResponseDTO dto = invoiceMapper.toResponseDTO(invoice);
+        dto.setBooking(bookingDTO);
+
+        return dto;
     }
 
     @Transactional
     public InvoiceResponseDTO createInvoice(InvoiceRequestDTO dto) {
-        TaxRate taxRate = taxRateRepository.findById(dto.getTaxRateId())
-                .orElseThrow(() -> new EntityNotFoundException("Tax Rate not found"));
+        TaxRate taxRate = taxRateRepository.findById(dto.getTaxRateId()).orElseThrow(() -> new EntityNotFoundException("Tax Rate not found"));
+        BookingDTO booking = bookingClient.getBookingById(dto.getBookingId());
+
+        Invoice existingInvoice = invoiceRepository.findInvoiceByBookingId(booking.getId()).orElse(null);
+        if (existingInvoice != null) {
+            throw new IllegalStateException("Invoice already exists with id: " + existingInvoice.getId());
+        }
+
+        if (!dto.getSubtotal().equals(booking.getTotalPrice())) {
+            throw new IllegalArgumentException("Subtotal should be: " + booking.getTotalPrice());
+        }
 
         Invoice invoice = invoiceMapper.toEntity(dto);
         invoice.setTaxRate(taxRate);

@@ -36,7 +36,8 @@ public class InvoiceController {
     @Operation(summary = "Get invoice by ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Invoice created"),
-            @ApiResponse(responseCode = "404", description = "Invoice not found", content = @Content)
+            @ApiResponse(responseCode = "404", description = "Invoice not found", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Booking not found", content = @Content)
     })
     public ResponseEntity<InvoiceResponseDTO> getById(@PathVariable Long id) {
         return ResponseEntity.ok(invoiceService.getInvoiceById(id));
@@ -47,7 +48,8 @@ public class InvoiceController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Invoice created"),
             @ApiResponse(responseCode = "400", description = "Invalid input data (e.g. empty name)", content = @Content),
-            @ApiResponse(responseCode = "404", description = "Tax Rate not found", content = @Content)
+            @ApiResponse(responseCode = "404", description = "Tax Rate not found", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Booking not found", content = @Content)
     })
     public ResponseEntity<InvoiceResponseDTO> create(@RequestBody @Valid InvoiceRequestDTO dto) {
         return ResponseEntity.status(201).body(invoiceService.createInvoice(dto));

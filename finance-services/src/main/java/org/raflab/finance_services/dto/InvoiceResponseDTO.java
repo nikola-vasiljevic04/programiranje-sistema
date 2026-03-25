@@ -1,6 +1,7 @@
 package org.raflab.finance_services.dto;
 
 import lombok.Data;
+import org.raflab.finance_services.client.dto.BookingDTO;
 
 @Data
 public class InvoiceResponseDTO {
@@ -13,4 +14,6 @@ public class InvoiceResponseDTO {
     private String status;
 
     private TaxRateDTO taxRate;
+
+    private BookingDTO booking;
 }
