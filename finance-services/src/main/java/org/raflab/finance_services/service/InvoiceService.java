@@ -24,6 +24,7 @@ public class InvoiceService {
     private final TaxRateRepository taxRateRepository;
     private final InvoiceMapper invoiceMapper;
     private final BookingClient bookingClient;
+    private final TransactionService transactionService;
 
     @Transactional(readOnly = true)
     public List<InvoiceResponseDTO> getAllInvoices() {
@@ -49,9 +50,9 @@ public class InvoiceService {
         TaxRate taxRate = taxRateRepository.findById(dto.getTaxRateId()).orElseThrow(() -> new EntityNotFoundException("Tax Rate not found"));
         BookingDTO booking = bookingClient.getBookingById(dto.getBookingId());
 
-        Invoice existingInvoice = invoiceRepository.findInvoiceByBookingId(booking.getId()).orElse(null);
-        if (existingInvoice != null) {
-            throw new IllegalStateException("Invoice already exists with id: " + existingInvoice.getId());
+        Invoice validInvoice = invoiceRepository.findValidInvoiceByBookingId(booking.getId()).orElse(null);
+        if (validInvoice != null) {
+            throw new IllegalArgumentException("Invoice already exists with id: " + validInvoice.getId());
         }
 
         if (!dto.getSubtotal().equals(booking.getTotalPrice())) {
@@ -72,6 +73,11 @@ public class InvoiceService {
         Invoice invoice = invoiceRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Invoice not found"));
 
+        BookingDTO booking = bookingClient.getBookingById(invoice.getBookingId());
+        if (!newSubtotal.equals(booking.getTotalPrice())) {
+            throw new IllegalArgumentException("Subtotal should be: " + booking.getTotalPrice());
+        }
+
         invoice.setSubtotal(newSubtotal);
         double total = newSubtotal * (1 + invoice.getTaxRate().getPercentage() / 100);
         invoice.setTotalAmount(total);
@@ -80,10 +86,10 @@ public class InvoiceService {
     }
 
     @Transactional
-    public void deleteInvoice(Long id) {
-        if (!invoiceRepository.existsById(id)) {
-            throw new EntityNotFoundException("Invoice not found");
-        }
-        invoiceRepository.deleteById(id);
+    public void revokeInvoice(Long id) {
+        Invoice inv = invoiceRepository.getInvoiceById(id).orElseThrow(() -> new EntityNotFoundException("Invoice not found"));
+        inv.setStatus("REVOKED");
+        transactionService.refundTransactions(id);
+        invoiceRepository.save(inv);
     }
 }

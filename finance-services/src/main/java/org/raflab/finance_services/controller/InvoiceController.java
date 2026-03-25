@@ -66,13 +66,13 @@ public class InvoiceController {
     }
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Delete invoice")
+    @Operation(summary = "Revokes invoice")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Invoice deleted"),
             @ApiResponse(responseCode = "404", description = "Invoice not found")
     })
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-        invoiceService.deleteInvoice(id);
+        invoiceService.revokeInvoice(id);
         return ResponseEntity.noContent().build();
     }
 
