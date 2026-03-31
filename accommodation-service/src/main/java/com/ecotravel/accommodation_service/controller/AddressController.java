@@ -1,5 +1,4 @@
 package com.ecotravel.accommodation_service.controller;
-
 import com.ecotravel.accommodation_service.dto.AddressRequestDTO;
 import com.ecotravel.accommodation_service.dto.AddressResponseDTO;
 import com.ecotravel.accommodation_service.service.AddressService;
