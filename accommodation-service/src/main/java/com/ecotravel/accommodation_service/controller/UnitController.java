@@ -3,6 +3,8 @@ package com.ecotravel.accommodation_service.controller;
 import com.ecotravel.accommodation_service.dto.UnitRequestDTO;
 import com.ecotravel.accommodation_service.dto.UnitResponseDTO;
 import com.ecotravel.accommodation_service.service.UnitService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -16,38 +18,63 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/units")
 @RequiredArgsConstructor
+@Tag(name = "Accommodation Unit Controller", description = "Upravljanje smeštajnim jedinicama i kalkulacija cena")
 public class UnitController {
 
     private final UnitService unitService;
 
-    // 1. Dobavljanje svih smeštajnih jedinica (vraća listu sa ID-jevima)
+    // 1. Dobavljanje svih smeštajnih jedinica sa FILTRIRANJEM (Uslov iz zadatka)
     @GetMapping
-    public ResponseEntity<List<UnitResponseDTO>> getAllUnits() {
+    @Operation(summary = "Izlistaj sve smeštaje", description = "Vraća listu svih smeštaja. Opciono filtriranje po tipu (npr. Koliba)")
+    public ResponseEntity<List<UnitResponseDTO>> getAllUnits(@RequestParam(required = false) String type) {
         return ResponseEntity.ok(unitService.getAllUnits());
     }
-
     // 2. Dobavljanje jedne jedinice po ID-ju
     @GetMapping("/{id}")
+    @Operation(summary = "Pronađi smeštaj po ID-u")
     public ResponseEntity<UnitResponseDTO> getUnitById(@PathVariable Long id) {
         return ResponseEntity.ok(unitService.getUnitById(id));
     }
 
-    // 3. Kreiranje nove jedinice (prima Request bez ID-ja, vraća Response sa ID-jem)
+    // 3. Kreiranje nove jedinice
     @PostMapping
+    @Operation(summary = "Kreiraj novi smeštaj", description = "Dodaje novi smeštaj sa adresom i listom ID-jeva sadržaja")
     public ResponseEntity<UnitResponseDTO> createUnit(@Valid @RequestBody UnitRequestDTO unitRequestDTO) {
-        // Servis sada prihvata RequestDTO i vraća ResponseDTO
         UnitResponseDTO savedUnit = unitService.createUnit(unitRequestDTO);
         return new ResponseEntity<>(savedUnit, HttpStatus.CREATED);
     }
+
+    // 4. Ažuriranje jedinice (NOVO - Uslov iz zadatka za CRUD)
+    @PutMapping("/{id}")
+    @Operation(summary = "Ažuriraj postojeći smeštaj", description = "Menja podatke o smeštaju na osnovu ID-a")
+    public ResponseEntity<UnitResponseDTO> updateUnit(@PathVariable Long id, @Valid @RequestBody UnitRequestDTO dto) {
+        return ResponseEntity.ok(unitService.updateUnit(id, dto));
+    }
+
+    // 5. Brisanje jedinice (NOVO - Uslov iz zadatka za CRUD)
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Obriši smeštaj", description = "Trajno uklanja smeštajnu jedinicu iz baze")
+    public ResponseEntity<Void> deleteUnit(@PathVariable Long id) {
+        unitService.deleteUnit(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    // 6. Provera dostupnosti
     @GetMapping("/{id}/check-availability")
+    @Operation(summary = "Proveri dostupnost", description = "Proverava da li je smeštaj slobodan u zadatom periodu")
     public ResponseEntity<Boolean> checkAvailability(
             @PathVariable Long id,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkIn,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkOut) {
 
-        // Pozivamo servis koji smo popravili da koristi instancu repozitorijuma
         boolean isAvailable = unitService.isUnitAvailable(id, checkIn, checkOut);
-
         return ResponseEntity.ok(isAvailable);
+    }
+
+    // 7. Poseban endpoint za kalkulaciju cene (Dodatni plus za odbranu)
+    @GetMapping("/{id}/price")
+    @Operation(summary = "Izračunaj trenutnu cenu", description = "Vraća cenu sa uračunatim sezonskim množiteljima i dodatnim troškovima sadržaja")
+    public ResponseEntity<Double> getCurrentPrice(@PathVariable Long id) {
+        return ResponseEntity.ok(unitService.getUnitById(id).getCalculatedPrice());
     }
 }

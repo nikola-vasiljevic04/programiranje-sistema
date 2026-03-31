@@ -20,8 +20,6 @@ CREATE TABLE units (
                        address_id BIGINT,
                        CONSTRAINT fk_unit_address FOREIGN KEY (address_id) REFERENCES addresses(id)
 );
-
--- PAŽNJA: Ovde si imao grešku u CONSTRAINT-u (pisalo je units, a tabela iznad bila unit)
 CREATE TABLE availability_calendar (
                                        id BIGINT AUTO_INCREMENT PRIMARY KEY,
                                        start_date DATE NOT NULL,
@@ -29,4 +27,21 @@ CREATE TABLE availability_calendar (
                                        reason VARCHAR(255),
                                        unit_id BIGINT NOT NULL,
                                        CONSTRAINT fk_calendar_unit FOREIGN KEY (unit_id) REFERENCES units(id) ON DELETE CASCADE
+);
+CREATE TABLE unit_facilities (
+                                 unit_id BIGINT NOT NULL,
+                                 facility_id BIGINT NOT NULL,
+                                 PRIMARY KEY (unit_id, facility_id),
+                                 CONSTRAINT fk_uf_unit FOREIGN KEY (unit_id) REFERENCES units(id) ON DELETE CASCADE,
+                                 CONSTRAINT fk_uf_facility FOREIGN KEY (facility_id) REFERENCES facilities(id) ON DELETE CASCADE
+);
+
+CREATE TABLE price_tiers (
+                             id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                             name VARCHAR(100) NOT NULL,
+                             multiplier DOUBLE NOT NULL,
+                             start_date DATE NOT NULL,
+                             end_date DATE NOT NULL,
+                             unit_id BIGINT NOT NULL,
+                             CONSTRAINT fk_tier_unit FOREIGN KEY (unit_id) REFERENCES units(id) ON DELETE CASCADE
 );

@@ -2,19 +2,15 @@ package com.ecotravel.accommodation_service.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "availability_calendar")
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "availability_calendar")
-@Getter
-@Setter
+@Data // Ovo je dovoljno za getere, setere, equals, hashCode i toString
 public class AvailabilityCalendar {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,8 +18,10 @@ public class AvailabilityCalendar {
 
     @Column(name = "start_date")
     private LocalDate startDate;
+
     @Column(name = "end_date")
     private LocalDate endDate;
+
     @Column(name = "reason")
     private String reason;
 

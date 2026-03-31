@@ -26,7 +26,7 @@ public class UnitService {
     private final FacilityRepository facilityRepository;
     private final AvailabilityCalendarRepository availabilityCalendarRepository;
 
-    // 1. Koristimo UnitResponseDTO za prikaz liste
+    // 1. Vraca sve unite
     public List<UnitResponseDTO> getAllUnits() {
         return unitRepository.findAll().stream()
                 .map(unit -> {
@@ -37,7 +37,7 @@ public class UnitService {
                 .collect(Collectors.toList());
     }
 
-    // 2. Pronalaženje jedne jedinice
+    // 2. Pronalaženje jedne jedinice po ID-u
     public UnitResponseDTO getUnitById(Long id) {
         Unit unit = unitRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Smeštajna jedinica sa ID " + id + " nije pronađena"));
@@ -92,5 +92,44 @@ public class UnitService {
     public boolean isUnitAvailable(Long unitId, LocalDate checkIn, LocalDate checkOut) {
         // Koristimo instancu (malim slovom), ne klasu!
         return !availabilityCalendarRepository.existsOverlap(unitId, checkIn, checkOut);
+    }
+    @Transactional
+    public void deleteUnit(Long id) {
+        if (!unitRepository.existsById(id)) {
+            throw new RuntimeException("Neuspešno brisanje: Smeštaj sa ID " + id + " ne postoji");
+        }
+        unitRepository.deleteById(id);
+    }
+    @Transactional
+    public UnitResponseDTO updateUnit(Long id, UnitRequestDTO dto) {
+        // 1. Provera da li smeštaj postoji
+        Unit unit = unitRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Neuspešno ažuriranje: Smeštaj sa ID " + id + " ne postoji"));
+
+        // 2. Ažuriranje osnovnih podataka (setteri)
+        unit.setName(dto.getName());
+        unit.setUnitType(dto.getUnitType());
+        unit.setBasePricePerNight(dto.getBasePricePerNight());
+
+        // 3. Ažuriranje adrese (pošto je @OneToOne, direktno menjamo polja na postojećem objektu)
+        if (unit.getAddress() != null && dto.getAddress() != null) {
+            unit.getAddress().setCity(dto.getAddress().getCity());
+            unit.getAddress().setZipCode(dto.getAddress().getZipCode());
+            unit.getAddress().setStreetAddress(dto.getAddress().getStreetAddress());
+        }
+
+        // 4. Ažuriranje sadržaja (Facilities)
+        if (dto.getFacilityIds() != null) {
+            List<Facility> facilities = facilityRepository.findAllById(dto.getFacilityIds());
+            unit.setFacilities(new HashSet<>(facilities));
+        }
+
+        // 5. Čuvanje izmena
+        Unit updatedUnit = unitRepository.save(unit);
+
+        // Vraćamo DTO sa ponovo izračunatom cenom
+        UnitResponseDTO response = unitMapper.toResponseDTO(updatedUnit);
+        response.setCalculatedPrice(calculateCurrentPrice(updatedUnit));
+        return response;
     }
 }
