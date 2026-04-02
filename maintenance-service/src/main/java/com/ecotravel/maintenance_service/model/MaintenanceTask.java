@@ -1,0 +1,22 @@
+package com.ecotravel.maintenance_service.model;
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Table(name = "maintenance_tasks")
+@Getter @Setter
+@NoArgsConstructor
+public class MaintenanceTask {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "task_name", nullable = false)
+    private String taskName;
+
+    @Column(name = "estimated_duration_hours", nullable = false)
+    private Integer estimatedDurationHours;
+}
