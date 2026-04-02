@@ -36,7 +36,8 @@ public class InvoiceController {
     @Operation(summary = "Get invoice by ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Invoice created"),
-            @ApiResponse(responseCode = "404", description = "Invoice not found", content = @Content)
+            @ApiResponse(responseCode = "404", description = "Invoice not found", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Booking not found", content = @Content)
     })
     public ResponseEntity<InvoiceResponseDTO> getById(@PathVariable Long id) {
         return ResponseEntity.ok(invoiceService.getInvoiceById(id));
@@ -47,7 +48,8 @@ public class InvoiceController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Invoice created"),
             @ApiResponse(responseCode = "400", description = "Invalid input data (e.g. empty name)", content = @Content),
-            @ApiResponse(responseCode = "404", description = "Tax Rate not found", content = @Content)
+            @ApiResponse(responseCode = "404", description = "Tax Rate not found", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Booking not found", content = @Content)
     })
     public ResponseEntity<InvoiceResponseDTO> create(@RequestBody @Valid InvoiceRequestDTO dto) {
         return ResponseEntity.status(201).body(invoiceService.createInvoice(dto));
@@ -64,14 +66,27 @@ public class InvoiceController {
     }
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Delete invoice")
+    @Operation(summary = "Revokes invoice")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "204", description = "Invoice deleted"),
-            @ApiResponse(responseCode = "404", description = "Invoice not found")
+            @ApiResponse(responseCode = "200", description = "Successfully revoked invoice"),
+            @ApiResponse(responseCode = "404", description = "Invoice not found"),
+            @ApiResponse(responseCode = "400", description = "Invoice is already revoked"),
+            @ApiResponse(responseCode = "400", description = "Cannot revoke invoice for a completed booking")
     })
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        invoiceService.deleteInvoice(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<InvoiceResponseDTO> revoke(@PathVariable Long id) {
+        return ResponseEntity.ok(invoiceService.revokeInvoice(id));
+    }
+
+    @DeleteMapping("/booking/{id}")
+    @Operation(summary = "Revokes invoice for booking")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully revoked invoice"),
+            @ApiResponse(responseCode = "404", description = "Invoice not found"),
+            @ApiResponse(responseCode = "400", description = "Invoice is already revoked"),
+            @ApiResponse(responseCode = "400", description = "Cannot revoke invoice for a completed booking")
+    })
+    public ResponseEntity<InvoiceResponseDTO> revokeForBooking(@PathVariable Long id) {
+        return ResponseEntity.ok(invoiceService.revokeInvoiceForBookingId(id));
     }
 
     /* Transactions */

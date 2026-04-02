@@ -28,17 +28,18 @@ public class TransactionService {
 
     @Transactional
     public TransactionResponseDTO createTransactionForInvoice(Long invoiceId, TransactionRequestDTO dto) {
-        Invoice invoice = invoiceRepository.findById(invoiceId)
-                .orElseThrow(() -> new EntityNotFoundException("Invoice not found"));
+        Invoice invoice = invoiceRepository.findInvoiceByIdAndStatusNot(invoiceId, "REVOKED").orElseThrow(() -> new EntityNotFoundException("Invoice not found"));
 
         PaymentMethod method = paymentMethodRepository.findById(dto.getPaymentMethodId())
                 .orElseThrow(() -> new EntityNotFoundException("Payment Method not found"));
+
+        Double totalPaid = transactionRepository.findTotalPaidByInvoiceId(invoiceId);
 
         Transaction transaction = transactionMapper.toEntity(dto);
         transaction.setInvoice(invoice);
         transaction.setPaymentMethod(method);
 
-        if (transaction.getAmount() >= invoice.getTotalAmount()) {
+        if (transaction.getAmount() >= invoice.getTotalAmount() - (totalPaid == null ? 0 : totalPaid)) {
             invoice.setStatus("PAID");
             invoiceRepository.save(invoice);
         }
@@ -67,5 +68,10 @@ public class TransactionService {
                 : transactionRepository.findByAmountBetween(minVal, maxVal, pageable);
 
         return transactions.stream().map(transactionMapper::toResponseDTO).collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void refundTransactions(Long invoiceId) {
+        transactionRepository.refundTransactionsByInvoiceId(invoiceId);
     }
 }

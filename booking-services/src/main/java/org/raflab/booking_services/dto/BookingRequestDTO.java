@@ -1,7 +1,6 @@
 package org.raflab.booking_services.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -30,11 +29,6 @@ public class BookingRequestDTO {
             description = "Event date in ISO 8601 date format (yyyy-MM-dd)"
     )
     private Date endDate;
-
-    @NotNull
-    @Min(0)
-    @Schema(example = "1300", minimum = "0")
-    private Double totalPrice;
 
     @NotBlank
     @Schema(example = "PENDING")

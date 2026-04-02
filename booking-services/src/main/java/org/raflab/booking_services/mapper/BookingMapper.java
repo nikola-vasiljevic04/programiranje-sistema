@@ -14,5 +14,6 @@ public interface BookingMapper {
     @Mapping(target = "guest", ignore = true)
     @Mapping(target = "cancellationPolicy", ignore = true)
     @Mapping(target = "addOns", ignore = true)
+    @Mapping(target = "totalPrice", ignore = true)
     Booking toEntity(BookingRequestDTO bookingDTO);
 }

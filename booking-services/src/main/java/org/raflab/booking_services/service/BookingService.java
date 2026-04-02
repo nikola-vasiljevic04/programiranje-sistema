@@ -2,18 +2,24 @@ package org.raflab.booking_services.service;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.raflab.booking_services.client.FinanceClientService;
+import org.raflab.booking_services.client.UnitClientService;
+import org.raflab.booking_services.client.dto.UnitDTO;
 import org.raflab.booking_services.dto.*;
+import org.raflab.booking_services.factory.RefundCalculator;
+import org.raflab.booking_services.factory.RefundCalculatorFactory;
 import org.raflab.booking_services.mapper.AddOnMapper;
 import org.raflab.booking_services.mapper.BookingMapper;
 import org.raflab.booking_services.mapper.BookingStatusLogMapper;
 import org.raflab.booking_services.model.*;
+import org.raflab.booking_services.observer.BookingStatusPublisher;
 import org.raflab.booking_services.repository.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,6 +34,10 @@ public class BookingService {
     private final BookingMapper bookingMapper;
     private final BookingStatusLogMapper bookingStatusLogMapper;
     private final AddOnMapper addOnMapper;
+    private final BookingStatusPublisher statusPublisher;
+    private final RefundCalculatorFactory refundCalculatorFactory;
+    private final FinanceClientService financeClientService;
+    private final UnitClientService unitClientService;
 
     public Page<BookingResponseDTO> getBookings(Pageable pageable) {
         return bookingRepository.findAll(pageable)
@@ -47,6 +57,22 @@ public class BookingService {
     @Transactional
     public BookingResponseDTO createBooking(BookingRequestDTO dto) {
         Booking booking = bookingMapper.toEntity(dto);
+        String oldStatus = booking.getStatus();
+        String newStatus = dto.getStatus();
+
+        Long unitId = dto.getUnitId();
+        UnitDTO unit = unitClientService.getUnitById(unitId);
+
+        Boolean available = unitClientService.available(
+                unitId,
+                dto.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+                dto.getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+        );
+
+        if (!available) throw new IllegalArgumentException("Unit is already booked for that date");
+
+        Double totalPrice = unit.getCalculatedPrice();
+        booking.setTotalPrice(totalPrice);
 
         Guest guest = guestRepository.findById(dto.getGuestId())
                 .orElseThrow(() -> new EntityNotFoundException("Guest not found"));
@@ -58,9 +84,10 @@ public class BookingService {
             booking.setCancellationPolicy(policy);
         }
 
-        this.updateStatus(booking, booking.getStatus(), false); // initial status log
+        Booking savedBooking = bookingRepository.save(booking);
+        statusPublisher.notifyStatusChange(savedBooking, oldStatus, newStatus);
 
-        return bookingMapper.toResponseDTO(bookingRepository.save(booking));
+        return bookingMapper.toResponseDTO(savedBooking);
     }
 
     // Get all booking logs
@@ -78,41 +105,45 @@ public class BookingService {
     @Transactional
     public BookingResponseDTO updateStatus(Long bookingId, BookingStatusLogRequestDTO request) {
         Booking booking = findBookingById(bookingId);
+        String oldStatus = booking.getStatus();
         String newStatus = request.getNewStatus();
 
-        if (booking.getStatus().equalsIgnoreCase(newStatus)){ // on not modified
+        if (oldStatus.equalsIgnoreCase(newStatus)){ // on not modified
             return bookingMapper.toResponseDTO(booking);
         }
 
-        Booking updated = this.updateStatus(booking, newStatus, true);
-        return bookingMapper.toResponseDTO(updated);
+        booking.setStatus(newStatus);
+        Booking updatedBooking = bookingRepository.save(booking);
+        statusPublisher.notifyStatusChange(updatedBooking, oldStatus, newStatus);
+
+        return bookingMapper.toResponseDTO(updatedBooking);
     }
 
-    // Save log and update status
-    private Booking updateStatus(Booking booking, String newStatus, boolean updateBooking) {
+    @Transactional
+    public double cancelBooking(Long bookingId) {
+        Booking booking = findBookingById(bookingId);
+
+        if ("CANCELLED".equalsIgnoreCase(booking.getStatus()))
+            throw new IllegalStateException("Booking is already cancelled");
+
+        RefundCalculator calculator = refundCalculatorFactory.createCalculator(
+                booking.getCancellationPolicy()
+        );
+        double refund = calculator.calculate(booking.getTotalPrice());
+
         String oldStatus = booking.getStatus();
+        booking.setStatus("CANCELLED");
+        bookingRepository.save(booking);
+        statusPublisher.notifyStatusChange(booking, oldStatus, "CANCELLED");
 
-        if(updateBooking){
-            booking.setStatus(newStatus);
-            bookingRepository.save(booking);
+        try {
+            financeClientService.revokeInvoiceForBooking(bookingId);
+        } catch (Exception e) {
+            if (e.getMessage().contains("already revoked") || e.getMessage().contains("not found")) return refund;
+            throw e;
         }
 
-        BookingStatusLog log = new BookingStatusLog();
-        log.setBooking(booking);
-        log.setOldStatus(oldStatus);
-        log.setNewStatus(newStatus);
-        log.setChangedAt(new Date());
-        bookingStatusLogRepository.save(log);
-
-        return booking;
-    }
-
-    // Delete booking
-    public void deleteBooking(Long id) {
-        if (!bookingRepository.existsById(id)) {
-            throw new EntityNotFoundException("Booking not found");
-        }
-        bookingRepository.deleteById(id);
+        return refund;
     }
 
     @Transactional

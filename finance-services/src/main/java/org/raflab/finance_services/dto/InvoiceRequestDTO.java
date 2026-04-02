@@ -12,6 +12,9 @@ public class InvoiceRequestDTO {
     private Long taxRateId;
 
     @NotNull
+    private Long bookingId;
+
+    @NotNull
     @Min(0)
     @Schema(example = "30")
     private Double subtotal;

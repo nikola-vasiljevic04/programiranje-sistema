@@ -54,14 +54,13 @@ public class BookingController {
     }
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Delete booking")
+    @Operation(summary = "Cancel booking")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "204", description = "Booking deleted successfully"),
+            @ApiResponse(responseCode = "200", description = "Refund amount"),
             @ApiResponse(responseCode = "404", description = "Booking not found", content = @Content)
     })
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        bookingService.deleteBooking(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<Double> delete(@PathVariable Long id) {
+        return ResponseEntity.ok(bookingService.cancelBooking(id));
     }
 
     /* Booking logs */

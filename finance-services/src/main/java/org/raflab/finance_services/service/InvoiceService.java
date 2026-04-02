@@ -2,8 +2,11 @@ package org.raflab.finance_services.service;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.raflab.finance_services.client.BookingClientService;
+import org.raflab.finance_services.client.dto.BookingDTO;
 import org.raflab.finance_services.dto.InvoiceRequestDTO;
 import org.raflab.finance_services.dto.InvoiceResponseDTO;
+import org.raflab.finance_services.facade.InvoiceRevocationFacade;
 import org.raflab.finance_services.mapper.InvoiceMapper;
 import org.raflab.finance_services.model.Invoice;
 import org.raflab.finance_services.model.TaxRate;
@@ -21,6 +24,8 @@ public class InvoiceService {
     private final InvoiceRepository invoiceRepository;
     private final TaxRateRepository taxRateRepository;
     private final InvoiceMapper invoiceMapper;
+    private final InvoiceRevocationFacade revocationFacade;
+    private final BookingClientService bookingClientService;
 
     @Transactional(readOnly = true)
     public List<InvoiceResponseDTO> getAllInvoices() {
@@ -33,13 +38,27 @@ public class InvoiceService {
     public InvoiceResponseDTO getInvoiceById(Long id) {
         Invoice invoice = invoiceRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Invoice not found with id: " + id));
-        return invoiceMapper.toResponseDTO(invoice);
+        BookingDTO bookingDTO = bookingClientService.getBookingById(invoice.getBookingId());
+
+        InvoiceResponseDTO dto = invoiceMapper.toResponseDTO(invoice);
+        dto.setBooking(bookingDTO);
+
+        return dto;
     }
 
     @Transactional
     public InvoiceResponseDTO createInvoice(InvoiceRequestDTO dto) {
-        TaxRate taxRate = taxRateRepository.findById(dto.getTaxRateId())
-                .orElseThrow(() -> new EntityNotFoundException("Tax Rate not found"));
+        TaxRate taxRate = taxRateRepository.findById(dto.getTaxRateId()).orElseThrow(() -> new EntityNotFoundException("Tax Rate not found"));
+        BookingDTO booking = bookingClientService.getBookingById(dto.getBookingId());
+
+        Invoice validInvoice = invoiceRepository.findValidInvoiceByBookingId(booking.getId()).orElse(null);
+        if (validInvoice != null) {
+            throw new IllegalArgumentException("Invoice already exists with id: " + validInvoice.getId());
+        }
+
+        if (!dto.getSubtotal().equals(booking.getTotalPrice())) {
+            throw new IllegalArgumentException("Subtotal should be: " + booking.getTotalPrice());
+        }
 
         Invoice invoice = invoiceMapper.toEntity(dto);
         invoice.setTaxRate(taxRate);
@@ -55,6 +74,11 @@ public class InvoiceService {
         Invoice invoice = invoiceRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Invoice not found"));
 
+        BookingDTO booking = bookingClientService.getBookingById(invoice.getBookingId());
+        if (!newSubtotal.equals(booking.getTotalPrice())) {
+            throw new IllegalArgumentException("Subtotal should be: " + booking.getTotalPrice());
+        }
+
         invoice.setSubtotal(newSubtotal);
         double total = newSubtotal * (1 + invoice.getTaxRate().getPercentage() / 100);
         invoice.setTotalAmount(total);
@@ -63,10 +87,16 @@ public class InvoiceService {
     }
 
     @Transactional
-    public void deleteInvoice(Long id) {
-        if (!invoiceRepository.existsById(id)) {
-            throw new EntityNotFoundException("Invoice not found");
+    public InvoiceResponseDTO revokeInvoice(Long id) {
+        return revocationFacade.revokeInvoice(id);
+    }
+
+    @Transactional
+    public InvoiceResponseDTO revokeInvoiceForBookingId(Long bookingId) {
+        Invoice invoice = invoiceRepository.findValidInvoiceByBookingId(bookingId).orElse(null);
+        if (invoice == null) {
+            throw new IllegalArgumentException("Invoice not found.");
         }
-        invoiceRepository.deleteById(id);
+        return revocationFacade.revokeInvoice(invoice.getId());
     }
 }
