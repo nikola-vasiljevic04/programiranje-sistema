@@ -2,8 +2,10 @@ package org.raflab.booking_services.service;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.raflab.booking_services.client.AvailabilityClientService;
 import org.raflab.booking_services.client.FinanceClientService;
 import org.raflab.booking_services.client.UnitClientService;
+import org.raflab.booking_services.client.dto.AvailabilityRequestDTO;
 import org.raflab.booking_services.client.dto.UnitDTO;
 import org.raflab.booking_services.dto.*;
 import org.raflab.booking_services.factory.RefundCalculator;
@@ -19,6 +21,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,6 +41,7 @@ public class BookingService {
     private final RefundCalculatorFactory refundCalculatorFactory;
     private final FinanceClientService financeClientService;
     private final UnitClientService unitClientService;
+    private final AvailabilityClientService availabilityClientService;
 
     public Page<BookingResponseDTO> getBookings(Pageable pageable) {
         return bookingRepository.findAll(pageable)
@@ -63,11 +67,10 @@ public class BookingService {
         Long unitId = dto.getUnitId();
         UnitDTO unit = unitClientService.getUnitById(unitId);
 
-        Boolean available = unitClientService.available(
-                unitId,
-                dto.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
-                dto.getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
-        );
+        LocalDate localStartDate = dto.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate localEndDate = dto.getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+        Boolean available = unitClientService.available(unitId,localStartDate, localEndDate);
 
         if (!available) throw new IllegalArgumentException("Unit is already booked for that date");
 
@@ -86,6 +89,14 @@ public class BookingService {
 
         Booking savedBooking = bookingRepository.save(booking);
         statusPublisher.notifyStatusChange(savedBooking, oldStatus, newStatus);
+
+        AvailabilityRequestDTO availabilityRequest = new AvailabilityRequestDTO();
+        availabilityRequest.setUnitId(unitId);
+        availabilityRequest.setStartDate(localStartDate);
+        availabilityRequest.setEndDate(localEndDate);
+        availabilityRequest.setReason("Reserved on booking " + booking.getId());
+
+        availabilityClientService.addAvailability(availabilityRequest);
 
         return bookingMapper.toResponseDTO(savedBooking);
     }
