@@ -3,6 +3,8 @@ package org.raflab.booking_services.service;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.raflab.booking_services.client.FinanceClientService;
+import org.raflab.booking_services.client.UnitClientService;
+import org.raflab.booking_services.client.dto.UnitDTO;
 import org.raflab.booking_services.dto.*;
 import org.raflab.booking_services.factory.RefundCalculator;
 import org.raflab.booking_services.factory.RefundCalculatorFactory;
@@ -17,6 +19,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.ZoneId;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,6 +37,7 @@ public class BookingService {
     private final BookingStatusPublisher statusPublisher;
     private final RefundCalculatorFactory refundCalculatorFactory;
     private final FinanceClientService financeClientService;
+    private final UnitClientService unitClientService;
 
     public Page<BookingResponseDTO> getBookings(Pageable pageable) {
         return bookingRepository.findAll(pageable)
@@ -55,6 +59,20 @@ public class BookingService {
         Booking booking = bookingMapper.toEntity(dto);
         String oldStatus = booking.getStatus();
         String newStatus = dto.getStatus();
+
+        Long unitId = dto.getUnitId();
+        UnitDTO unit = unitClientService.getUnitById(unitId);
+
+        Boolean available = unitClientService.available(
+                unitId,
+                dto.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+                dto.getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+        );
+
+        if (!available) throw new IllegalArgumentException("Unit is already booked for that date");
+
+        Double totalPrice = unit.getCalculatedPrice();
+        booking.setTotalPrice(totalPrice);
 
         Guest guest = guestRepository.findById(dto.getGuestId())
                 .orElseThrow(() -> new EntityNotFoundException("Guest not found"));
