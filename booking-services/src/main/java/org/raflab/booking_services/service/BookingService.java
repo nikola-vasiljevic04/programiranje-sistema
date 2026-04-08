@@ -2,7 +2,6 @@ package org.raflab.booking_services.service;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.raflab.booking_services.client.AvailabilityClientService;
 import org.raflab.booking_services.client.FinanceClientService;
 import org.raflab.booking_services.client.UnitClientService;
 import org.raflab.booking_services.client.dto.AvailabilityRequestDTO;
@@ -41,7 +40,6 @@ public class BookingService {
     private final RefundCalculatorFactory refundCalculatorFactory;
     private final FinanceClientService financeClientService;
     private final UnitClientService unitClientService;
-    private final AvailabilityClientService availabilityClientService;
 
     public Page<BookingResponseDTO> getBookings(Pageable pageable) {
         return bookingRepository.findAll(pageable)
@@ -96,7 +94,7 @@ public class BookingService {
         availabilityRequest.setEndDate(localEndDate);
         availabilityRequest.setReason("Reserved on booking " + booking.getId());
 
-        availabilityClientService.addAvailability(availabilityRequest);
+        unitClientService.addAvailability(availabilityRequest);
 
         return bookingMapper.toResponseDTO(savedBooking);
     }
