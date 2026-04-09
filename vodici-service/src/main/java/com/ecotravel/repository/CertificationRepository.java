@@ -1,0 +1,14 @@
+package com.ecotravel.repository;
+
+import com.ecotravel.model.Certification;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface CertificationRepository extends JpaRepository<Certification, Long> {
+
+    // Spring Data JPA sam kapira upit na osnovu ovog naziva i polja "guide"
+    List<Certification> findByGuideId(Long guideId);
+}
