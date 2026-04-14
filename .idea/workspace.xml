@@ -5,64 +5,60 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="131d8659-09f5-4de6-828b-9202bfe582f4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/client/GuideService.java" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/client/GuideService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/controller/AdventureController.java" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/controller/AdventureController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/controller/AdventureReviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/controller/AdventureReviewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/controller/GearRequirementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/controller/GearRequirementController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/dtos/AdventureRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/dtos/AdventureRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/dtos/AdventureResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/dtos/AdventureResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/dtos/GearRequirementDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/dtos/GearRequirementDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/dtos/TimeSlotRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/dtos/TimeSlotRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/facade/AdventureFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/facade/AdventureFacade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/factory/AdventureReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/factory/AdventureReport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/factory/AdventureReportFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/factory/AdventureReportFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/factory/EcoReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/factory/EcoReport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/mapper/AdventureMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/mapper/AdventureMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/model/Adventure.java" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/model/Adventure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/model/AdventureReview.java" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/model/AdventureReview.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/model/TimeSlot.java" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/model/TimeSlot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/repository/AdventureRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/repository/AdventureRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/client/GuideService.class" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/client/GuideService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/controller/AdventureController.class" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/controller/AdventureController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/controller/AdventureReviewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/controller/AdventureReviewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/controller/GearRequirementController.class" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/controller/GearRequirementController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/AdventureRequestDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/AdventureRequestDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/AdventureResponseDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/AdventureResponseDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/TimeSlotRequestDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/TimeSlotRequestDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/facade/AdventureFacade.class" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/facade/AdventureFacade.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/factory/AdventureReportFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/factory/AdventureReportFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/factory/EcoReport.class" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/factory/EcoReport.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/model/Adventure.class" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/model/Adventure.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/model/AdventureReview.class" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/model/AdventureReview.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/generated-sources/annotations/com/ecotravel/mapper/AdventureMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/target/generated-sources/annotations/com/ecotravel/mapper/AdventureMapperImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/controller/GuideLanguageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/controller/GuideLanguageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/controller/GuideProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/controller/GuideProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/controller/LanguageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/controller/LanguageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/dtos/CertificationResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/dtos/CertificationResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/dtos/GuideLanguageDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/dtos/GuideLanguageDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/dtos/GuideProfileRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/dtos/GuideProfileRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/dtos/GuideProfileResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/dtos/GuideProfileResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/mapper/GuideMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/mapper/GuideMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/model/Certification.java" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/model/Certification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/model/GuideProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/model/GuideProfile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/model/Language.java" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/model/Language.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/repository/CertificationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/repository/CertificationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/repository/LanguageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/repository/LanguageRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/service/CertificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/service/CertificationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/service/GuideLanguageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/service/GuideLanguageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/service/GuideProfileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/service/GuideProfileService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/service/LanguageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/service/LanguageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/target/classes/com/ecotravel/controller/GuideLanguageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/target/classes/com/ecotravel/controller/GuideLanguageController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/target/classes/com/ecotravel/controller/LanguageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/target/classes/com/ecotravel/controller/LanguageController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/target/classes/com/ecotravel/dtos/GuideProfileRequestDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/target/classes/com/ecotravel/dtos/GuideProfileRequestDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/target/classes/com/ecotravel/dtos/GuideProfileResponseDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/target/classes/com/ecotravel/dtos/GuideProfileResponseDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/target/classes/com/ecotravel/mapper/GuideMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/target/classes/com/ecotravel/mapper/GuideMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/target/classes/com/ecotravel/model/GuideProfile.class" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/target/classes/com/ecotravel/model/GuideProfile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/target/classes/com/ecotravel/service/CertificationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/target/classes/com/ecotravel/service/CertificationService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/target/classes/com/ecotravel/service/GuideProfileService.class" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/target/classes/com/ecotravel/service/GuideProfileService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/target/generated-sources/annotations/com/ecotravel/mapper/GuideMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/target/generated-sources/annotations/com/ecotravel/mapper/GuideMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accommodation-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/accommodation-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/AvantureServiceApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/client/GuideClient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/client/GuideService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/client/dto/GuideLanguageDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/client/dto/GuideProfileResponseDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/controller/AdventureCategoryController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/controller/AdventureController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/controller/AdventureReviewController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/controller/GearRequirementController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/controller/TimeSlotController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/AdventureCategoryDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/AdventureRequestDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/AdventureResponseDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/AdventureReviewRequestDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/AdventureReviewResponseDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/GearRequirementDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/GuideDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/TimeSlotRequestDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/TimeSlotResponseDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/facade/AdventureFacade.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/factory/AdventureReport.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/factory/AdventureReportFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/factory/EcoReport.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/factory/StandardReport.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/mapper/AdventureMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/model/Adventure.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/model/AdventureCategory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/model/AdventureReview.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/model/GearRequirement.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/model/TimeSlot.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/repository/AdventureCategoryRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/repository/AdventureRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/repository/AdventureReviewRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/repository/GearRequirementRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/repository/TimeSlotRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/service/AdventureCategoryService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/service/AdventureReviewService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/service/AdventureService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/service/GearRequirementService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/service/TimeSlotService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/data.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/generated-sources/annotations/com/ecotravel/mapper/AdventureMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maintenance-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/maintenance-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vodici-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vodici-service/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vodici-service/target/generated-sources/annotations/com/ecotravel/mapper/GuideMapperImpl.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,6 +93,17 @@
     &quot;accountId&quot;: &quot;843b00e0-42eb-48be-bfe7-28ec32663c68&quot;
   }
 }</component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
@@ -131,9 +138,13 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Spring Boot.AccommodationServiceApplication.executor": "Run",
     "Spring Boot.AvantureServiceApplication.executor": "Run",
+    "Spring Boot.BookingServicesApplication.executor": "Run",
+    "Spring Boot.FinanceServicesApplication.executor": "Run",
+    "Spring Boot.MaintenanceServiceApplication.executor": "Run",
     "Spring Boot.VodiciServiceApplication.executor": "Run",
-    "git-widget-placeholder": "feature/milan__stojicevic-avanture-vodici",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/FAKS/PS/PS-EcoTravelProjekat",
@@ -143,9 +154,10 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "C:/Users/stoji/OneDrive/Documents/FAKS/PROJEKTI/PS-EcoTravelProjekat/vodici-service/src/main/java/com/ecotravel/Main.java",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "SDKs",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
+    "run.configurations.included.in.services": "true",
     "settings.editor.selected.configurable": "vcs.Git",
     "vue.rearranger.settings.migration": "true"
   }
@@ -163,13 +175,87 @@
       <recent name="com.ecotravel.client.dto" />
     </key>
   </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="KtorApplicationConfigurationType" />
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+    <option name="configurationStatuses">
+      <map>
+        <entry key="SpringBootApplicationConfigurationType">
+          <value>
+            <map>
+              <entry key="AccommodationServiceApplication" value="FAILED" />
+              <entry key="AvantureServiceApplication" value="FAILED" />
+              <entry key="BookingServicesApplication" value="STOPPED" />
+              <entry key="FinanceServicesApplication" value="STOPPED" />
+              <entry key="MaintenanceServiceApplication" value="FAILED" />
+              <entry key="VodiciServiceApplication" value="STOPPED" />
+            </map>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="RunManager" selected="Spring Boot.VodiciServiceApplication">
+    <configuration name="AccommodationServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="accommodation-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.ecotravel.accommodation_service.AccommodationServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AvantureServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="avanture-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.ecotravel.AvantureServiceApplication" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.ecotravel.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BookingServicesApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="booking-services" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.raflab.booking_services.BookingServicesApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.raflab.booking_services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FinanceServicesApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="finance-services" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.raflab.finance_services.FinanceServicesApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.raflab.finance_services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MaintenanceServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="maintenance-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.ecotravel.maintenance_service.MaintenanceServiceApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ecotravel.maintenance_service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -194,6 +280,9 @@
       <list>
         <item itemvalue="Spring Boot.VodiciServiceApplication" />
         <item itemvalue="Spring Boot.AvantureServiceApplication" />
+        <item itemvalue="Spring Boot.MaintenanceServiceApplication" />
+        <item itemvalue="Spring Boot.FinanceServicesApplication" />
+        <item itemvalue="Spring Boot.BookingServicesApplication" />
       </list>
     </recent_temporary>
   </component>
