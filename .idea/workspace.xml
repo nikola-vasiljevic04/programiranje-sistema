@@ -4,12 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="131d8659-09f5-4de6-828b-9202bfe582f4" name="Changes" comment="">
+    <list default="true" id="131d8659-09f5-4de6-828b-9202bfe582f4" name="Changes" comment="feature: basic authentication and role change">
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/controller/AuthController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/dto/LoginDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/dto/RoleReqDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/dto/UserDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/errors/ForbiddenException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/errors/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/errors/NotAuthorizedException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/errors/NotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/mapper/UserMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/model/ApiKey.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/model/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/repository/ApiKeyRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/repository/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/service/AuthService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/service/KeyService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/utils/KeyGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/resources/data.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +60,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Exception" />
         <option value="Interface" />
         <option value="Class" />
       </list>
@@ -60,12 +80,12 @@
     &quot;assignee&quot;: &quot;Milan-Stojicevic&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/RAF-PS-2025-26/ps-project-2025-26-nnedeljkovic_nvasiljevic_mstojicevic.git&quot;,
-    &quot;accountId&quot;: &quot;843b00e0-42eb-48be-bfe7-28ec32663c68&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/RAF-PS-2025-26/ps-project-2025-26-nnedeljkovic_nvasiljevic_mstojicevic.git",
+    "accountId": "4e727a11-8cd3-49d2-861f-f7d655e2eb02"
   }
-}</component>
+}]]></component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -80,6 +100,9 @@
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -120,6 +143,7 @@
     "Spring Boot.GatewayServiceApplication.executor": "Run",
     "Spring Boot.MaintenanceServiceApplication.executor": "Run",
     "Spring Boot.VodiciServiceApplication.executor": "Run",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "feature/auth",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
@@ -130,7 +154,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "C:/Users/stoji/OneDrive/Documents/FAKS/PROJEKTI/PS-EcoTravelProjekat/vodici-service/src/main/java/com/ecotravel/Main.java",
-    "project.structure.last.edited": "SDKs",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.configurations.included.in.services": "true",
@@ -148,6 +172,7 @@
       <recent name="C:\Users\stoji\OneDrive\Documents\FAKS\PROJEKTI\PS-EcoTravelProjekat\.idea\src\main\java\com" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.raflab.authservice.errors" />
       <recent name="com.ecotravel.client.dto" />
     </key>
   </component>
@@ -165,13 +190,14 @@
         <entry key="SpringBootApplicationConfigurationType">
           <value>
             <map>
-              <entry key="AccommodationServiceApplication" value="FAILED" />
+              <entry key="AccommodationServiceApplication" value="STOPPED" />
               <entry key="AuthServiceApplication" value="STOPPED" />
-              <entry key="AvantureServiceApplication" value="FAILED" />
+              <entry key="AvantureServiceApplication" value="STOPPED" />
               <entry key="BookingServicesApplication" value="STOPPED" />
+              <entry key="ConfigServiceApplication" value="STOPPED" />
               <entry key="FinanceServicesApplication" value="STOPPED" />
               <entry key="GatewayServiceApplication" value="STOPPED" />
-              <entry key="MaintenanceServiceApplication" value="FAILED" />
+              <entry key="MaintenanceServiceApplication" value="STOPPED" />
               <entry key="VodiciServiceApplication" value="STOPPED" />
             </map>
           </value>
@@ -179,7 +205,7 @@
       </map>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.ConfigServiceApplication">
+  <component name="RunManager" selected="Spring Boot.AuthServiceApplication">
     <configuration name="AccommodationServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="accommodation-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.ecotravel.accommodation_service.AccommodationServiceApplication" />
@@ -325,7 +351,17 @@
       <workItem from="1775750275848" duration="200000" />
       <workItem from="1775750752025" duration="1593000" />
       <workItem from="1775752385066" duration="3657000" />
+      <workItem from="1776196884402" duration="6655000" />
     </task>
+    <task id="LOCAL-00001" summary="feature: services for auth &amp; gateway">
+      <option name="closed" value="true" />
+      <created>1776189122433</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1776189122433</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -340,5 +376,10 @@
     <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot" />
     <option featureType="dependencySupport" implementationName="java:org.springframework:spring-webmvc" />
     <option featureType="dependencySupport" implementationName="java:org.projectlombok:lombok" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feature: services for auth &amp; gateway" />
+    <MESSAGE value="feature: basic authentication and role change" />
+    <option name="LAST_COMMIT_MESSAGE" value="feature: basic authentication and role change" />
   </component>
 </project>
