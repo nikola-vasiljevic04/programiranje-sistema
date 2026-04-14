@@ -24,6 +24,5 @@ public class Adventure {
     @JoinColumn(name = "category_id")
     private AdventureCategory category;
 
-    // DODAJ OVO POLJE ZA MIKROSERVISNU VEZU
     private Long guideId;
 }

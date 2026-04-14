@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
         imports = {java.time.LocalDate.class, java.util.stream.Collectors.class, java.util.ArrayList.class})
 public interface GuideMapper {
 
-    // --- MAPIRANJE PROFILA ---
 
     @Mapping(target = "fullName", expression = "java(profile.getFirstName() + ' ' + profile.getLastName())")
     @Mapping(target = "languages", source = "guideLanguages") // MapStruct će koristiti default metodu mapLanguages ispod
@@ -28,7 +27,6 @@ public interface GuideMapper {
     @Mapping(target = "rating", constant = "0.0")
     GuideProfile toEntity(GuideProfileRequestDTO dto);
 
-    // --- MAPIRANJE SERTIFIKATA ---
 
     @Mapping(target = "valid", expression = "java(cert.getExpiryDate() != null && cert.getExpiryDate().isAfter(LocalDate.now()))")
     CertificationResponseDTO toResponseDTO(Certification cert);
@@ -37,12 +35,7 @@ public interface GuideMapper {
     @Mapping(target = "guide", ignore = true)
     Certification toEntity(CertificationRequestDTO dto);
 
-    // --- KLJUČNE METODE ZA JEZIKE (REŠAVAJU TVOJ PROBLEM) ---
 
-    /**
-     * MapStruct automatski prepoznaje ovu metodu za konverziju
-     * List<GuideLanguage> (iz entiteta) u List<String> (za ResponseDTO).
-     */
     default List<String> mapLanguages(List<GuideLanguage> guideLanguages) {
         if (guideLanguages == null) return new ArrayList<>();
         return guideLanguages.stream()
@@ -51,15 +44,11 @@ public interface GuideMapper {
                 .collect(Collectors.toList());
     }
 
-    /**
-     * Pomoćna metoda za mapiranje pojedinačnog objekta ako zatreba.
-     */
     default String mapGuideLanguageToString(GuideLanguage gl) {
         if (gl == null || gl.getLanguage() == null) return null;
         return gl.getLanguage().getName();
     }
 
-    // --- DODATNA MAPIRANJA ---
 
     LanguageDTO toLanguageDTO(Language language);
     Language toLanguageEntity(LanguageDTO dto);
@@ -70,6 +59,5 @@ public interface GuideMapper {
     @Mapping(target = "guideName", expression = "java(gl.getGuide().getFirstName() + ' ' + gl.getGuide().getLastName())")
     GuideLanguageDTO toGuideLanguageDto(GuideLanguage gl);
 
-    // Ako ti zatreba lista (npr. GET /api/guides/1/languages)
     List<GuideLanguageDTO> toGuideLanguageDtoList(List<GuideLanguage> list);
 }

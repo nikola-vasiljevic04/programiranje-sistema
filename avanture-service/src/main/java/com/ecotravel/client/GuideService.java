@@ -18,7 +18,6 @@ public class GuideService {
 
     private final GuideClient guideClient;
 
-    // Profil vodiča
     @Retry(name = "vodici-service", fallbackMethod = "fallbackGetGuide")
     @CircuitBreaker(name = "vodici-service", fallbackMethod = "fallbackGetGuide")
     public GuideProfileResponseDTO getGuideInfo(Long guideId) {
@@ -26,7 +25,6 @@ public class GuideService {
         return guideClient.getGuideById(guideId);
     }
 
-    // Jezici vodiča
     @Retry(name = "vodici-service", fallbackMethod = "fallbackGetLanguages")
     @CircuitBreaker(name = "vodici-service", fallbackMethod = "fallbackGetLanguages")
     public List<GuideLanguageDTO> getLanguages(Long guideId) {
@@ -34,7 +32,6 @@ public class GuideService {
         return guideClient.getGuideLanguages(guideId);
     }
 
-    // Popunjenost profila
     @Retry(name = "vodici-service", fallbackMethod = "fallbackGetCompleteness")
     @CircuitBreaker(name = "vodici-service", fallbackMethod = "fallbackGetCompleteness")
     public Double getCompleteness(Long guideId) {
@@ -42,7 +39,6 @@ public class GuideService {
         return guideClient.getGuideCompleteness(guideId);
     }
 
-    // FALLBACK METODE
 
     public GuideProfileResponseDTO fallbackGetGuide(Long guideId, Throwable t) {
         log.error("Fallback aktiviran za getGuideInfo. Razlog: {}", t.getMessage());

@@ -10,8 +10,6 @@ import java.time.LocalDateTime;
 @Data
 public class TimeSlotRequestDTO {
 
-    // NEMA POLJA ID! Zato ga Swagger neće ni tražiti.
-
     @NotNull(message = "ID avanture je obavezan")
     private Long adventureId;
 

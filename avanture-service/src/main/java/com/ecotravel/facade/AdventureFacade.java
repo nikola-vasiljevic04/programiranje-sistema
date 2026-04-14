@@ -25,21 +25,15 @@ public class AdventureFacade {
     private final GuideService guideService;
     private final AdventureReportFactory reportFactory;
 
-    /**
-     * Objedinjuje podatke iz lokalnog servisa i eksternog vodic-service.
-     */
     public AdventureResponseDTO getAdventureFullDetails(Long id) {
-        // Uzimamo sirovi entitet da bismo imali pristup guideId polju iz baze
         Adventure adventure = adventureService.getRawById(id);
         AdventureResponseDTO dto = adventureService.getById(id);
 
-        // Proveravamo guideId koji je tipa Long u našoj bazi avantura
         if (adventure.getGuideId() != null) {
             try {
                 log.info("Facade poziva eksterni vodic-service za ID: {}", adventure.getGuideId());
                 GuideProfileResponseDTO profile = guideService.getGuideInfo(adventure.getGuideId());
 
-                // Ručno mapiramo podatke iz eksternog servisa u naš DTO
                 GuideDTO guideDto = new GuideDTO();
                 guideDto.setId(profile.getId());
                 guideDto.setFullName(profile.getFullName());
@@ -49,7 +43,6 @@ public class AdventureFacade {
                 dto.setGuide(guideDto);
             } catch (Exception e) {
                 log.error("Facade: Greška pri komunikaciji sa vodici-service: {}", e.getMessage());
-                // Polje guide ostaje null u DTO-u, ali vraćamo bar podatke o avanturi
             }
         }
         return dto;
@@ -70,7 +63,6 @@ public class AdventureFacade {
 
         Long guideId = adventure.getGuideId();
 
-        // Poziv eksternom servisu
         GuideProfileResponseDTO guide = guideService.getGuideInfo(guideId);
 
         if (guide.getFullName() != null && guide.getFullName().contains("nedostupno")) {

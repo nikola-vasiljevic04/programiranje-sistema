@@ -10,6 +10,6 @@ public class CertificationResponseDTO {
     private Long id;
     private String name;
     private LocalDate expiryDate;
-    private String issuingBody; // Dodajemo ovo polje
+    private String issuingBody;
     private boolean valid;
 }

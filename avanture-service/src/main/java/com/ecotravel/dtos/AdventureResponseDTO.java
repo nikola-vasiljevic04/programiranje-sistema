@@ -14,7 +14,5 @@ public class AdventureResponseDTO {
     private String difficultyLevel;
     private Double basePrice;
     private String categoryName;
-
-    // DODAJ OVO:
     private GuideDTO guide;
 }

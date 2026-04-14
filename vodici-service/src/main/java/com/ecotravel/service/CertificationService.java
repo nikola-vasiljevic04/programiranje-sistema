@@ -18,11 +18,10 @@ import java.util.stream.Collectors;
 public class CertificationService {
 
     private final CertificationRepository certificationRepository;
-    private final GuideProfileRepository guideProfileRepository; // Dodato da bi našli vodiča
+    private final GuideProfileRepository guideProfileRepository;
     private final GuideMapper guideMapper;
 
     public CertificationResponseDTO addCertification(CertificationRequestDTO dto) {
-        // Tražimo profil vodiča na osnovu ID-a iz DTO-a
         GuideProfile guide = guideProfileRepository.findById(dto.getGuideId())
                 .orElseThrow(() -> new RuntimeException("Vodič nije pronađen"));
 
@@ -54,7 +53,6 @@ public class CertificationService {
         Certification existingCert = certificationRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Sertifikat nije pronađen"));
 
-        // Ažuriramo samo tačna polja prema tvom Request DTO-u
         existingCert.setName(dto.getName());
         existingCert.setExpiryDate(dto.getExpiryDate());
 

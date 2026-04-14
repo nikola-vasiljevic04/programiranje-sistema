@@ -29,7 +29,6 @@ public class AdventureReview {
     @Column(columnDefinition = "TEXT")
     private String comment;
 
-    // Hibernate će sam upisati trenutno vreme pri čuvanju u bazu!
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;

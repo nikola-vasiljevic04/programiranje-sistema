@@ -21,7 +21,7 @@ public class GuideLanguageService {
     private final GuideLanguageRepository guideLanguageRepository;
     private final GuideProfileRepository guideProfileRepository;
     private final LanguageRepository languageRepository;
-    private final GuideMapper guideMapper; // Dodat maper za konverziju u DTO
+    private final GuideMapper guideMapper;
 
     public List<GuideLanguageDTO> getAll() {
         List<GuideLanguage> entities = guideLanguageRepository.findAll();

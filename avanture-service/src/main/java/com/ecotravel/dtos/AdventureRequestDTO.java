@@ -21,6 +21,5 @@ public class AdventureRequestDTO {
     @NotNull(message = "Morate izabrati kategoriju")
     private Long categoryId;
 
-    // DODAJ OVO: ID vodiča kojeg dodeljuješ ovoj avanturi
     private Long guideId;
 }

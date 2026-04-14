@@ -24,7 +24,6 @@ public class GuideProfile {
     private Double rating;
     private String contactEmail;
 
-    // DODATO: Polje koje će Hibernate pretvoriti u kolonu COMPLETENESS
     private Double completeness;
 
     @OneToMany(mappedBy = "guide", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

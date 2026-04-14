@@ -10,11 +10,9 @@ import java.util.List;
 
 @Repository
 public interface AdventureRepository extends JpaRepository<Adventure, Long> {
-    // SLOŽENI UPIT 1: Pronalaženje svih avantura po nazivu kategorije (JOIN)
     @Query("SELECT a FROM Adventure a JOIN a.category c WHERE c.name = :categoryName")
     List<Adventure> findByWeightAndCategory(@Param("categoryName") String categoryName);
 
-    // SLOŽENI UPIT 2: Pronalaženje avantura koje su jeftinije od proseka (AGREGACIJA)
     @Query("SELECT a FROM Adventure a WHERE a.basePrice < (SELECT AVG(a2.basePrice) FROM Adventure a2)")
     List<Adventure> findAdventuresCheaperThanAverage();
 }

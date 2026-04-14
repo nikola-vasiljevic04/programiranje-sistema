@@ -22,7 +22,7 @@ public class LanguageService {
     }
 
     public Language createLanguage(Language language) {
-        language.setId(null); // Osigurava da se uvek radi INSERT, a ne UPDATE
+        language.setId(null);
         return languageRepository.save(language);
     }
 

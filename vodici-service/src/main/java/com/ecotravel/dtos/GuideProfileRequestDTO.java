@@ -9,6 +9,5 @@ public class GuideProfileRequestDTO {
     private String lastName;
     private String bio;
     private String contactEmail;
-    // Lista ID-eva jezika iz kataloga koje ovaj vodič govori
     private List<Long> languageIds;
 }

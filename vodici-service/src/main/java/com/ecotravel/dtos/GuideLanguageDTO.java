@@ -6,7 +6,7 @@ import lombok.Data;
 public class GuideLanguageDTO {
     private Long id;
     private Long guideId;
-    private String guideName;    // Opciono, za lepši prikaz
+    private String guideName;
     private Long languageId;
-    private String languageName; // Opciono, npr. "Engleski"
+    private String languageName;
 }

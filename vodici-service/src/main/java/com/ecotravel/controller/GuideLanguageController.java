@@ -15,12 +15,10 @@ import java.util.List;
 public class GuideLanguageController {
 
     private final GuideLanguageService guideLanguageService;
-    // Ne zaboravi da inject-uješ maper
     private final GuideMapper guideMapper;
 
     @GetMapping
     public List<GuideLanguageDTO> getAll() {
-        // Mapira listu entiteta u listu DTO-ova
         return guideLanguageService.getAll();
     }
 
@@ -40,7 +38,6 @@ public class GuideLanguageController {
             @PathVariable Long id,
             @RequestParam Long guideId,
             @RequestParam Long languageId) {
-        // Service već vraća DTO po tvom zahtevu, pa samo proslediš
         return ResponseEntity.ok(guideLanguageService.updateLanguageAssignment(id, guideId, languageId));
     }
 

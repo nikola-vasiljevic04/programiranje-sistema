@@ -29,5 +29,5 @@ public class TimeSlot {
     @Min(0)
     private Integer maxParticipants;
     @Min(0)
-    private Integer currentOccupancy = 0; // Krećemo od nule popunjenih mesta
+    private Integer currentOccupancy = 0;
 }

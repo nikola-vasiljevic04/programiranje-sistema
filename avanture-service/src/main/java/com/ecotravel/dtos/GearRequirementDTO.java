@@ -10,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 public class GearRequirementDTO {
 
-    @Schema(accessMode = Schema.AccessMode.READ_ONLY) // Opet sakrivamo ID od Swaggera
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
 
     @NotBlank(message = "Naziv opreme je obavezan")

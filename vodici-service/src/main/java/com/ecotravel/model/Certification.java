@@ -24,5 +24,5 @@ public class Certification {
 
     @ManyToOne
     @JoinColumn(name = "guide_id")
-    private GuideProfile guide; // Ovo mora da odgovara imenu klase GuideProfile
+    private GuideProfile guide;
 }

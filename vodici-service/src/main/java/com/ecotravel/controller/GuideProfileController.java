@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/guide-profiles") // Promenjen path da bude precizniji
+@RequestMapping("/api/guide-profiles")
 @RequiredArgsConstructor
 public class GuideProfileController {
 
