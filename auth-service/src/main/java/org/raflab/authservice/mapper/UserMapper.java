@@ -11,6 +11,6 @@ public interface UserMapper {
     UserDTO toResponseDTO(User user);
 
     @Mapping(target = "hashedPassword", ignore = true)
-    @Mapping(target = "role", ignore = true)
+    @Mapping(target = "roles", ignore = true)
     User toEntity(UserDTO dto);
 }

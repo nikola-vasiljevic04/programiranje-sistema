@@ -6,6 +6,8 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import org.raflab.authservice.model.Role;
 
+import java.util.Set;
+
 @Data
 public class UserDTO {
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
@@ -28,5 +30,4 @@ public class UserDTO {
     private String password;
 
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
-    private Role role;
-}
+    private Set<Role> roles;}

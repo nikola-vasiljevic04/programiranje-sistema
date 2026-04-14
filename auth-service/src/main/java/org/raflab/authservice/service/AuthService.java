@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.raflab.authservice.dto.LoginDTO;
 import org.raflab.authservice.dto.RoleReqDTO;
 import org.raflab.authservice.dto.UserDTO;
+import org.raflab.authservice.errors.ConflictException;
 import org.raflab.authservice.errors.ForbiddenException;
 import org.raflab.authservice.errors.NotAuthorizedException;
 import org.raflab.authservice.errors.NotFoundException;
@@ -13,8 +14,11 @@ import org.raflab.authservice.mapper.UserMapper;
 import org.raflab.authservice.model.Role;
 import org.raflab.authservice.model.User;
 import org.raflab.authservice.repository.UserRepository;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.HashSet;
 
 @Service
 @RequiredArgsConstructor
@@ -32,9 +36,14 @@ public class AuthService {
         String hashedPassword = passwordEncoder.encode(userDTO.getPassword());
         user.setHashedPassword(hashedPassword);
 
-        user.setRole(Role.GUEST);
+        user.setRoles(new HashSet<>());
+        user.getRoles().add(Role.GUEST);
 
-        return userMapper.toResponseDTO(userRepository.save(user));
+        try {
+            return userMapper.toResponseDTO(userRepository.save(user));
+        } catch (DataIntegrityViolationException e) {
+            throw new ConflictException("Email is already in use");
+        }
     }
 
     @Transactional
@@ -68,16 +77,16 @@ public class AuthService {
     }
 
     @Transactional
-    public UserDTO changeRole(RoleReqDTO request, String apiKey) {
+    public UserDTO changeRoles(RoleReqDTO request, String apiKey) {
         User initiator = keyService.getUserByKey(apiKey);
-        if (initiator.getRole() != Role.ADMIN) throw new ForbiddenException();
+        if (!initiator.getRoles().contains(Role.ADMIN)) throw new ForbiddenException();
 
         User user = userRepository.findById(request.getUserId())
                 .orElseThrow(() -> new NotFoundException("User not found"));
 
         if (initiator.getId().equals(user.getId())) throw new ForbiddenException("Admin cannot change their own role");
 
-        user.setRole(request.getRole());
+        user.setRoles(request.getRoles());
 
         return userMapper.toResponseDTO(userRepository.save(user));
     }
