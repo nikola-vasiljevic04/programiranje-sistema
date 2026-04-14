@@ -9,61 +9,34 @@
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accommodation-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/accommodation-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/AvantureServiceApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/client/GuideClient.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/client/GuideService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/client/dto/GuideLanguageDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/client/dto/GuideProfileResponseDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/controller/AdventureCategoryController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/controller/AdventureController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/controller/AdventureReviewController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/controller/GearRequirementController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/controller/TimeSlotController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/AdventureCategoryDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/AdventureRequestDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/AdventureResponseDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/AdventureReviewRequestDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/AdventureReviewResponseDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/GearRequirementDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/GuideDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/TimeSlotRequestDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/TimeSlotResponseDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/facade/AdventureFacade.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/factory/AdventureReport.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/factory/AdventureReportFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/factory/EcoReport.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/factory/StandardReport.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/mapper/AdventureMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/model/Adventure.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/model/AdventureCategory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/model/AdventureReview.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/model/GearRequirement.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/model/TimeSlot.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/repository/AdventureCategoryRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/repository/AdventureRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/repository/AdventureReviewRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/repository/GearRequirementRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/repository/TimeSlotRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/service/AdventureCategoryService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/service/AdventureReviewService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/service/AdventureService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/service/GearRequirementService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/service/TimeSlotService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/data.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/generated-sources/annotations/com/ecotravel/mapper/AdventureMapperImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maintenance-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/maintenance-service/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/target/generated-sources/annotations/com/ecotravel/mapper/GuideMapperImpl.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/auth-service">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="auth-service" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -93,10 +66,10 @@
     &quot;accountId&quot;: &quot;843b00e0-42eb-48be-bfe7-28ec32663c68&quot;
   }
 }</component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -139,12 +112,15 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "Spring Boot.AccommodationServiceApplication.executor": "Run",
+    "Spring Boot.AuthServiceApplication.executor": "Run",
     "Spring Boot.AvantureServiceApplication.executor": "Run",
     "Spring Boot.BookingServicesApplication.executor": "Run",
+    "Spring Boot.ConfigServiceApplication.executor": "Run",
     "Spring Boot.FinanceServicesApplication.executor": "Run",
+    "Spring Boot.GatewayServiceApplication.executor": "Run",
     "Spring Boot.MaintenanceServiceApplication.executor": "Run",
     "Spring Boot.VodiciServiceApplication.executor": "Run",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "feature/auth",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/FAKS/PS/PS-EcoTravelProjekat",
@@ -190,9 +166,11 @@
           <value>
             <map>
               <entry key="AccommodationServiceApplication" value="FAILED" />
+              <entry key="AuthServiceApplication" value="STOPPED" />
               <entry key="AvantureServiceApplication" value="FAILED" />
               <entry key="BookingServicesApplication" value="STOPPED" />
               <entry key="FinanceServicesApplication" value="STOPPED" />
+              <entry key="GatewayServiceApplication" value="STOPPED" />
               <entry key="MaintenanceServiceApplication" value="FAILED" />
               <entry key="VodiciServiceApplication" value="STOPPED" />
             </map>
@@ -201,10 +179,18 @@
       </map>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.VodiciServiceApplication">
+  <component name="RunManager" selected="Spring Boot.ConfigServiceApplication">
     <configuration name="AccommodationServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="accommodation-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.ecotravel.accommodation_service.AccommodationServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AuthServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="auth-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.raflab.authservice.AuthServiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -236,6 +222,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ConfigServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="config-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.raflab.configservice.ConfigServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="FinanceServicesApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="finance-services" />
@@ -246,6 +240,14 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GatewayServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="gateway-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.raflab.gatewayservice.GatewayServiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
