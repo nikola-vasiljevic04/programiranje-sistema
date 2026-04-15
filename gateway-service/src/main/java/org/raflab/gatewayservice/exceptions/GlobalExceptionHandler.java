@@ -23,7 +23,7 @@ public class GlobalExceptionHandler implements ErrorWebExceptionHandler {
             .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
     @Override
-    public Mono<Void> handle(@NonNull ServerWebExchange exchange, @NonNull Throwable ex) {
+    public @NonNull Mono<Void> handle(ServerWebExchange exchange, @NonNull Throwable ex) {
         if (exchange.getResponse().isCommitted()) {
             return Mono.error(ex);
         }
