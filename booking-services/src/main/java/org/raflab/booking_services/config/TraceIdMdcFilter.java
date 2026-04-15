@@ -15,7 +15,7 @@ public class TraceIdMdcFilter implements Filter {
         
         if (request instanceof HttpServletRequest httpServletRequest) {
             String traceId = httpServletRequest.getHeader("X-Trace-ID");
-            
+            System.out.println(traceId);
             if (traceId != null) {
                 MDC.put("traceId", traceId);
             }
