@@ -15,7 +15,7 @@ import java.util.UUID;
 public class PerformanceFilter implements GlobalFilter, Ordered {
 
     @Override
-    public Mono<Void> filter(@NonNull ServerWebExchange exchange, @NonNull GatewayFilterChain chain) {
+    public @NonNull Mono<Void> filter(ServerWebExchange exchange, @NonNull GatewayFilterChain chain) {
         long startTime = System.currentTimeMillis();
 
         String traceId = exchange.getRequest().getHeaders().getFirst("X-Trace-ID");

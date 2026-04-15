@@ -19,6 +19,7 @@ import reactor.core.publisher.Mono;
 
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @Component
@@ -30,8 +31,38 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
             "/api/auth", "/swagger-ui", "/v3/api-docs", "/actuator", "/docs"
     );
 
+    private record RouteKey(String path, HttpMethod method) {}
+    private static final Map<RouteKey, Set<Role>> ROUTE_PERMISSIONS = Map.ofEntries(
+            Map.entry(new RouteKey("/api/availability", HttpMethod.POST), Set.of(Role.ADMIN)),
+            Map.entry(new RouteKey("/api/units", HttpMethod.POST),        Set.of(Role.ADMIN)),
+            Map.entry(new RouteKey("/api/addresses", HttpMethod.POST),    Set.of(Role.ADMIN)),
+            Map.entry(new RouteKey("/api/time-slots/", HttpMethod.POST),    Set.of(Role.ADMIN, Role.GUIDE, Role.GUEST)),
+            Map.entry(new RouteKey("/api/time-slots", HttpMethod.POST),    Set.of(Role.ADMIN, Role.GUIDE)),
+            Map.entry(new RouteKey("/api/gear", HttpMethod.POST),    Set.of(Role.ADMIN)),
+            Map.entry(new RouteKey("/api/gear", HttpMethod.PUT),    Set.of(Role.ADMIN)),
+            Map.entry(new RouteKey("/api/category", HttpMethod.POST),    Set.of(Role.ADMIN)),
+            Map.entry(new RouteKey("/api/category", HttpMethod.PUT),    Set.of(Role.ADMIN)),
+            Map.entry(new RouteKey("/api/adventure", HttpMethod.POST),    Set.of(Role.ADMIN)),
+            Map.entry(new RouteKey("/api/adventure", HttpMethod.PUT),    Set.of(Role.ADMIN)),
+            Map.entry(new RouteKey("/api/policies", HttpMethod.POST),    Set.of(Role.ADMIN)),
+            Map.entry(new RouteKey("/api/addons", HttpMethod.PUT),    Set.of(Role.ADMIN)),
+            Map.entry(new RouteKey("/api/guests", HttpMethod.PUT),    Set.of(Role.ADMIN)),
+            Map.entry(new RouteKey("/api/invoices", HttpMethod.POST),    Set.of(Role.ADMIN)),
+            Map.entry(new RouteKey("/api/invoices", HttpMethod.PATCH),    Set.of(Role.ADMIN)),
+            Map.entry(new RouteKey("/api/payment-methods", HttpMethod.POST),    Set.of(Role.ADMIN)),
+            Map.entry(new RouteKey("/api/tax-rates", HttpMethod.POST),    Set.of(Role.ADMIN)),
+            Map.entry(new RouteKey("/api/transactions", HttpMethod.GET),    Set.of(Role.ADMIN)),
+            Map.entry(new RouteKey("/api/work-orders", HttpMethod.GET),  Set.of(Role.ADMIN)),
+            Map.entry(new RouteKey("/api/work-orders", HttpMethod.POST),  Set.of(Role.ADMIN)),
+            Map.entry(new RouteKey("/api/work-orders", HttpMethod.PUT),  Set.of(Role.ADMIN)),
+            Map.entry(new RouteKey("/api/workers", HttpMethod.GET),       Set.of(Role.ADMIN)),
+            Map.entry(new RouteKey("/api/workers", HttpMethod.POST),      Set.of(Role.ADMIN)),
+            Map.entry(new RouteKey("/api/tasks", HttpMethod.GET),       Set.of(Role.ADMIN)),
+            Map.entry(new RouteKey("/api/tasks", HttpMethod.POST),      Set.of(Role.ADMIN))
+    );
+
     @Override
-    public Mono<Void> filter(@NonNull ServerWebExchange exchange, @NonNull GatewayFilterChain chain) {
+    public @NonNull Mono<Void> filter(ServerWebExchange exchange, @NonNull GatewayFilterChain chain) {
         String path = exchange.getRequest().getURI().getPath();
 
         if (PUBLIC_ROUTES.stream().anyMatch(path::startsWith)) {
@@ -55,7 +86,7 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
                     }
 
                     ServerHttpRequest mutatedRequest = exchange.getRequest().mutate()
-                            .header("X-Authenticated-User", authResponse.getEmail())
+                            .header("X-Authenticated-User", String.valueOf(authResponse.getId()))
                             .header("X-User-Role", authResponse.getRoles().toString())
                             .build();
 
@@ -73,7 +104,19 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
     private boolean hasAccess(String path, HttpMethod method, Set<Role> roles) {
         if (method == HttpMethod.DELETE && !roles.contains(Role.ADMIN)) return false;
 
-        return !path.startsWith("/api/transactions") || !roles.contains(Role.GUIDE);
+        String matchedPath = ROUTE_PERMISSIONS.keySet().stream()
+                .map(RouteKey::path)
+                .filter(path::startsWith)
+                .findFirst()
+                .orElse(null);
+
+        if (matchedPath == null) return true;
+
+        RouteKey key = new RouteKey(matchedPath, method);
+        Set<Role> allowed = ROUTE_PERMISSIONS.get(key);
+
+        if (allowed == null) return true;
+        return allowed.stream().anyMatch(roles::contains);
     }
 
     private Mono<Void> unauthorized(ServerWebExchange exchange, String message) {
