@@ -5,6 +5,9 @@
       <option name="customHeaders">
         <set>
           <option value="X-API-KEY" />
+          <option value="X-Trace-ID" />
+          <option value="X-Eco-Service" />
+          <option value="X-Processing-Time-Ms" />
         </set>
       </option>
     </inspection_tool>
