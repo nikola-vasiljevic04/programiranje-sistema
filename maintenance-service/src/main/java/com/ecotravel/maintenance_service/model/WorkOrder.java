@@ -15,7 +15,6 @@ public class WorkOrder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // SAMO ID, bez @ManyToOne jer je Unit u drugoj bazi!
     @Column(name = "unit_id", nullable = false)
     private Long unitId;
 

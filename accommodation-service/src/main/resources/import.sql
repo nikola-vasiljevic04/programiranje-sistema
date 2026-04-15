@@ -10,10 +10,9 @@ INSERT INTO facilities (name, extra_cost) VALUES ('Sauna', 15.0);
 INSERT INTO facilities (name, extra_cost) VALUES ('Doručak', 10.0);
 
 -- 3. Unos smeštajnih jedinica (povezivanje sa address_id)
-INSERT INTO units (name, unit_type, base_price_per_night, address_id) VALUES ('Planinska Idila', 'Koliba', 120.0, 1);
-INSERT INTO units (name, unit_type, base_price_per_night, address_id) VALUES ('Grand Apartman', 'Apartman', 200.0, 2);
-INSERT INTO units (name, unit_type, base_price_per_night, address_id) VALUES ('Šumska Kuća', 'Kuća', 90.0, 3);
-
+INSERT INTO units (name, unit_type, base_price_per_night, address_id) VALUES ('Planinska Idila', 'CABIN', 120.0, 1);
+INSERT INTO units (name, unit_type, base_price_per_night, address_id) VALUES ('Grand Apartman', 'APARTMENT', 200.0, 2);
+INSERT INTO units (name, unit_type, base_price_per_night, address_id) VALUES ('Šumska Kuća', 'HOUSE', 90.0, 3);
 -- 4. Povezivanje smeštaja i sadržaja (unit_facilities spojna tabela)
 -- Smeštaj 1 (Idila) ima WiFi (1) i Saunu (3)
 INSERT INTO unit_facilities (unit_id, facility_id) VALUES (1, 1);
