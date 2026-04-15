@@ -51,6 +51,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="Exception" />
+        <option value="package-info" />
         <option value="Class" />
       </list>
     </option>
@@ -89,6 +91,9 @@
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -150,6 +155,10 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel" />
+      <recent name="$PROJECT_DIR$/maintenance-service/src/main/java/com/ecotravel/maintenance_service" />
+      <recent name="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services" />
+      <recent name="$PROJECT_DIR$/booking-services/src/main/java/org/raflab/booking_services" />
       <recent name="C:\Users\stoji\OneDrive\Documents\FAKS\PROJEKTI\PS-EcoTravelProjekat\vodici-service" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -158,6 +167,8 @@
       <recent name="C:\Users\stoji\OneDrive\Documents\FAKS\PROJEKTI\PS-EcoTravelProjekat\.idea\src\main\java\com" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.raflab.gatewayservice.dto" />
+      <recent name="org.raflab.authservice.errors" />
       <recent name="com.ecotravel.client.dto" />
     </key>
   </component>
@@ -195,6 +206,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="AuthServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="auth-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.raflab.authservice.AuthServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AvantureServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="avanture-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.ecotravel.AvantureServiceApplication" />
@@ -222,6 +241,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ConfigServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="config-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.raflab.configservice.ConfigServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="FinanceServicesApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="finance-services" />
@@ -232,6 +259,14 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GatewayServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="gateway-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.raflab.gatewayservice.GatewayServiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -269,6 +304,9 @@
         <item itemvalue="Spring Boot.VodiciServiceApplication" />
         <item itemvalue="Spring Boot.FinanceServicesApplication" />
         <item itemvalue="Spring Boot.BookingServicesApplication" />
+        <item itemvalue="Spring Boot.VodiciServiceApplication" />
+        <item itemvalue="Spring Boot.MaintenanceServiceApplication" />
+        <item itemvalue="Spring Boot.AvantureServiceApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -312,6 +350,63 @@
       <workItem from="1776196509078" duration="6344000" />
       <workItem from="1776258172224" duration="2579000" />
     </task>
+    <task id="LOCAL-00001" summary="feature: services for auth &amp; gateway">
+      <option name="closed" value="true" />
+      <created>1776189122433</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1776189122433</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feature: basic authentication and role change">
+      <option name="closed" value="true" />
+      <created>1776203865684</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1776203865684</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feature: multiple role support">
+      <option name="closed" value="true" />
+      <created>1776205032664</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1776205032664</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feature: basic gatewway service">
+      <option name="closed" value="true" />
+      <created>1776218395295</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1776218395295</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feature: implemented gateway for services and updated swagger to use gateway address">
+      <option name="closed" value="true" />
+      <created>1776253793218</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1776253793218</updated>
+    </task>
+    <task id="LOCAL-00006" summary="feature: advanced services permissions">
+      <option name="closed" value="true" />
+      <created>1776256426266</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1776256426266</updated>
+    </task>
+    <task id="LOCAL-00007" summary="refactor: error handler for gateway and auth">
+      <option name="closed" value="true" />
+      <created>1776258584258</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1776258584258</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -326,5 +421,15 @@
     <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot" />
     <option featureType="dependencySupport" implementationName="java:org.springframework:spring-webmvc" />
     <option featureType="dependencySupport" implementationName="java:org.projectlombok:lombok" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feature: services for auth &amp; gateway" />
+    <MESSAGE value="feature: basic authentication and role change" />
+    <MESSAGE value="feature: multiple role support" />
+    <MESSAGE value="feature: basic gatewway service" />
+    <MESSAGE value="feature: implemented gateway for services and updated swagger to use gateway address" />
+    <MESSAGE value="feature: advanced services permissions" />
+    <MESSAGE value="refactor: error handler for gateway and auth" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: error handler for gateway and auth" />
   </component>
 </project>

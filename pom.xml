@@ -24,9 +24,9 @@
         <module>finance-services</module>
         <module>maintenance-service</module>
         <module>accommodation-service</module>
-<!--        <module>auth-service</module>-->
-<!--        <module>config-service</module>-->
-<!--        <module>gateway-service</module>-->
+        <module>auth-service</module>
+        <module>config-service</module>
+        <module>gateway-service</module>
     </modules>
 
     <properties>
