@@ -24,12 +24,15 @@ public class UnitClientService {
         return unitClient.getUnitById(id);
     }
 
-    public UnitDTO getUnitByIdFallback(Long id, EntityNotFoundException e) {
-        throw e;
-    }
-
     public UnitDTO getUnitByIdFallback(Long id, Throwable t) {
-        log.error("Unit service unavailable for id {}: {}", id, t.getMessage());
+        if (t instanceof EntityNotFoundException || t.getCause() instanceof EntityNotFoundException) {
+            log.warn("Unit {} not found - propagating 404", id);
+            throw (t instanceof EntityNotFoundException)
+                    ? (jakarta.persistence.EntityNotFoundException) t
+                    : (jakarta.persistence.EntityNotFoundException) t.getCause();
+        }
+
+        log.error("Service error for unit {}: {}", id, t.getMessage());
         throw new ServiceUnavailableException("Unit service is currently unavailable");
     }
 

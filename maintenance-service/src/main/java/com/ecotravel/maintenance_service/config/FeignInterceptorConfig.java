@@ -1,7 +1,9 @@
 
 package com.ecotravel.maintenance_service.config;
 
+import com.ecotravel.maintenance_service.exception.GlobalFeignErrorDecoder;
 import feign.RequestInterceptor;
+import feign.codec.ErrorDecoder;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +12,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Configuration
 public class FeignInterceptorConfig {
-
     @Bean
     public RequestInterceptor requestInterceptor() {
         return requestTemplate -> {
@@ -34,5 +35,10 @@ public class FeignInterceptorConfig {
                 }
             }
         };
+    }
+
+    @Bean
+    public ErrorDecoder errorDecoder() {
+        return new GlobalFeignErrorDecoder();
     }
 }
