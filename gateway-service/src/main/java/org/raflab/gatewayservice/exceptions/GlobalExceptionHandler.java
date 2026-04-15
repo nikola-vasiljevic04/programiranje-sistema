@@ -10,7 +10,7 @@ import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
-import org.springframework.web.reactive.function.client.WebClientResponseException;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.server.ServerWebExchange;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import reactor.core.publisher.Mono;
@@ -35,12 +35,9 @@ public class GlobalExceptionHandler implements ErrorWebExceptionHandler {
         HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
         String message = "An unexpected gateway error occurred";
 
-        if (ex instanceof org.springframework.web.server.ResponseStatusException rse) {
+        if (ex instanceof ResponseStatusException rse) {
             status = HttpStatus.valueOf(rse.getStatusCode().value());
             message = rse.getReason() != null ? rse.getReason() : ex.getMessage();
-        } else if (ex instanceof WebClientResponseException wcre) {
-            status = HttpStatus.valueOf(wcre.getStatusCode().value());
-            message = "Downstream service error: " + wcre.getStatusText();
         }
 
         ErrorResponseDTO error = new ErrorResponseDTO(message, traceId, status.value());
