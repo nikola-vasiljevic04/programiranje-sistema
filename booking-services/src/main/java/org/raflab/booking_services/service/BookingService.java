@@ -68,6 +68,8 @@ public class BookingService {
         LocalDate localStartDate = dto.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate localEndDate = dto.getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
+        if (!localStartDate.isBefore(localEndDate)) throw new IllegalArgumentException("Start date must be before end date");
+
         Boolean available = unitClientService.available(unitId,localStartDate, localEndDate);
 
         if (!available) throw new IllegalArgumentException("Unit is already booked for that date");
