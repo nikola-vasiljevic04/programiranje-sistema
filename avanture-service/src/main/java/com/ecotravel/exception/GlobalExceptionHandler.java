@@ -1,28 +1,35 @@
 package com.ecotravel.exception;
 
 import com.ecotravel.dtos.ErrorResponseDTO;
-import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+@Slf4j
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    private String getTraceId(HttpServletRequest request) {
-        String traceId = request.getHeader("X-Trace-ID");
+    private String getTraceId() {
+        String traceId = MDC.get("X-Trace-ID");
         return traceId != null ? traceId : "N/A";
     }
 
     @ExceptionHandler(ServiceUnavailableException.class)
-    public ResponseEntity<ErrorResponseDTO> handleServiceUnavailable(ServiceUnavailableException ex, HttpServletRequest request) {
-        return buildResponse(ex.getMessage(), getTraceId(request));
+    public ResponseEntity<ErrorResponseDTO> handleServiceUnavailable(ServiceUnavailableException ex) {
+        return buildResponse(ex.getMessage(), getTraceId());
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponseDTO> handleAllExceptions(Exception ex, HttpServletRequest request) {
-        ErrorResponseDTO errorDTO = new ErrorResponseDTO("An unexpected finance error occurred", getTraceId(request), HttpStatus.INTERNAL_SERVER_ERROR.value());
+    public ResponseEntity<ErrorResponseDTO> handleAllExceptions(Exception ex) {
+        ErrorResponseDTO errorDTO = new ErrorResponseDTO(
+                "An unexpected auth error occurred",
+                getTraceId(),
+                HttpStatus.INTERNAL_SERVER_ERROR.value()
+        );
+        log.error("Adventure-Service Error: {}", ex.getMessage());
         errorDTO.setDetails(ex.getMessage());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorDTO);
     }

@@ -41,8 +41,6 @@ public class RateLimitFilter implements GlobalFilter, Ordered {
 
         String storageKey = clientId + "#" + limitType;
 
-        System.out.println(storageKey);
-
         long now = System.currentTimeMillis();
         requestLog.putIfAbsent(storageKey, new ArrayDeque<>());
         Deque<Long> timestamps = requestLog.get(storageKey);

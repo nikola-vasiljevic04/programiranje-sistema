@@ -1,6 +1,7 @@
 package org.raflab.gatewayservice.filters;
 
 import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
 import org.raflab.gatewayservice.dto.Role;
 import org.raflab.gatewayservice.dto.UserDTO;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
@@ -20,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+@Slf4j
 @Component
 public class AuthenticationFilter implements GlobalFilter, Ordered {
 
@@ -73,9 +75,16 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
             return unauthorized("Missing X-API-KEY header");
         }
 
+        String traceId = exchange.getRequest().getHeaders().getFirst("X-Trace-ID");
+        if (traceId == null) traceId = "N/A";
+
+        log.info("AuthenticationFilter processing with TraceID: {}", traceId);
+
+
         return webClient.get()
                 .uri("/api/auth/validate")
                 .header("X-API-KEY", apiKey)
+                .header("X-TRACE-ID", traceId)
                 .retrieve()
                 .bodyToMono(UserDTO.class)
                 .flatMap(authResponse -> {

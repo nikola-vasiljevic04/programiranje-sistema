@@ -4,26 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="131d8659-09f5-4de6-828b-9202bfe582f4" name="Changes" comment="feature: feign global error interceptors">
-      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/config/TraceIdMdcFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/dtos/ErrorResponseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/exception/ServiceUnavailableException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/booking-services/src/main/java/org/raflab/booking_services/config/TraceIdMdcFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/config/TraceIdMdcFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/dtos/ErrorResponseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/exception/GlobalFeignErrorDecoder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/exception/ServiceUnavailableException.java" afterDir="false" />
+    <list default="true" id="131d8659-09f5-4de6-828b-9202bfe582f4" name="Changes" comment="Added better logging with trace and advanced logging in auth service">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/errors/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/errors/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/service/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/booking-services/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/booking-services/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finance-services/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/finance-services/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/booking-services/src/main/java/org/raflab/booking_services/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/booking-services/src/main/java/org/raflab/booking_services/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/org/raflab/gatewayservice/filters/AuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/java/org/raflab/gatewayservice/filters/AuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/org/raflab/gatewayservice/filters/RateLimitFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/java/org/raflab/gatewayservice/filters/RateLimitFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vodici-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/config/FeignInterceptorConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vodici-service/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vodici-service/target/generated-sources/annotations/com/ecotravel/mapper/GuideMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/target/generated-sources/annotations/com/ecotravel/mapper/GuideMapperImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,12 +51,12 @@
     &quot;assignee&quot;: &quot;Milan-Stojicevic&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/RAF-PS-2025-26/ps-project-2025-26-nnedeljkovic_nvasiljevic_mstojicevic.git&quot;,
-    &quot;accountId&quot;: &quot;a91d81ed-7102-4000-bc43-6a5d95f7229d&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/RAF-PS-2025-26/ps-project-2025-26-nnedeljkovic_nvasiljevic_mstojicevic.git",
+    "accountId": "4e727a11-8cd3-49d2-861f-f7d655e2eb02"
   }
-}</component>
+}]]></component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -116,6 +109,7 @@
     "Spring Boot.AuthServiceApplication.executor": "Run",
     "Spring Boot.AvantureServiceApplication.executor": "Run",
     "Spring Boot.BookingServicesApplication.executor": "Run",
+    "Spring Boot.ConfigServiceApplication.executor": "Run",
     "Spring Boot.FinanceServicesApplication.executor": "Run",
     "Spring Boot.GatewayServiceApplication.executor": "Run",
     "Spring Boot.MaintenanceServiceApplication.executor": "Run",
@@ -133,7 +127,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "C:/Users/stoji/OneDrive/Documents/FAKS/PROJEKTI/PS-EcoTravelProjekat/vodici-service/src/main/java/com/ecotravel/Main.java",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.configurations.included.in.services": "true",
@@ -156,11 +150,11 @@
       <recent name="C:\Users\stoji\OneDrive\Documents\FAKS\PROJEKTI\PS-EcoTravelProjekat\.idea\src\main\java\com" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.ecotravel.config" />
       <recent name="com.ecotravel.dtos" />
       <recent name="org.raflab.authservice.config" />
       <recent name="org.raflab.booking_services.config" />
       <recent name="com.ecotravel.maintenance_service.config" />
-      <recent name="org.raflab.gatewayservice.dto" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -181,6 +175,7 @@
               <entry key="AuthServiceApplication" value="STOPPED" />
               <entry key="AvantureServiceApplication" value="STOPPED" />
               <entry key="BookingServicesApplication" value="STOPPED" />
+              <entry key="ConfigServiceApplication" value="STOPPED" />
               <entry key="FinanceServicesApplication" value="STOPPED" />
               <entry key="GatewayServiceApplication" value="STOPPED" />
               <entry key="MaintenanceServiceApplication" value="STOPPED" />
@@ -191,7 +186,7 @@
       </map>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.AuthServiceApplication">
+  <component name="RunManager" selected="Spring Boot.VodiciServiceApplication">
     <configuration name="AccommodationServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="accommodation-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.ecotravel.accommodation_service.AccommodationServiceApplication" />
@@ -292,11 +287,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.BookingServicesApplication" />
-        <item itemvalue="Spring Boot.FinanceServicesApplication" />
+        <item itemvalue="Spring Boot.VodiciServiceApplication" />
         <item itemvalue="Spring Boot.MaintenanceServiceApplication" />
         <item itemvalue="Spring Boot.AvantureServiceApplication" />
-        <item itemvalue="Spring Boot.VodiciServiceApplication" />
+        <item itemvalue="Spring Boot.FinanceServicesApplication" />
+        <item itemvalue="Spring Boot.BookingServicesApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -339,6 +334,7 @@
       <workItem from="1775752385066" duration="3657000" />
       <workItem from="1776196509078" duration="6344000" />
       <workItem from="1776258172224" duration="2579000" />
+      <workItem from="1776267354463" duration="1572000" />
     </task>
     <task id="LOCAL-00001" summary="feature: services for auth &amp; gateway">
       <option name="closed" value="true" />
@@ -428,7 +424,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776263537894</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Added better logging with trace and advanced logging in auth service">
+      <option name="closed" value="true" />
+      <created>1776266064347</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1776266064347</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -455,6 +459,7 @@
     <MESSAGE value="feature: feign interceptor in maintenance" />
     <MESSAGE value="fix: booking service should not be available to book if end date is before start date" />
     <MESSAGE value="feature: feign global error interceptors" />
-    <option name="LAST_COMMIT_MESSAGE" value="feature: feign global error interceptors" />
+    <MESSAGE value="Added better logging with trace and advanced logging in auth service" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added better logging with trace and advanced logging in auth service" />
   </component>
 </project>
