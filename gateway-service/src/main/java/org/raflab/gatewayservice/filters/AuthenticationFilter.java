@@ -14,6 +14,7 @@ import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
@@ -72,7 +73,7 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
         String apiKey = exchange.getRequest().getHeaders().getFirst("X-API-KEY");
 
         if (apiKey == null || apiKey.isBlank()) {
-            return unauthorized(exchange, "Missing X-API-KEY header");
+            return unauthorized("Missing X-API-KEY header");
         }
 
         return webClient.get()
@@ -82,7 +83,7 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
                 .bodyToMono(UserDTO.class)
                 .flatMap(authResponse -> {
                     if (!hasAccess(path, exchange.getRequest().getMethod(), authResponse.getRoles())) {
-                        return forbidden(exchange);
+                        return forbidden();
                     }
 
                     ServerHttpRequest mutatedRequest = exchange.getRequest().mutate()
@@ -93,11 +94,10 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
                     return chain.filter(exchange.mutate().request(mutatedRequest).build());
                 })
                 .onErrorResume(WebClientResponseException.class, e -> {
-                    if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
-                        return unauthorized(exchange, "Invalid API key");
+                    if (e.getStatusCode() == HttpStatus.UNAUTHORIZED) {
+                        return unauthorized("Invalid API key");
                     }
-                    System.out.println(e.getStatusCode());
-                    return serviceUnavailable(exchange);
+                    return serviceUnavailable();
                 });
     }
 
@@ -119,27 +119,16 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
         return allowed.stream().anyMatch(roles::contains);
     }
 
-    private Mono<Void> unauthorized(ServerWebExchange exchange, String message) {
-        return writeErrorResponse(exchange, HttpStatus.UNAUTHORIZED, message);
+    private Mono<Void> unauthorized(String message) {
+        return Mono.error(new ResponseStatusException(HttpStatus.UNAUTHORIZED, message));
     }
 
-    private Mono<Void> forbidden(ServerWebExchange exchange) {
-        return writeErrorResponse(exchange, HttpStatus.FORBIDDEN, "Insufficient permissions");
+    private Mono<Void> forbidden() {
+        return Mono.error(new ResponseStatusException(HttpStatus.FORBIDDEN, "Insufficient permissions"));
     }
 
-    private Mono<Void> serviceUnavailable(ServerWebExchange exchange) {
-        return writeErrorResponse(exchange, HttpStatus.SERVICE_UNAVAILABLE, "Auth service unavailable");
-    }
-
-    private Mono<Void> writeErrorResponse(ServerWebExchange exchange, HttpStatus status, String message) {
-        exchange.getResponse().setStatusCode(status);
-        exchange.getResponse().getHeaders().setContentType(MediaType.APPLICATION_JSON);
-        String body = """
-            {"message": "%s", "status": %d}
-            """.formatted(message, status.value());
-        DataBuffer buffer = exchange.getResponse().bufferFactory()
-                .wrap(body.getBytes(StandardCharsets.UTF_8));
-        return exchange.getResponse().writeWith(Mono.just(buffer));
+    private Mono<Void> serviceUnavailable() {
+        return Mono.error(new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Auth service unavailable"));
     }
 
     @Override

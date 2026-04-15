@@ -28,20 +28,8 @@ public class RateLimitFilter implements GlobalFilter, Ordered {
     private static final int MAX_REQUESTS_OTHER = 10;
     private static final long WINDOW_MS = 10_000;
 
-    private static final List<String> CRITICAL_ROUTES = List.of(
-            "/api/transactions",
-            "/api/bookings",
-            "/api/adventures"
-    );
-
     @Override
     public @NonNull Mono<Void> filter(ServerWebExchange exchange, @NonNull GatewayFilterChain chain) {
-        String path = exchange.getRequest().getURI().getPath();
-
-        if (CRITICAL_ROUTES.stream().noneMatch(path::startsWith)) {
-            return chain.filter(exchange);
-        }
-
         String clientId = exchange.getRequest().getHeaders().getFirst("X-API-KEY");
         if (clientId == null) {
             clientId = exchange.getRequest().getRemoteAddress() != null
@@ -55,6 +43,8 @@ public class RateLimitFilter implements GlobalFilter, Ordered {
         int limit = (method == HttpMethod.GET) ? MAX_REQUESTS_READ : MAX_REQUESTS_OTHER;
 
         String storageKey = clientId + "#" + limitType;
+
+        System.out.println(storageKey);
 
         long now = System.currentTimeMillis();
         requestLog.putIfAbsent(storageKey, new ArrayDeque<>());
@@ -71,12 +61,10 @@ public class RateLimitFilter implements GlobalFilter, Ordered {
 
                 addRateLimitHeaders(exchange, 0, limit);
 
-                String body = """
-                    {"message": "Rate limit exceeded for %s. Limit is %d per 10s.", "status": 429}
-                """.formatted(method, limit);
-                DataBuffer buffer = exchange.getResponse().bufferFactory()
-                        .wrap(body.getBytes(StandardCharsets.UTF_8));
-                return exchange.getResponse().writeWith(Mono.just(buffer));
+                return Mono.error(new org.springframework.web.server.ResponseStatusException(
+                        HttpStatus.TOO_MANY_REQUESTS,
+                        "Rate limit exceeded for %s. Limit is %d per 10s.".formatted(method, limit)
+                ));
             }
 
             timestamps.addLast(now);
@@ -87,9 +75,9 @@ public class RateLimitFilter implements GlobalFilter, Ordered {
     }
 
     private void addRateLimitHeaders(ServerWebExchange exchange, int remaining, int limit) {
-        exchange.getResponse().getHeaders().add("X-RateLimit-Limit", String.valueOf(limit));
-        exchange.getResponse().getHeaders().add("X-RateLimit-Remaining", String.valueOf(remaining));
-        exchange.getResponse().getHeaders().add("X-RateLimit-Reset", String.valueOf(WINDOW_MS / 1000));
+        exchange.getResponse().getHeaders().set("X-RateLimit-Limit", String.valueOf(limit));
+        exchange.getResponse().getHeaders().set("X-RateLimit-Remaining", String.valueOf(remaining));
+        exchange.getResponse().getHeaders().set("X-RateLimit-Reset", String.valueOf(WINDOW_MS / 1000));
     }
 
     @Override

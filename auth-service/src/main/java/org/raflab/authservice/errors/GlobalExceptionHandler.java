@@ -1,43 +1,53 @@
 package org.raflab.authservice.errors;
 
+import jakarta.servlet.http.HttpServletRequest;
+import org.raflab.authservice.dto.ErrorResponseDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
-
 @ControllerAdvice
 public class GlobalExceptionHandler {
+
+    private String getTraceId(HttpServletRequest request) {
+        String traceId = request.getHeader("X-Trace-ID");
+        return traceId != null ? traceId : "N/A";
+    }
+
     @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<String> handleNotFound(NotFoundException ex) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    public ResponseEntity<ErrorResponseDTO> handleNotFound(NotFoundException ex, HttpServletRequest request) {
+        return buildResponse(ex.getMessage(), getTraceId(request), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(NotAuthorizedException.class)
-    public ResponseEntity<String> handleNotAuthorized(NotAuthorizedException ex) {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ex.getMessage());
+    public ResponseEntity<ErrorResponseDTO> handleNotAuthorized(NotAuthorizedException ex, HttpServletRequest request) {
+        return buildResponse(ex.getMessage(), getTraceId(request), HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(ForbiddenException.class)
-    public ResponseEntity<String> handleForbidden(ForbiddenException ex) {
-        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ex.getMessage());
+    public ResponseEntity<ErrorResponseDTO> handleForbidden(ForbiddenException ex, HttpServletRequest request) {
+        return buildResponse(ex.getMessage(), getTraceId(request), HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler(ConflictException.class)
-    public ResponseEntity<String> handleConflict(ConflictException ex) {
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+    public ResponseEntity<ErrorResponseDTO> handleConflict(ConflictException ex, HttpServletRequest request) {
+        return buildResponse(ex.getMessage(), getTraceId(request), HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<Map<String, Object>> handleAllExceptions(Exception ex) {
-        Map<String, Object> body = new HashMap<>();
-        body.put("timestamp", LocalDateTime.now());
-        body.put("message", "An unexpected error occurred");
-        body.put("details", ex.getMessage());
+    public ResponseEntity<ErrorResponseDTO> handleAllExceptions(Exception ex, HttpServletRequest request) {
+        ErrorResponseDTO errorDTO = new ErrorResponseDTO(
+                "An unexpected auth error occurred",
+                getTraceId(request),
+                HttpStatus.INTERNAL_SERVER_ERROR.value()
+        );
+        errorDTO.setDetails(ex.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorDTO);
+    }
 
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(body);
+    private ResponseEntity<ErrorResponseDTO> buildResponse(String message, String traceId, HttpStatus status) {
+        ErrorResponseDTO error = new ErrorResponseDTO(message, traceId, status.value());
+        return ResponseEntity.status(status).body(error);
     }
 }

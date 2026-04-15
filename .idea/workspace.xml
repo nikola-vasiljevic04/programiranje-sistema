@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="131d8659-09f5-4de6-828b-9202bfe582f4" name="Changes" comment="feature: advanced services permissions">
-      <change afterPath="$PROJECT_DIR$/booking-services/src/main/java/org/raflab/booking_services/dto/ErrorResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/dto/ErrorResponseDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/booking-services/src/main/java/org/raflab/booking_services/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/booking-services/src/main/java/org/raflab/booking_services/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/errors/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/errors/GlobalExceptionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/org/raflab/gatewayservice/exceptions/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/java/org/raflab/gatewayservice/exceptions/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/org/raflab/gatewayservice/filters/AuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/java/org/raflab/gatewayservice/filters/AuthenticationFilter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,7 +192,7 @@
       </map>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.GatewayServiceApplication">
+  <component name="RunManager" selected="Spring Boot.FinanceServicesApplication">
     <configuration name="AccommodationServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="accommodation-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.ecotravel.accommodation_service.AccommodationServiceApplication" />
@@ -294,10 +293,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.VodiciServiceApplication" />
-        <item itemvalue="Spring Boot.MaintenanceServiceApplication" />
         <item itemvalue="Spring Boot.FinanceServicesApplication" />
         <item itemvalue="Spring Boot.BookingServicesApplication" />
+        <item itemvalue="Spring Boot.VodiciServiceApplication" />
+        <item itemvalue="Spring Boot.MaintenanceServiceApplication" />
         <item itemvalue="Spring Boot.AvantureServiceApplication" />
       </list>
     </recent_temporary>

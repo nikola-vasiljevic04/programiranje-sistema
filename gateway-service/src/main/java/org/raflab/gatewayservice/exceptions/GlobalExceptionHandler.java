@@ -10,12 +10,13 @@ import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 import org.springframework.web.server.ServerWebExchange;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import reactor.core.publisher.Mono;
 
 @Component
-@Order(-1)
+@Order(-5)
 public class GlobalExceptionHandler implements ErrorWebExceptionHandler {
 
     private final ObjectMapper objectMapper = new ObjectMapper()
@@ -32,10 +33,22 @@ public class GlobalExceptionHandler implements ErrorWebExceptionHandler {
         if (traceId == null) traceId = "N/A";
 
         HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
-        ErrorResponseDTO error = new ErrorResponseDTO(ex.getMessage(), traceId, status.value());
+        String message = "An unexpected gateway error occurred";
+
+        if (ex instanceof org.springframework.web.server.ResponseStatusException rse) {
+            status = HttpStatus.valueOf(rse.getStatusCode().value());
+            message = rse.getReason() != null ? rse.getReason() : ex.getMessage();
+        } else if (ex instanceof WebClientResponseException wcre) {
+            status = HttpStatus.valueOf(wcre.getStatusCode().value());
+            message = "Downstream service error: " + wcre.getStatusText();
+        }
+
+        ErrorResponseDTO error = new ErrorResponseDTO(message, traceId, status.value());
+
+        final HttpStatus finalStatus = status;
 
         return Mono.defer(() -> {
-            exchange.getResponse().setStatusCode(status);
+            exchange.getResponse().setStatusCode(finalStatus);
             exchange.getResponse().getHeaders().setContentType(MediaType.APPLICATION_JSON);
 
             try {
