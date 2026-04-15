@@ -1,6 +1,8 @@
 package org.raflab.gatewayservice.filters;
 
 import org.jspecify.annotations.NonNull;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -17,13 +19,19 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Component
+@RefreshScope
 public class RateLimitFilter implements GlobalFilter, Ordered {
 
     private final Map<String, Deque<Long>> requestLog = new ConcurrentHashMap<>();
 
-    private static final int MAX_REQUESTS_READ = 100;
-    private static final int MAX_REQUESTS_OTHER = 10;
-    private static final long WINDOW_MS = 10_000;
+    @Value("${gateway.rate-limit.read:100}")
+    private int maxRequestsRead;
+
+    @Value("${gateway.rate-limit.write:10}")
+    private int maxRequestsWrite;
+
+    @Value("${gateway.rate-limit.window-ms:10000}")
+    private long windowMs;
 
     @Override
     public @NonNull Mono<Void> filter(ServerWebExchange exchange, @NonNull GatewayFilterChain chain) {
@@ -37,7 +45,7 @@ public class RateLimitFilter implements GlobalFilter, Ordered {
         HttpMethod method = exchange.getRequest().getMethod();
 
         String limitType = (method == HttpMethod.GET) ? "READ" : "WRITE";
-        int limit = (method == HttpMethod.GET) ? MAX_REQUESTS_READ : MAX_REQUESTS_OTHER;
+        int limit = (method == HttpMethod.GET) ? maxRequestsRead : maxRequestsWrite;
 
         String storageKey = clientId + "#" + limitType;
 
@@ -46,7 +54,7 @@ public class RateLimitFilter implements GlobalFilter, Ordered {
         Deque<Long> timestamps = requestLog.get(storageKey);
 
         synchronized (timestamps) {
-            while (!timestamps.isEmpty() && now - timestamps.peekFirst() > WINDOW_MS) {
+            while (!timestamps.isEmpty() && now - timestamps.peekFirst() > windowMs) {
                 timestamps.pollFirst();
             }
 
@@ -72,7 +80,7 @@ public class RateLimitFilter implements GlobalFilter, Ordered {
     private void addRateLimitHeaders(ServerWebExchange exchange, int remaining, int limit) {
         exchange.getResponse().getHeaders().set("X-RateLimit-Limit", String.valueOf(limit));
         exchange.getResponse().getHeaders().set("X-RateLimit-Remaining", String.valueOf(remaining));
-        exchange.getResponse().getHeaders().set("X-RateLimit-Reset", String.valueOf(WINDOW_MS / 1000));
+        exchange.getResponse().getHeaders().set("X-RateLimit-Reset", String.valueOf(windowMs / 1000));
     }
 
     @Override
