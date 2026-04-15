@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 
-@FeignClient(name = "unit-client", url = "http://localhost:8081/api", configuration = UnitErrorDecoder.class)
+@FeignClient(name = "unit-client", url = "${unit.service.url}", configuration = UnitErrorDecoder.class)
 public interface UnitClient {
     @GetMapping("/units/{id}")
     UnitDTO getUnitById(@PathVariable Long id);

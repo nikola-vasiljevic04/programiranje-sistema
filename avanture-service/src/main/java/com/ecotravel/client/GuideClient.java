@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
-@FeignClient(name = "vodici-service", url = "http://localhost:8082/api")
+@FeignClient(name = "vodici-service", url = "${vodici.service.url}")
 public interface GuideClient {
 
     @GetMapping("/guide-profiles/{id}")

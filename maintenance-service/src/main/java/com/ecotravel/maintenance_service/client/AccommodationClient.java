@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.time.LocalDate;
 import java.util.List;
 
-@FeignClient(name = "accommodation-service", url = "http://localhost:8081",configuration = UnitErrorDecoder.class)
+@FeignClient(name = "accommodation-service", url = "${accommodation.service.url}",configuration = UnitErrorDecoder.class)
 public interface AccommodationClient {
 
-    @GetMapping("/api/units/{id}")
+    @GetMapping("/units/{id}")
     UnitResponseDTO getUnitById(@PathVariable("id") Long id);
 
-    @GetMapping("/api/units")
+    @GetMapping("/units")
     List<UnitResponseDTO> getAllUnits();
 
-    @GetMapping("/api/units/{id}/check-availability")
+    @GetMapping("/units/{id}/check-availability")
     Boolean checkAvailability(
             @PathVariable("id") Long id,
             @RequestParam("checkIn") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkIn,

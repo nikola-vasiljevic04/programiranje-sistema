@@ -5,8 +5,8 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(name = "booking-client", url="http://localhost:8090/api/bookings", configuration = BookingErrorDecoder.class)
+@FeignClient(name = "booking-client", url="${booking.service.url}", configuration = BookingErrorDecoder.class)
 public interface BookingClient {
-    @GetMapping("/{id}")
+    @GetMapping("/bookings/{id}")
     BookingDTO getBookingById(@PathVariable Long id);
 }

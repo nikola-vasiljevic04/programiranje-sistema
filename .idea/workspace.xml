@@ -4,42 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c9430ba2-46c7-479a-9d4e-522651c346c3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/config-repo/accommodation-service.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-repo/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-repo/auth-service.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-repo/avanture-service.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-repo/booking-services.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-repo/finance-services.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-repo/gateway-service.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-repo/maintenance-service.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-repo/vodici-service.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="c9430ba2-46c7-479a-9d4e-522651c346c3" name="Changes" comment="More configuration...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accommodation-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/accommodation-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accommodation-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/accommodation-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/generated-sources/annotations/com/ecotravel/mapper/AdventureMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/target/generated-sources/annotations/com/ecotravel/mapper/AdventureMapperImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/booking-services/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/booking-services/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/booking-services/src/main/java/org/raflab/booking_services/config/TraceIdMdcFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/booking-services/src/main/java/org/raflab/booking_services/config/TraceIdMdcFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/booking-services/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/booking-services/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-service/src/main/java/org/raflab/configservice/ConfigServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/config-service/src/main/java/org/raflab/configservice/ConfigServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finance-services/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/finance-services/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finance-services/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/finance-services/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/org/raflab/gatewayservice/filters/RateLimitFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/java/org/raflab/gatewayservice/filters/RateLimitFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maintenance-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/maintenance-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maintenance-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/maintenance-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/client/GuideClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/client/GuideClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/booking-services/src/main/java/org/raflab/booking_services/client/FinanceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/booking-services/src/main/java/org/raflab/booking_services/client/FinanceClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/booking-services/src/main/java/org/raflab/booking_services/client/UnitClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/booking-services/src/main/java/org/raflab/booking_services/client/UnitClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-repo/booking-services.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config-repo/booking-services.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-repo/finance-services.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config-repo/finance-services.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-repo/maintenance-service.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config-repo/maintenance-service.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-repo/vodici-service.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config-repo/vodici-service.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/client/BookingClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/client/BookingClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/maintenance-service/src/main/java/com/ecotravel/maintenance_service/client/AccommodationClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/maintenance-service/src/main/java/com/ecotravel/maintenance_service/client/AccommodationClient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,25 +24,102 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "nikola04"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/RAF-PS-2025-26/ps-project-2025-26-nnedeljkovic_nvasiljevic_mstojicevic.git",
+    "accountId": "4e727a11-8cd3-49d2-861f-f7d655e2eb02"
+  }
+}]]></component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="3CPFpIdmdMKfxYfjUtl2TM5PN97" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "Spring Boot.AccommodationServiceApplication.executor": "Run",
+    "Spring Boot.AuthServiceApplication.executor": "Run",
     "Spring Boot.AvantureServiceApplication.executor": "Run",
     "Spring Boot.BookingServicesApplication.executor": "Run",
+    "Spring Boot.ConfigServiceApplication.executor": "Run",
+    "Spring Boot.FinanceServicesApplication.executor": "Run",
+    "Spring Boot.GatewayServiceApplication.executor": "Run",
     "Spring Boot.MaintenanceServiceApplication.executor": "Run",
     "Spring Boot.VodiciServiceApplication.executor": "Run",
-    "git-widget-placeholder": "feature/config-service",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/nikolanedeljkovic/Projects/programiranje_sistema/maintenance-service/src/main/java/com/ecotravel/maintenance_service/exception",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+    "project.structure.side.proportion": "0.2",
+    "run.configurations.included.in.services": "true",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Spring Boot.AccommodationServiceApplication">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/maintenance-service/src/main/java/com/ecotravel/maintenance_service/exception" />
+      <recent name="$PROJECT_DIR$/maintenance-service/src/main/java/com/ecotravel/maintenance_service/config" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.ecotravel.accommodation_service.config" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="KtorApplicationConfigurationType" />
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+    <option name="configurationStatuses">
+      <map>
+        <entry key="SpringBootApplicationConfigurationType">
+          <value>
+            <map>
+              <entry key="AccommodationServiceApplication" value="STOPPED" />
+              <entry key="BookingServicesApplication" value="STOPPED" />
+              <entry key="ConfigServiceApplication" value="STOPPED" />
+              <entry key="FinanceServicesApplication" value="STOPPED" />
+              <entry key="GatewayServiceApplication" value="STOPPED" />
+              <entry key="MaintenanceServiceApplication" value="STOPPED" />
+              <entry key="VodiciServiceApplication" value="STOPPED" />
+            </map>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.BookingServicesApplication">
     <configuration name="AccommodationServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="accommodation-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.ecotravel.accommodation_service.AccommodationServiceApplication" />
@@ -156,6 +208,30 @@
     </recent_temporary>
   </component>
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c9430ba2-46c7-479a-9d4e-522651c346c3" name="Changes" comment="" />
+      <created>1776279483198</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1776279483198</updated>
+      <workItem from="1776279484597" duration="2943000" />
+    </task>
+    <task id="LOCAL-00001" summary="More configuration...">
+      <option name="closed" value="true" />
+      <created>1776281855685</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1776281855685</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="More configuration..." />
+    <option name="LAST_COMMIT_MESSAGE" value="More configuration..." />
   </component>
 </project>
