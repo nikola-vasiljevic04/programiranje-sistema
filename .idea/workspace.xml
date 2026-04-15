@@ -4,10 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="131d8659-09f5-4de6-828b-9202bfe582f4" name="Changes" comment="feature: feign interceptor in maintenance">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="131d8659-09f5-4de6-828b-9202bfe582f4" name="Changes" comment="feature: feign global error interceptors">
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/config/TraceIdMdcFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/dtos/ErrorResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel/exception/ServiceUnavailableException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/booking-services/src/main/java/org/raflab/booking_services/config/TraceIdMdcFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services/config/TraceIdMdcFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/dtos/ErrorResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/exception/GlobalFeignErrorDecoder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel/exception/ServiceUnavailableException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/booking-services/src/main/java/org/raflab/booking_services/service/BookingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/booking-services/src/main/java/org/raflab/booking_services/service/BookingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/errors/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/errors/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/org/raflab/authservice/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/avanture-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/booking-services/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/booking-services/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finance-services/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/finance-services/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vodici-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +126,7 @@
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/FAKS/PS/PS-EcoTravelProjekat",
+    "last_opened_file_path": "/Users/nikolanedeljkovic/Projects/programiranje_sistema/avanture-service/src/main/java/com/ecotravel",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -128,11 +144,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/avanture-service/src/main/java/com/ecotravel" />
       <recent name="$PROJECT_DIR$/vodici-service/src/main/java/com/ecotravel" />
       <recent name="$PROJECT_DIR$/maintenance-service/src/main/java/com/ecotravel/maintenance_service" />
       <recent name="$PROJECT_DIR$/finance-services/src/main/java/org/raflab/finance_services" />
       <recent name="$PROJECT_DIR$/booking-services/src/main/java/org/raflab/booking_services" />
-      <recent name="C:\Users\stoji\OneDrive\Documents\FAKS\PROJEKTI\PS-EcoTravelProjekat\vodici-service" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\stoji\OneDrive\Documents\FAKS\PROJEKTI\PS-EcoTravelProjekat\.idea\avanture-service" />
@@ -140,10 +156,11 @@
       <recent name="C:\Users\stoji\OneDrive\Documents\FAKS\PROJEKTI\PS-EcoTravelProjekat\.idea\src\main\java\com" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.ecotravel.dtos" />
+      <recent name="org.raflab.authservice.config" />
+      <recent name="org.raflab.booking_services.config" />
       <recent name="com.ecotravel.maintenance_service.config" />
       <recent name="org.raflab.gatewayservice.dto" />
-      <recent name="org.raflab.authservice.errors" />
-      <recent name="com.ecotravel.client.dto" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -174,7 +191,7 @@
       </map>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.BookingServicesApplication">
+  <component name="RunManager" selected="Spring Boot.AuthServiceApplication">
     <configuration name="AccommodationServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="accommodation-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.ecotravel.accommodation_service.AccommodationServiceApplication" />
@@ -395,7 +412,23 @@
       <option name="project" value="LOCAL" />
       <updated>1776262892360</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="feature: feign global error interceptors">
+      <option name="closed" value="true" />
+      <created>1776263492670</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1776263492670</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feature: feign global error interceptors">
+      <option name="closed" value="true" />
+      <created>1776263537894</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1776263537894</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -421,6 +454,7 @@
     <MESSAGE value="refactor: error handler for gateway and auth" />
     <MESSAGE value="feature: feign interceptor in maintenance" />
     <MESSAGE value="fix: booking service should not be available to book if end date is before start date" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: booking service should not be available to book if end date is before start date" />
+    <MESSAGE value="feature: feign global error interceptors" />
+    <option name="LAST_COMMIT_MESSAGE" value="feature: feign global error interceptors" />
   </component>
 </project>
