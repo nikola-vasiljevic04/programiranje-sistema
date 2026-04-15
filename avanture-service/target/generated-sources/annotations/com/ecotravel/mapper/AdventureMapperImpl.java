@@ -18,8 +18,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-04-15T20:39:27+0200",
-    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.4 (Amazon.com Inc.)"
+    date = "2026-04-15T23:23:08+0200",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.4 (Amazon.com Inc.)"
 )
 @Component
 public class AdventureMapperImpl implements AdventureMapper {
@@ -185,62 +185,34 @@ public class AdventureMapperImpl implements AdventureMapper {
     }
 
     private String adventureCategoryName(Adventure adventure) {
-        if ( adventure == null ) {
-            return null;
-        }
         AdventureCategory category = adventure.getCategory();
         if ( category == null ) {
             return null;
         }
-        String name = category.getName();
-        if ( name == null ) {
-            return null;
-        }
-        return name;
+        return category.getName();
     }
 
     private String timeSlotAdventureTitle(TimeSlot timeSlot) {
-        if ( timeSlot == null ) {
-            return null;
-        }
         Adventure adventure = timeSlot.getAdventure();
         if ( adventure == null ) {
             return null;
         }
-        String title = adventure.getTitle();
-        if ( title == null ) {
-            return null;
-        }
-        return title;
+        return adventure.getTitle();
     }
 
     private Long gearAdventureId(GearRequirement gearRequirement) {
-        if ( gearRequirement == null ) {
-            return null;
-        }
         Adventure adventure = gearRequirement.getAdventure();
         if ( adventure == null ) {
             return null;
         }
-        Long id = adventure.getId();
-        if ( id == null ) {
-            return null;
-        }
-        return id;
+        return adventure.getId();
     }
 
     private String reviewAdventureTitle(AdventureReview adventureReview) {
-        if ( adventureReview == null ) {
-            return null;
-        }
         Adventure adventure = adventureReview.getAdventure();
         if ( adventure == null ) {
             return null;
         }
-        String title = adventure.getTitle();
-        if ( title == null ) {
-            return null;
-        }
-        return title;
+        return adventure.getTitle();
     }
 }
