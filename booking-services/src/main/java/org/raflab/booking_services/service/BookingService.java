@@ -7,6 +7,7 @@ import org.raflab.booking_services.client.UnitClientService;
 import org.raflab.booking_services.client.dto.AvailabilityRequestDTO;
 import org.raflab.booking_services.client.dto.UnitDTO;
 import org.raflab.booking_services.dto.*;
+import org.raflab.booking_services.exception.ForbiddenException;
 import org.raflab.booking_services.factory.RefundCalculator;
 import org.raflab.booking_services.factory.RefundCalculatorFactory;
 import org.raflab.booking_services.mapper.AddOnMapper;
@@ -51,13 +52,17 @@ public class BookingService {
                 .orElseThrow(() -> new EntityNotFoundException("Booking not found"));
     }
 
-    public BookingResponseDTO getById(Long id) {
-        return bookingMapper.toResponseDTO(findBookingById(id));
+    public BookingResponseDTO getById(Long id, Long userId) {
+        Booking booking = findBookingById(id);
+        if (!booking.getGuest().getId().equals(userId))
+            throw new ForbiddenException("Unathorized access to booking");
+
+        return bookingMapper.toResponseDTO(booking);
     }
 
     // Create new booking
     @Transactional
-    public BookingResponseDTO createBooking(BookingRequestDTO dto) {
+    public BookingResponseDTO createBooking(BookingRequestDTO dto, Long userId) {
         Booking booking = bookingMapper.toEntity(dto);
         String oldStatus = booking.getStatus();
         String newStatus = dto.getStatus();
@@ -77,7 +82,7 @@ public class BookingService {
         Double totalPrice = unit.getCalculatedPrice();
         booking.setTotalPrice(totalPrice);
 
-        Guest guest = guestRepository.findById(dto.getGuestId())
+        Guest guest = guestRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("Guest not found"));
         booking.setGuest(guest);
 
@@ -114,10 +119,13 @@ public class BookingService {
 
     // Update status for booking
     @Transactional
-    public BookingResponseDTO updateStatus(Long bookingId, BookingStatusLogRequestDTO request) {
+    public BookingResponseDTO updateStatus(Long bookingId, BookingStatusLogRequestDTO request, Long userId) {
         Booking booking = findBookingById(bookingId);
         String oldStatus = booking.getStatus();
         String newStatus = request.getNewStatus();
+
+        if (!booking.getGuest().getId().equals(userId))
+            throw new ForbiddenException("Unauthorized access to booking");
 
         if (oldStatus.equalsIgnoreCase(newStatus)){ // on not modified
             return bookingMapper.toResponseDTO(booking);
@@ -158,8 +166,11 @@ public class BookingService {
     }
 
     @Transactional
-    public AddOnItemDTO addAddOnToBooking(Long bookingId, AddOnItemDTO dto) {
+    public AddOnItemDTO addAddOnToBooking(Long bookingId, AddOnItemDTO dto, Long userId) {
         Booking booking = findBookingById(bookingId);
+
+        if (!booking.getGuest().getId().equals(userId))
+            throw new ForbiddenException("Unauthorized access to booking");
 
         AddOnItem item = addOnMapper.toEntity(dto);
         item.setBooking(booking);

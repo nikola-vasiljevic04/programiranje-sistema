@@ -46,7 +46,12 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
             Map.entry(new RouteKey("/api/adventure", HttpMethod.PUT),    Set.of(Role.ADMIN)),
             Map.entry(new RouteKey("/api/policies", HttpMethod.POST),    Set.of(Role.ADMIN)),
             Map.entry(new RouteKey("/api/addons", HttpMethod.PUT),    Set.of(Role.ADMIN)),
-            Map.entry(new RouteKey("/api/guests", HttpMethod.PUT),    Set.of(Role.ADMIN)),
+            Map.entry(new RouteKey("/api/bookings/", HttpMethod.POST),    Set.of(Role.GUEST)),
+            Map.entry(new RouteKey("/api/bookings/", HttpMethod.PATCH),    Set.of(Role.GUEST)),
+            Map.entry(new RouteKey("/api/bookings/", HttpMethod.DELETE),    Set.of(Role.GUEST)),
+            Map.entry(new RouteKey("/api/guests", HttpMethod.GET),    Set.of(Role.ADMIN)),
+            Map.entry(new RouteKey("/api/guests", HttpMethod.POST),    Set.of(Role.GUEST)),
+            Map.entry(new RouteKey("/api/invoices", HttpMethod.GET),    Set.of(Role.ADMIN)),
             Map.entry(new RouteKey("/api/invoices", HttpMethod.POST),    Set.of(Role.ADMIN)),
             Map.entry(new RouteKey("/api/invoices", HttpMethod.PATCH),    Set.of(Role.ADMIN)),
             Map.entry(new RouteKey("/api/payment-methods", HttpMethod.POST),    Set.of(Role.ADMIN)),
@@ -108,15 +113,15 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
     }
 
     private boolean hasAccess(String path, HttpMethod method, Set<Role> roles) {
-        if (method == HttpMethod.DELETE && !roles.contains(Role.ADMIN)) return false;
-
         String matchedPath = ROUTE_PERMISSIONS.keySet().stream()
                 .map(RouteKey::path)
                 .filter(path::startsWith)
                 .findFirst()
                 .orElse(null);
 
-        if (matchedPath == null) return true;
+        if (matchedPath == null) {
+            return method != HttpMethod.DELETE || roles.contains(Role.ADMIN);
+        }
 
         RouteKey key = new RouteKey(matchedPath, method);
         Set<Role> allowed = ROUTE_PERMISSIONS.get(key);

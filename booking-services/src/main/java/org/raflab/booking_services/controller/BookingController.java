@@ -1,6 +1,7 @@
 package org.raflab.booking_services.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -38,8 +39,8 @@ public class BookingController {
             @ApiResponse(responseCode = "200", description = "Found the booking", content = @Content(schema = @Schema(implementation = BookingResponseDTO.class))),
             @ApiResponse(responseCode = "404", description = "Booking not found", content = @Content)
     })
-    public ResponseEntity<BookingResponseDTO> getById(@PathVariable Long id) {
-        return ResponseEntity.ok(bookingService.getById(id));
+    public ResponseEntity<BookingResponseDTO> getById(@PathVariable Long id, @Parameter(hidden = true) @RequestHeader("X-Authenticated-User") Long authenticatedUserId) {
+        return ResponseEntity.ok(bookingService.getById(id, authenticatedUserId));
     }
 
     @PostMapping
@@ -49,8 +50,8 @@ public class BookingController {
             @ApiResponse(responseCode = "400", description = "Invalid input data", content = @Content),
             @ApiResponse(responseCode = "404", description = "Guest or Policy not found", content = @Content)
     })
-    public ResponseEntity<BookingResponseDTO> create(@RequestBody @Valid BookingRequestDTO request) {
-        return ResponseEntity.status(201).body(bookingService.createBooking(request));
+    public ResponseEntity<BookingResponseDTO> create(@RequestBody @Valid BookingRequestDTO request, @Parameter(hidden = true) @RequestHeader("X-Authenticated-User") Long authenticatedUserId) {
+        return ResponseEntity.status(201).body(bookingService.createBooking(request, authenticatedUserId));
     }
 
     @DeleteMapping("/{id}")
@@ -71,8 +72,8 @@ public class BookingController {
             @ApiResponse(responseCode = "400", description = "Invalid input data", content = @Content),
             @ApiResponse(responseCode = "404", description = "Booking not found")
     })
-    public ResponseEntity<BookingResponseDTO> updateStatus(@PathVariable Long id, @RequestBody @Valid BookingStatusLogRequestDTO request) {
-        return ResponseEntity.ok(bookingService.updateStatus(id, request));
+    public ResponseEntity<BookingResponseDTO> updateStatus(@PathVariable Long id, @RequestBody @Valid BookingStatusLogRequestDTO request, @Parameter(hidden = true) @RequestHeader("X-Authenticated-User") Long authenticatedUserId) {
+        return ResponseEntity.ok(bookingService.updateStatus(id, request, authenticatedUserId));
     }
 
     @GetMapping("/{id}/logs")
@@ -104,7 +105,7 @@ public class BookingController {
             @ApiResponse(responseCode = "400", description = "Invalid input data"),
             @ApiResponse(responseCode = "404", description = "Booking not found")
     })
-    public ResponseEntity<AddOnItemDTO> addAddOn(@PathVariable Long id, @RequestBody @Valid AddOnItemDTO dto) {
-        return ResponseEntity.status(201).body(bookingService.addAddOnToBooking(id, dto));
+    public ResponseEntity<AddOnItemDTO> addAddOn(@PathVariable Long id, @RequestBody @Valid AddOnItemDTO dto, @Parameter(hidden = true) @RequestHeader("X-Authenticated-User") Long authenticatedUserId) {
+        return ResponseEntity.status(201).body(bookingService.addAddOnToBooking(id, dto, authenticatedUserId));
     }
 }
