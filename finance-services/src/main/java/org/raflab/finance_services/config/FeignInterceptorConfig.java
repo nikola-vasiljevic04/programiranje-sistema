@@ -1,7 +1,10 @@
+
 package org.raflab.finance_services.config;
 
 import feign.RequestInterceptor;
+import feign.codec.ErrorDecoder;
 import jakarta.servlet.http.HttpServletRequest;
+import org.raflab.finance_services.exception.GlobalFeignErrorDecoder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -9,19 +12,18 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Configuration
 public class FeignInterceptorConfig {
-
     @Bean
     public RequestInterceptor requestInterceptor() {
         return requestTemplate -> {
             ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
             if (attributes != null) {
                 HttpServletRequest request = attributes.getRequest();
-                
+
                 String traceId = request.getHeader("X-Trace-ID");
                 if (traceId != null) {
                     requestTemplate.header("X-Trace-ID", traceId);
                 }
-                
+
                 String userId = request.getHeader("X-Authenticated-User");
                 if (userId != null) {
                     requestTemplate.header("X-Authenticated-User", userId);
@@ -33,5 +35,10 @@ public class FeignInterceptorConfig {
                 }
             }
         };
+    }
+
+    @Bean
+    public ErrorDecoder errorDecoder() {
+        return new GlobalFeignErrorDecoder();
     }
 }

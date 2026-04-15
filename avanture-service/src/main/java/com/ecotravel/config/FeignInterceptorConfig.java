@@ -1,6 +1,8 @@
 package com.ecotravel.config;
 
+import com.ecotravel.exception.GlobalFeignErrorDecoder;
 import feign.RequestInterceptor;
+import feign.codec.ErrorDecoder;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,5 +35,11 @@ public class FeignInterceptorConfig {
                 }
             }
         };
+    }
+
+
+    @Bean
+    public ErrorDecoder errorDecoder() {
+        return new GlobalFeignErrorDecoder();
     }
 }

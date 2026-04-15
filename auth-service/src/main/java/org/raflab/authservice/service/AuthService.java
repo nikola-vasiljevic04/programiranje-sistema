@@ -58,7 +58,7 @@ public class AuthService {
 
         String key = keyService.generateAndSaveApiKey(user);
 
-        log.info("USER LOGIN: {}", user.getId());
+        log.info("Key Generated for user: {}", user.getId());
 
         return key;
     }

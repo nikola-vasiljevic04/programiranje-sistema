@@ -1,51 +1,52 @@
 package org.raflab.booking_services.exception;
 
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.raflab.booking_services.dto.ErrorResponseDTO;
+import org.slf4j.MDC;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    private String getTraceId(HttpServletRequest request) {
-        String traceId = request.getHeader("X-Trace-ID");
+    private String getTraceId() {
+        String traceId = MDC.get("X-Trace-ID");
         return traceId != null ? traceId : "N/A";
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<ErrorResponseDTO> handleNotFound(EntityNotFoundException ex, HttpServletRequest request) {
+    public ResponseEntity<ErrorResponseDTO> handleNotFound(EntityNotFoundException ex) {
         ErrorResponseDTO error = new ErrorResponseDTO(
-                ex.getMessage(), getTraceId(request), HttpStatus.NOT_FOUND.value()
+                ex.getMessage(), getTraceId(), HttpStatus.NOT_FOUND.value()
         );
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
 
     @ExceptionHandler(org.springframework.dao.DataIntegrityViolationException.class)
-    public ResponseEntity<ErrorResponseDTO> handleDataIntegrity(org.springframework.dao.DataIntegrityViolationException ex, HttpServletRequest request) {
+    public ResponseEntity<ErrorResponseDTO> handleDataIntegrity(org.springframework.dao.DataIntegrityViolationException ex) {
         ErrorResponseDTO error = new ErrorResponseDTO(
-                "Data integrity violation: " + ex.getMessage(), getTraceId(request), HttpStatus.CONFLICT.value()
+                "Data integrity violation: " + ex.getMessage(), getTraceId(), HttpStatus.CONFLICT.value()
         );
         return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ErrorResponseDTO> handleValidation(MethodArgumentNotValidException ex, HttpServletRequest request) {
+    public ResponseEntity<ErrorResponseDTO> handleValidation(MethodArgumentNotValidException ex) {
         Map<String, String> validationErrors = new HashMap<>();
         ex.getBindingResult().getFieldErrors().forEach(error ->
                 validationErrors.put(error.getField(), error.getDefaultMessage())
         );
 
         ErrorResponseDTO error = new ErrorResponseDTO(
-                "Validation failed", getTraceId(request), HttpStatus.BAD_REQUEST.value()
+                "Validation failed", getTraceId(), HttpStatus.BAD_REQUEST.value()
         );
         error.setDetails(validationErrors);
 
@@ -53,34 +54,35 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<ErrorResponseDTO> handleIllegalArgument(IllegalArgumentException ex, HttpServletRequest request) {
+    public ResponseEntity<ErrorResponseDTO> handleIllegalArgument(IllegalArgumentException ex) {
         ErrorResponseDTO error = new ErrorResponseDTO(
-                ex.getMessage(), getTraceId(request), HttpStatus.BAD_REQUEST.value()
+                ex.getMessage(), getTraceId(), HttpStatus.BAD_REQUEST.value()
         );
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 
     @ExceptionHandler(IllegalStateException.class)
-    public ResponseEntity<ErrorResponseDTO> handleIllegalState(IllegalStateException ex, HttpServletRequest request) {
+    public ResponseEntity<ErrorResponseDTO> handleIllegalState(IllegalStateException ex) {
         ErrorResponseDTO error = new ErrorResponseDTO(
-                ex.getMessage(), getTraceId(request), HttpStatus.BAD_REQUEST.value()
+                ex.getMessage(), getTraceId(), HttpStatus.BAD_REQUEST.value()
         );
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 
     @ExceptionHandler(ServiceUnavailableException.class)
-    public ResponseEntity<ErrorResponseDTO> handleServiceUnavailable(ServiceUnavailableException ex, HttpServletRequest request) {
+    public ResponseEntity<ErrorResponseDTO> handleServiceUnavailable(ServiceUnavailableException ex) {
         ErrorResponseDTO error = new ErrorResponseDTO(
-                ex.getMessage(), getTraceId(request), HttpStatus.SERVICE_UNAVAILABLE.value()
+                ex.getMessage(), getTraceId(), HttpStatus.SERVICE_UNAVAILABLE.value()
         );
         return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(error);
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponseDTO> handleAllExceptions(Exception ex, HttpServletRequest request) {
+    public ResponseEntity<ErrorResponseDTO> handleAllExceptions(Exception ex) {
         ErrorResponseDTO error = new ErrorResponseDTO(
-                "An unexpected error occurred", getTraceId(request), HttpStatus.INTERNAL_SERVER_ERROR.value()
+                "An unexpected error occurred", getTraceId(), HttpStatus.INTERNAL_SERVER_ERROR.value()
         );
+        log.error("Booking-Service Error: {}", ex.getMessage());
         error.setDetails(ex.getMessage());
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
