@@ -1,5 +1,7 @@
 package com.ecotravel.maintenance_service.service;
 
+import com.ecotravel.maintenance_service.client.AccommodationClientFacade;
+import com.ecotravel.maintenance_service.client.dto.UnitResponseDTO;
 import com.ecotravel.maintenance_service.dto.WorkOrderRequestDTO;
 import com.ecotravel.maintenance_service.dto.WorkOrderResponseDTO;
 import com.ecotravel.maintenance_service.mapper.MaintenanceMapper;
@@ -24,24 +26,35 @@ public class WorkOrderService {
     private final MaintenanceTaskRepository taskRepository;
     private final MaintenanceLogRepository logRepository;
     private final MaintenanceMapper mapper;
+    private final AccommodationClientFacade accommodationClientFacade;
 
     public WorkOrderService(WorkOrderRepository workOrderRepository, WorkerRepository workerRepository,
                             MaintenanceTaskRepository taskRepository, MaintenanceLogRepository logRepository,
-                            MaintenanceMapper mapper) {
+                            MaintenanceMapper mapper, AccommodationClientFacade accommodationClientFacade) {
         this.workOrderRepository = workOrderRepository;
         this.workerRepository = workerRepository;
         this.taskRepository = taskRepository;
         this.logRepository = logRepository;
         this.mapper = mapper;
+        this.accommodationClientFacade = accommodationClientFacade;
     }
     public WorkOrderResponseDTO getWorkOrderById(Long id) {
         WorkOrder order = workOrderRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Nalog sa ID " + id + " nije pronađen"));
         return mapper.toResponseDTO(order);
     }
-    // 1. Kreiranje naloga [cite: 254]
     @Transactional
     public WorkOrderResponseDTO createWorkOrder(WorkOrderRequestDTO dto) {
+
+        UnitResponseDTO unit = accommodationClientFacade.getUnit(dto.getUnitId());
+        Boolean isAvailable = accommodationClientFacade.checkAvailability(
+                dto.getUnitId(),
+                dto.getScheduledFor().toLocalDate(),
+                dto.getScheduledFor().toLocalDate()
+        );
+        if (!isAvailable) {
+            throw new IllegalStateException("Nije moguće zakazati održavanje. Smeštajna jedinica je zauzeta u tom periodu.");
+        }
         Worker worker = workerRepository.findById(dto.getWorkerId())
                 .orElseThrow(() -> new EntityNotFoundException("Radnik nije pronađen"));
 
@@ -59,7 +72,6 @@ public class WorkOrderService {
         return mapper.toResponseDTO(saved);
     }
 
-    // 2. Dobavljanje sa filtriranjem (Uslov zadatka)
     public List<WorkOrderResponseDTO> getWorkOrders(WorkOrderStatus status) {
         List<WorkOrder> orders;
         if (status != null) {
@@ -70,7 +82,6 @@ public class WorkOrderService {
         return orders.stream().map(mapper::toResponseDTO).collect(Collectors.toList());
     }
 
-    // 3. Završetak naloga i kreiranje loga (Poslovna logika) [cite: 254]
     @Transactional
     public WorkOrderResponseDTO completeWorkOrder(Long orderId, String notes) {
         WorkOrder order = workOrderRepository.findById(orderId)
@@ -95,9 +106,6 @@ public class WorkOrderService {
 
         return mapper.toResponseDTO(updated);
     }
-
-    // 4. MATEMATIČKA KALKULACIJA (Glavni uslov za odbranu)
-    // Računa ukupno preostalo procenjeno vreme u satima za sve aktivne zadatke određenog radnika
     public Integer calculateRemainingWorkloadForWorker(Long workerId) {
         if (!workerRepository.existsById(workerId)) {
             throw new EntityNotFoundException("Radnik nije pronađen");

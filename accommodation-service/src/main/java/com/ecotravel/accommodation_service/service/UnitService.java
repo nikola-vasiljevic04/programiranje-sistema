@@ -1,11 +1,14 @@
 package com.ecotravel.accommodation_service.service;
 
 import com.ecotravel.accommodation_service.dto.*;
+import com.ecotravel.accommodation_service.factory.UnitFactory;
+import com.ecotravel.accommodation_service.factory.UnitFactoryRegistry;
 import com.ecotravel.accommodation_service.mapper.UnitMapper;
 import com.ecotravel.accommodation_service.model.Facility;
 import com.ecotravel.accommodation_service.model.PriceTier;
 import com.ecotravel.accommodation_service.model.Unit;
 import com.ecotravel.accommodation_service.repository.*;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,8 +28,8 @@ public class UnitService {
     private final AddressRepository addressRepository;
     private final FacilityRepository facilityRepository;
     private final AvailabilityCalendarRepository availabilityCalendarRepository;
+    private final UnitFactoryRegistry unitFactoryRegistry;
 
-    // 1. Vraca sve unite
     public List<UnitResponseDTO> getAllUnits() {
         return unitRepository.findAll().stream()
                 .map(unit -> {
@@ -36,33 +39,25 @@ public class UnitService {
                 })
                 .collect(Collectors.toList());
     }
-
-    // 2. Pronalaženje jedne jedinice po ID-u
     public UnitResponseDTO getUnitById(Long id) {
         Unit unit = unitRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Smeštajna jedinica sa ID " + id + " nije pronađena"));
+                .orElseThrow(() -> new EntityNotFoundException("Smeštajna jedinica sa ID " + id + " nije pronađena"));
         UnitResponseDTO dto = unitMapper.toResponseDTO(unit);
         dto.setCalculatedPrice(calculateCurrentPrice(unit));
         return dto;
     }
-
-    // 3. Čuvanje nove jedinice sa RequestDTO
     @Transactional
     public UnitResponseDTO createUnit(UnitRequestDTO dto) {
-        // Prebacujemo RequestDTO u Entity (MapStruct će mapirati ime, tip, cenu i adresu)
-        Unit unit = unitMapper.toEntity(dto);
-
-        // Moramo ručno povezati objekte na osnovu ID-jeva iz liste facilityIds
+        UnitFactory factory = unitFactoryRegistry.getFactory(dto.getUnitType());
+        Unit unit = factory.createUnit(dto);
+        unit.setAddress(unitMapper.toEntity(dto.getAddress()));
         if (dto.getFacilityIds() != null && !dto.getFacilityIds().isEmpty()) {
             List<Facility> facilities = facilityRepository.findAllById(dto.getFacilityIds());
             unit.setFacilities(new HashSet<>(facilities));
         }
-
-        // Adresu čuvamo pre Unit-a ako je kaskadno podešavanje (CascadeType) nije automatsko
         if (unit.getAddress() != null) {
             addressRepository.save(unit.getAddress());
         }
-
         Unit savedUnit = unitRepository.save(unit);
         UnitResponseDTO response = unitMapper.toResponseDTO(savedUnit);
         response.setCalculatedPrice(calculateCurrentPrice(savedUnit));
@@ -71,7 +66,6 @@ public class UnitService {
     private Double calculateCurrentPrice(Unit unit) {
         double total = unit.getBasePricePerNight();
 
-        // dodavanje troskova sadrzaja
         if (unit.getFacilities() != null) {
             double facilitiesCost = unit.getFacilities().stream()
                     .mapToDouble(Facility::getExtraCost)
@@ -79,18 +73,16 @@ public class UnitService {
             total += facilitiesCost;
         }
 
-        // da li postoji aktuelni PriceTier (sezonska cena)
         LocalDate today = LocalDate.now();
         double multiplier = unit.getPriceTiers().stream()
                 .filter(tier -> !today.isBefore(tier.getStartDate()) && !today.isAfter(tier.getEndDate()))
                 .map(PriceTier::getMultiplier)
                 .findFirst()
-                .orElse(1.0); // Ako nema sezone, množilac je 1.0 (nema promene)
+                .orElse(1.0);
 
         return total * multiplier;
     }
     public boolean isUnitAvailable(Long unitId, LocalDate checkIn, LocalDate checkOut) {
-        // Koristimo instancu (malim slovom), ne klasu!
         return !availabilityCalendarRepository.existsOverlap(unitId, checkIn, checkOut);
     }
     @Transactional
@@ -102,34 +94,52 @@ public class UnitService {
     }
     @Transactional
     public UnitResponseDTO updateUnit(Long id, UnitRequestDTO dto) {
-        // 1. Provera da li smeštaj postoji
         Unit unit = unitRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Neuspešno ažuriranje: Smeštaj sa ID " + id + " ne postoji"));
 
-        // 2. Ažuriranje osnovnih podataka (setteri)
         unit.setName(dto.getName());
         unit.setUnitType(dto.getUnitType());
         unit.setBasePricePerNight(dto.getBasePricePerNight());
 
-        // 3. Ažuriranje adrese (pošto je @OneToOne, direktno menjamo polja na postojećem objektu)
         if (unit.getAddress() != null && dto.getAddress() != null) {
             unit.getAddress().setCity(dto.getAddress().getCity());
             unit.getAddress().setZipCode(dto.getAddress().getZipCode());
             unit.getAddress().setStreetAddress(dto.getAddress().getStreetAddress());
         }
-
-        // 4. Ažuriranje sadržaja (Facilities)
         if (dto.getFacilityIds() != null) {
             List<Facility> facilities = facilityRepository.findAllById(dto.getFacilityIds());
             unit.setFacilities(new HashSet<>(facilities));
         }
-
-        // 5. Čuvanje izmena
         Unit updatedUnit = unitRepository.save(unit);
-
-        // Vraćamo DTO sa ponovo izračunatom cenom
         UnitResponseDTO response = unitMapper.toResponseDTO(updatedUnit);
         response.setCalculatedPrice(calculateCurrentPrice(updatedUnit));
         return response;
+    }
+
+
+    //metode za 3. zad slozeni upiti
+    public List<UnitResponseDTO> findByTypeAndCity(String type, String city) {
+        return unitRepository.findUnitsByTypeAndCity(type, city).stream()
+                .map(unit -> {
+                    UnitResponseDTO dto = unitMapper.toResponseDTO(unit);
+                    dto.setCalculatedPrice(calculateCurrentPrice(unit));
+                    return dto;
+                })
+                .collect(Collectors.toList());
+    }
+
+    public Double getAveragePriceByType(String type) {
+        Double avgPrice = unitRepository.getAveragePriceForUnitType(type);
+        return avgPrice != null ? avgPrice : 0.0;
+    }
+
+    public List<UnitResponseDTO> findByFacility(String facilityName) {
+        return unitRepository.findUnitsByFacilityName(facilityName).stream()
+                .map(unit -> {
+                    UnitResponseDTO dto = unitMapper.toResponseDTO(unit);
+                    dto.setCalculatedPrice(calculateCurrentPrice(unit));
+                    return dto;
+                })
+                .collect(Collectors.toList());
     }
 }

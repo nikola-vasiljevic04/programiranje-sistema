@@ -11,7 +11,6 @@ import java.util.List;
 
 @Repository
 public interface AvailabilityCalendarRepository extends JpaRepository<AvailabilityCalendar, Long> {
-    // DODAJ OVU LINIJU - Ovo rešava crvenilo u servisu za findByUnitId
     List<AvailabilityCalendar> findByUnitId(Long unitId);
 
     @Query("SELECT COUNT(a) > 0 FROM AvailabilityCalendar a " +

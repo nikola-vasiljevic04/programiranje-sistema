@@ -28,14 +28,12 @@ public class WorkOrderController {
     public ResponseEntity<WorkOrderResponseDTO> getOrderById(@PathVariable Long id) {
         return ResponseEntity.ok(workOrderService.getWorkOrderById(id));
     }
-    // 1. Kreiranje (CRUD - Create)
     @PostMapping
     @Operation(summary = "Kreiraj novi radni nalog", description = "Zakaži održavanje za određenu smeštajnu jedinicu")
     public ResponseEntity<WorkOrderResponseDTO> createOrder(@Valid @RequestBody WorkOrderRequestDTO dto) {
         return new ResponseEntity<>(workOrderService.createWorkOrder(dto), HttpStatus.CREATED);
     }
 
-    // 2. Dobavljanje svih sa FILTRIRANJEM (Uslov za odbranu)
     @GetMapping
     @Operation(summary = "Izlistaj radne naloge", description = "Vraća sve naloge, uz mogućnost filtriranja po statusu (PENDING, IN_PROGRESS, COMPLETED)")
     public ResponseEntity<List<WorkOrderResponseDTO>> getAllOrders(
@@ -43,7 +41,6 @@ public class WorkOrderController {
         return ResponseEntity.ok(workOrderService.getWorkOrders(status));
     }
 
-    // 3. Završetak naloga (Poslovna logika)
     @PutMapping("/{id}/complete")
     @Operation(summary = "Završi radni nalog", description = "Menja status naloga u COMPLETED i kreira zapis u istoriji održavanja (MaintenanceLog)")
     public ResponseEntity<WorkOrderResponseDTO> completeOrder(
@@ -52,19 +49,15 @@ public class WorkOrderController {
         return ResponseEntity.ok(workOrderService.completeWorkOrder(id, notes));
     }
 
-    // 4. MATEMATIČKA KALKULACIJA (Glavni uslov za odbranu)
     @GetMapping("/workers/{workerId}/workload")
     @Operation(summary = "Izračunaj opterećenje radnika", description = "Računa preostalo vreme u satima za sve aktivne zadatke prosleđenog radnika")
     public ResponseEntity<Integer> getWorkerWorkload(@PathVariable Long workerId) {
         return ResponseEntity.ok(workOrderService.calculateRemainingWorkloadForWorker(workerId));
     }
 
-    // 5. Brisanje (CRUD - Delete)
     @DeleteMapping("/{id}")
     @Operation(summary = "Obriši radni nalog")
     public ResponseEntity<Void> deleteOrder(@PathVariable Long id) {
-        // Implementiraćemo direktivno ovde za brzinu, ili možeš dodati u servis
-        // workOrderService.deleteWorkOrder(id);
         return ResponseEntity.noContent().build();
     }
 }

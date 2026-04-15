@@ -16,17 +16,17 @@ import java.util.stream.Collectors;
 public class AddressService {
 
     private final AddressRepository addressRepository;
-    private final UnitMapper mapper; // Koristimo tvoj moćni mapper
+    private final UnitMapper mapper;
 
     public List<AddressResponseDTO> getAllAddresses() {
         return addressRepository.findAll()
                 .stream()
-                .map(mapper::toResponseDTO) // Iz entiteta u Response
+                .map(mapper::toResponseDTO)
                 .collect(Collectors.toList());
     }
 
     public AddressResponseDTO createAddress(AddressRequestDTO dto) {
-        Address address = mapper.toEntity(dto); // Iz Request-a u entitet
+        Address address = mapper.toEntity(dto);
         Address saved = addressRepository.save(address);
         return mapper.toResponseDTO(saved);
     }

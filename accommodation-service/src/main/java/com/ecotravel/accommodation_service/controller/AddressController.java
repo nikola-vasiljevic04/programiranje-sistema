@@ -21,7 +21,6 @@ public class AddressController {
 
     @PostMapping
     public ResponseEntity<AddressResponseDTO> create(@Valid @RequestBody AddressRequestDTO dto) {
-        // Dodali smo @Valid da bi radile one provere @NotBlank koje smo stavili u DTO
         return ResponseEntity.ok(addressService.createAddress(dto));
     }
 }

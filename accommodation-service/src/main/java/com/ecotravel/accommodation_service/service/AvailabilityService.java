@@ -23,23 +23,17 @@ public class AvailabilityService {
 
     @Transactional
     public void addAvailability(AvailabilityRequestDTO dto) {
-        // 1. Korišćenje preciznije greške (EntityNotFound umesto obične)
         Unit unit = unitRepository.findById(dto.getUnitId())
                 .orElseThrow(() -> new EntityNotFoundException("Smeštaj sa ID " + dto.getUnitId() + " nije pronađen"));
 
-        // 2. Logička provera datuma
         if (dto.getEndDate().isBefore(dto.getStartDate())) {
             throw new IllegalArgumentException("Datum završetka ne može biti pre početka.");
         }
 
-        // 3. Provera preklapanja - koristiš instancu repozitorijuma
         boolean exists = availabilityRepository.existsOverlap(dto.getUnitId(), dto.getStartDate(), dto.getEndDate());
         if (exists) {
-            // Bolje je baciti IllegalStateException ili custom Exception
             throw new IllegalStateException("Ovaj termin se preklapa sa postojećom rezervacijom!");
         }
-
-        // 4. Čuvanje (Idealno bi bilo imati Mapper, ali evo popravljenog ručnog mapiranja)
         AvailabilityCalendar availability = new AvailabilityCalendar();
         availability.setStartDate(dto.getStartDate());
         availability.setEndDate(dto.getEndDate());

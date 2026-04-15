@@ -13,8 +13,6 @@ public interface MaintenanceMapper {
 
     MaintenanceTask toEntity(MaintenanceTaskRequestDTO dto);
     MaintenanceTaskResponseDTO toResponseDTO(MaintenanceTask entity);
-
-    // Prilagođeno mapiranje za WorkOrder
     @Mapping(target = "workerFullName", expression = "java(entity.getWorker().getFirstName() + \" \" + entity.getWorker().getLastName())")
     @Mapping(source = "task.taskName", target = "taskName")
     @Mapping(source = "task.estimatedDurationHours", target = "estimatedDurationHours")

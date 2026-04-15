@@ -5,65 +5,47 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="131d8659-09f5-4de6-828b-9202bfe582f4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accommodation-service/src/main/java/com/ecotravel/accommodation_service/controller/UnitSearchController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accommodation-service/src/main/java/com/ecotravel/accommodation_service/factory/ApartmentFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accommodation-service/src/main/java/com/ecotravel/accommodation_service/factory/CabinFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accommodation-service/src/main/java/com/ecotravel/accommodation_service/factory/HouseFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accommodation-service/src/main/java/com/ecotravel/accommodation_service/factory/UnitFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accommodation-service/src/main/java/com/ecotravel/accommodation_service/factory/UnitFactoryRegistry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maintenance-service/src/main/java/com/ecotravel/maintenance_service/client/AccommodationClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maintenance-service/src/main/java/com/ecotravel/maintenance_service/client/AccommodationClientFacade.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maintenance-service/src/main/java/com/ecotravel/maintenance_service/client/UnitErrorDecoder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maintenance-service/src/main/java/com/ecotravel/maintenance_service/client/dto/UnitResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maintenance-service/src/main/java/com/ecotravel/maintenance_service/exception/ServiceUnavailableException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accommodation-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/accommodation-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/avanture-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/AvantureServiceApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/client/GuideClient.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/client/GuideService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/client/dto/GuideLanguageDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/client/dto/GuideProfileResponseDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/controller/AdventureCategoryController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/controller/AdventureController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/controller/AdventureReviewController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/controller/GearRequirementController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/controller/TimeSlotController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/AdventureCategoryDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/AdventureRequestDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/AdventureResponseDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/AdventureReviewRequestDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/AdventureReviewResponseDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/GearRequirementDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/GuideDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/TimeSlotRequestDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/dtos/TimeSlotResponseDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/facade/AdventureFacade.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/factory/AdventureReport.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/factory/AdventureReportFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/factory/EcoReport.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/factory/StandardReport.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/mapper/AdventureMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/model/Adventure.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/model/AdventureCategory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/model/AdventureReview.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/model/GearRequirement.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/model/TimeSlot.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/repository/AdventureCategoryRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/repository/AdventureRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/repository/AdventureReviewRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/repository/GearRequirementRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/repository/TimeSlotRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/service/AdventureCategoryService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/service/AdventureReviewService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/service/AdventureService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/service/GearRequirementService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/com/ecotravel/service/TimeSlotService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/classes/data.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/avanture-service/target/generated-sources/annotations/com/ecotravel/mapper/AdventureMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/accommodation-service/src/main/java/com/ecotravel/accommodation_service/controller/AddressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/accommodation-service/src/main/java/com/ecotravel/accommodation_service/controller/AddressController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accommodation-service/src/main/java/com/ecotravel/accommodation_service/controller/UnitController.java" beforeDir="false" afterPath="$PROJECT_DIR$/accommodation-service/src/main/java/com/ecotravel/accommodation_service/controller/UnitController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accommodation-service/src/main/java/com/ecotravel/accommodation_service/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/accommodation-service/src/main/java/com/ecotravel/accommodation_service/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accommodation-service/src/main/java/com/ecotravel/accommodation_service/mapper/UnitMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/accommodation-service/src/main/java/com/ecotravel/accommodation_service/mapper/UnitMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accommodation-service/src/main/java/com/ecotravel/accommodation_service/model/AvailabilityCalendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/accommodation-service/src/main/java/com/ecotravel/accommodation_service/model/AvailabilityCalendar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accommodation-service/src/main/java/com/ecotravel/accommodation_service/repository/AvailabilityCalendarRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/accommodation-service/src/main/java/com/ecotravel/accommodation_service/repository/AvailabilityCalendarRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accommodation-service/src/main/java/com/ecotravel/accommodation_service/repository/UnitRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/accommodation-service/src/main/java/com/ecotravel/accommodation_service/repository/UnitRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accommodation-service/src/main/java/com/ecotravel/accommodation_service/service/AddressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/accommodation-service/src/main/java/com/ecotravel/accommodation_service/service/AddressService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accommodation-service/src/main/java/com/ecotravel/accommodation_service/service/AvailabilityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/accommodation-service/src/main/java/com/ecotravel/accommodation_service/service/AvailabilityService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accommodation-service/src/main/java/com/ecotravel/accommodation_service/service/UnitService.java" beforeDir="false" afterPath="$PROJECT_DIR$/accommodation-service/src/main/java/com/ecotravel/accommodation_service/service/UnitService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accommodation-service/src/main/resources/import.sql" beforeDir="false" afterPath="$PROJECT_DIR$/accommodation-service/src/main/resources/import.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/maintenance-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/maintenance-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/vodici-service/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vodici-service/target/generated-sources/annotations/com/ecotravel/mapper/GuideMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maintenance-service/src/main/java/com/ecotravel/maintenance_service/controller/WorkOrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/maintenance-service/src/main/java/com/ecotravel/maintenance_service/controller/WorkOrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/maintenance-service/src/main/java/com/ecotravel/maintenance_service/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/maintenance-service/src/main/java/com/ecotravel/maintenance_service/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/maintenance-service/src/main/java/com/ecotravel/maintenance_service/mapper/MaintenanceMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/maintenance-service/src/main/java/com/ecotravel/maintenance_service/mapper/MaintenanceMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/maintenance-service/src/main/java/com/ecotravel/maintenance_service/model/WorkOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/maintenance-service/src/main/java/com/ecotravel/maintenance_service/model/WorkOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/maintenance-service/src/main/java/com/ecotravel/maintenance_service/model/Worker.java" beforeDir="false" afterPath="$PROJECT_DIR$/maintenance-service/src/main/java/com/ecotravel/maintenance_service/model/Worker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/maintenance-service/src/main/java/com/ecotravel/maintenance_service/repository/WorkOrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/maintenance-service/src/main/java/com/ecotravel/maintenance_service/repository/WorkOrderRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/maintenance-service/src/main/java/com/ecotravel/maintenance_service/service/WorkOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/maintenance-service/src/main/java/com/ecotravel/maintenance_service/service/WorkOrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/maintenance-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/maintenance-service/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="268" />
+    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -90,13 +72,13 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/RAF-PS-2025-26/ps-project-2025-26-nnedeljkovic_nvasiljevic_mstojicevic.git&quot;,
-    &quot;accountId&quot;: &quot;843b00e0-42eb-48be-bfe7-28ec32663c68&quot;
+    &quot;accountId&quot;: &quot;a91d81ed-7102-4000-bc43-6a5d95f7229d&quot;
   }
 }</component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -116,52 +98,56 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Maven.avanture-service [clean].executor": "Run",
-    "Maven.avanture-service [install].executor": "Run",
-    "Maven.avanture-service [validate].executor": "Run",
-    "Maven.vodici-service [clean].executor": "Run",
-    "Maven.vodici-service [compile].executor": "Run",
-    "Maven.vodici-service [install].executor": "Run",
-    "Maven.vodici-service [test].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Notification.DisplayName-DoNotAsk-DatabaseConfigFileWatcher.found": "New/updated database configurations found",
-    "Notification.DoNotAsk-DatabaseConfigFileWatcher.found": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "Spring Boot.AccommodationServiceApplication.executor": "Run",
-    "Spring Boot.AvantureServiceApplication.executor": "Run",
-    "Spring Boot.BookingServicesApplication.executor": "Run",
-    "Spring Boot.FinanceServicesApplication.executor": "Run",
-    "Spring Boot.MaintenanceServiceApplication.executor": "Run",
-    "Spring Boot.VodiciServiceApplication.executor": "Run",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/FAKS/PS/PS-EcoTravelProjekat",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "C:/Users/stoji/OneDrive/Documents/FAKS/PROJEKTI/PS-EcoTravelProjekat/vodici-service/src/main/java/com/ecotravel/Main.java",
-    "project.structure.last.edited": "SDKs",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "vcs.Git",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Maven.avanture-service [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.avanture-service [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.avanture-service [validate].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.vodici-service [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.vodici-service [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.vodici-service [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.vodici-service [test].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Notification.DisplayName-DoNotAsk-DatabaseConfigFileWatcher.found&quot;: &quot;New/updated database configurations found&quot;,
+    &quot;Notification.DoNotAsk-DatabaseConfigFileWatcher.found&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;Spring Boot.AccommodationServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.AvantureServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.BookingServicesApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.FinanceServicesApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.MaintenanceServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.VodiciServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;nikolavasiljevicNovi&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/FAKS/PS/PS-EcoTravelProjekat&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/stoji/OneDrive/Documents/FAKS/PROJEKTI/PS-EcoTravelProjekat/vodici-service/src/main/java/com/ecotravel/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\stoji\OneDrive\Documents\FAKS\PROJEKTI\PS-EcoTravelProjekat\vodici-service" />
@@ -189,11 +175,11 @@
         <entry key="SpringBootApplicationConfigurationType">
           <value>
             <map>
-              <entry key="AccommodationServiceApplication" value="FAILED" />
+              <entry key="AccommodationServiceApplication" value="STOPPED" />
               <entry key="AvantureServiceApplication" value="FAILED" />
               <entry key="BookingServicesApplication" value="STOPPED" />
               <entry key="FinanceServicesApplication" value="STOPPED" />
-              <entry key="MaintenanceServiceApplication" value="FAILED" />
+              <entry key="MaintenanceServiceApplication" value="STOPPED" />
               <entry key="VodiciServiceApplication" value="STOPPED" />
             </map>
           </value>
@@ -201,7 +187,7 @@
       </map>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.VodiciServiceApplication">
+  <component name="RunManager" selected="Spring Boot.MaintenanceServiceApplication">
     <configuration name="AccommodationServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="accommodation-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.ecotravel.accommodation_service.AccommodationServiceApplication" />
@@ -278,9 +264,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.VodiciServiceApplication" />
-        <item itemvalue="Spring Boot.AvantureServiceApplication" />
         <item itemvalue="Spring Boot.MaintenanceServiceApplication" />
+        <item itemvalue="Spring Boot.AvantureServiceApplication" />
+        <item itemvalue="Spring Boot.VodiciServiceApplication" />
         <item itemvalue="Spring Boot.FinanceServicesApplication" />
         <item itemvalue="Spring Boot.BookingServicesApplication" />
       </list>
@@ -323,6 +309,8 @@
       <workItem from="1775750275848" duration="200000" />
       <workItem from="1775750752025" duration="1593000" />
       <workItem from="1775752385066" duration="3657000" />
+      <workItem from="1776196509078" duration="6344000" />
+      <workItem from="1776258172224" duration="2579000" />
     </task>
     <servers />
   </component>

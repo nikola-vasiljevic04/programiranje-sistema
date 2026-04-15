@@ -20,5 +20,5 @@ public class Worker {
     private String lastName;
 
     @Column(nullable = false)
-    private String specialty; // npr. Električar, Higijeničar
+    private String specialty;
 }

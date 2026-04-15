@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Table(name = "availability_calendar")
 @NoArgsConstructor
 @AllArgsConstructor
-@Data // Ovo je dovoljno za getere, setere, equals, hashCode i toString
+@Data
 public class AvailabilityCalendar {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
