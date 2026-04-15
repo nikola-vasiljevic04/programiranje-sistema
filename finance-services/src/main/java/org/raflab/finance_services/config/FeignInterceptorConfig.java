@@ -1,5 +1,5 @@
 
-package org.raflab.booking_services.config;
+package org.raflab.finance_services.config;
 
 import feign.RequestInterceptor;
 import feign.codec.ErrorDecoder;
