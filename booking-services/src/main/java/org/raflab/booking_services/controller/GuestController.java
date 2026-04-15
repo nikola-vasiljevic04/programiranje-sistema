@@ -1,6 +1,7 @@
 package org.raflab.booking_services.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -36,8 +37,8 @@ public class GuestController {
             @ApiResponse(responseCode = "400", description = "Invalid input data", content = @Content),
             @ApiResponse(responseCode = "409", description = "Guest with that email already exists", content = @Content)
     })
-    public ResponseEntity<GuestDTO> create(@RequestBody @Valid final GuestDTO guestRequest) {
-        return ResponseEntity.status(201).body(guestService.createGuest(guestRequest));
+    public ResponseEntity<GuestDTO> create(@RequestBody @Valid final GuestDTO guestRequest, @Parameter(hidden = true) @RequestHeader("X-Authenticated-User") Long authenticatedUserId) {
+        return ResponseEntity.status(201).body(guestService.createGuest(guestRequest, authenticatedUserId));
     }
 
     @DeleteMapping("/{id}")

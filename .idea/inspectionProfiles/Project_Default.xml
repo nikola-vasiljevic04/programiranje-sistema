@@ -11,6 +11,8 @@
           <option value="X-RateLimit-Limit" />
           <option value="X-RateLimit-Remaining" />
           <option value="X-RateLimit-Reset" />
+          <option value="X-Authenticated-User" />
+          <option value="X-User-Role" />
         </set>
       </option>
     </inspection_tool>

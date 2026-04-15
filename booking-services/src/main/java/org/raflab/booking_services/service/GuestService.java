@@ -22,11 +22,12 @@ public class GuestService {
                 .map(guestMapper::toDTO);
     }
 
-    public GuestDTO createGuest(GuestDTO guestDTO) {
-        if (guestRepository.existsByEmail(guestDTO.getEmail())) {
-            throw new DataIntegrityViolationException("Email already exists");
+    public GuestDTO createGuest(GuestDTO guestDTO, Long userId) {
+        if (guestRepository.existsByEmail(guestDTO.getEmail()) || guestRepository.existsById(userId)) {
+            throw new DataIntegrityViolationException("Guest already exists (id or email)");
         }
         Guest guest = guestMapper.toEntity(guestDTO);
+        guest.setId(userId);
         return guestMapper.toDTO(guestRepository.save(guest));
     }
 

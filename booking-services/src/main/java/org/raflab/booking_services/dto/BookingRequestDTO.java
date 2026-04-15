@@ -36,7 +36,5 @@ public class BookingRequestDTO {
 
     private Long unitId;
 
-    private Long guestId;
-
     private Long policyId;
 }
