@@ -1,6 +1,8 @@
 package com.ecotravel.maintenance_service.exception;
 
 import jakarta.persistence.EntityNotFoundException;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -11,39 +13,83 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.util.HashMap;
 import java.util.Map;
 
+// Pretpotsavljam da se ErrorResponseDTO nalazi ovde, prilagodi import svojoj strukturi
+import com.ecotravel.maintenance_service.dto.ErrorResponseDTO;
+
+@Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+    private String getTraceId() {
+        String traceId = MDC.get("X-Trace-ID");
+        return traceId != null ? traceId : "N/A";
+    }
+
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<String> handleEntityNotFound(EntityNotFoundException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    public ResponseEntity<ErrorResponseDTO> handleEntityNotFound(EntityNotFoundException ex) {
+        ErrorResponseDTO error = new ErrorResponseDTO(
+                ex.getMessage(), getTraceId(), HttpStatus.NOT_FOUND.value()
+        );
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
+
     @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<String> handleBadRequest(IllegalArgumentException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    public ResponseEntity<ErrorResponseDTO> handleBadRequest(IllegalArgumentException ex) {
+        ErrorResponseDTO error = new ErrorResponseDTO(
+                ex.getMessage(), getTraceId(), HttpStatus.BAD_REQUEST.value()
+        );
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
+
     @ExceptionHandler(IllegalStateException.class)
-    public ResponseEntity<String> handleConflict(IllegalStateException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT); // 409 Conflict
+    public ResponseEntity<ErrorResponseDTO> handleConflict(IllegalStateException ex) {
+        ErrorResponseDTO error = new ErrorResponseDTO(
+                ex.getMessage(), getTraceId(), HttpStatus.CONFLICT.value()
+        );
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
     }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
-        Map<String, String> errors = new HashMap<>();
-        ex.getBindingResult().getAllErrors().forEach((error) -> {
-            String fieldName = ((FieldError) error).getField();
-            String errorMessage = error.getDefaultMessage();
-            errors.put(fieldName, errorMessage);
+    public ResponseEntity<ErrorResponseDTO> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        Map<String, String> validationErrors = new HashMap<>();
+
+        ex.getBindingResult().getAllErrors().forEach((err) -> {
+            String fieldName = ((FieldError) err).getField();
+            String errorMessage = err.getDefaultMessage();
+            validationErrors.put(fieldName, errorMessage);
         });
-        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+
+        ErrorResponseDTO error = new ErrorResponseDTO(
+                "Validation failed", getTraceId(), HttpStatus.BAD_REQUEST.value()
+        );
+        error.setDetails(validationErrors);
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
-    @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<String> handleRuntimeException(RuntimeException ex) {
-        if (ex.getMessage() != null && ex.getMessage().contains("trenutno nije dostupan")) {
-            return new ResponseEntity<>(ex.getMessage(), HttpStatus.SERVICE_UNAVAILABLE); // 503
-        }
-        return new ResponseEntity<>("Došlo je do sistemske greške: " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+
     @ExceptionHandler(ServiceUnavailableException.class)
-    public ResponseEntity<String> handleServiceUnavailable(ServiceUnavailableException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.SERVICE_UNAVAILABLE);
+    public ResponseEntity<ErrorResponseDTO> handleServiceUnavailable(ServiceUnavailableException ex) {
+        ErrorResponseDTO error = new ErrorResponseDTO(
+                ex.getMessage(), getTraceId(), HttpStatus.SERVICE_UNAVAILABLE.value()
+        );
+        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(error);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponseDTO> handleAllExceptions(Exception ex) {
+
+        if (ex.getMessage() != null && ex.getMessage().contains("trenutno nije dostupan")) {
+            ErrorResponseDTO error = new ErrorResponseDTO(
+                    ex.getMessage(), getTraceId(), HttpStatus.SERVICE_UNAVAILABLE.value()
+            );
+            return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(error);
+        }
+
+        ErrorResponseDTO error = new ErrorResponseDTO(
+                "An unexpected error occurred on the server.", getTraceId(), HttpStatus.INTERNAL_SERVER_ERROR.value()
+        );
+
+        log.error("Unexpected Maintenance-Service Error. TraceID: {}", getTraceId(), ex);
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
     }
 }
