@@ -8,6 +8,9 @@
           <option value="X-Trace-ID" />
           <option value="X-Eco-Service" />
           <option value="X-Processing-Time-Ms" />
+          <option value="X-RateLimit-Limit" />
+          <option value="X-RateLimit-Remaining" />
+          <option value="X-RateLimit-Reset" />
         </set>
       </option>
     </inspection_tool>
